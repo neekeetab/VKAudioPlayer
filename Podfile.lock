@@ -1,0 +1,16 @@
+PODS:
+  - FreeStreamer (3.5.5):
+    - Reachability (~> 3.0)
+  - Reachability (3.2)
+  - VK-ios-sdk (1.3.16)
+
+DEPENDENCIES:
+  - FreeStreamer
+  - VK-ios-sdk (~> 1.3.16)
+
+SPEC CHECKSUMS:
+  FreeStreamer: c1ffd513b7445cfee20c0e87f9881c99a644a863
+  Reachability: 33e18b67625424e47b6cde6d202dce689ad7af96
+  VK-ios-sdk: 7804776d9947cf9b6f54a259fac589b9212156f1
+
+COCOAPODS: 0.39.0

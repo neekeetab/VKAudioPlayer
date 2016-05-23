@@ -1,0 +1,377 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		11294E291CF3C7FF00E8EEA2 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11294E281CF3C7FF00E8EEA2 /* AppDelegate.swift */; };
+		11294E2B1CF3C7FF00E8EEA2 /* MasterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11294E2A1CF3C7FF00E8EEA2 /* MasterViewController.swift */; };
+		11294E311CF3C7FF00E8EEA2 /* VKAudioPlayer.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 11294E2F1CF3C7FF00E8EEA2 /* VKAudioPlayer.xcdatamodeld */; };
+		11294E331CF3C7FF00E8EEA2 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 11294E321CF3C7FF00E8EEA2 /* Assets.xcassets */; };
+		11294E3E1CF3C94200E8EEA2 /* Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11294E3D1CF3C94200E8EEA2 /* Utils.swift */; };
+		11294E401CF3C96700E8EEA2 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 11294E3F1CF3C96700E8EEA2 /* Main.storyboard */; };
+		11294E421CF3C97A00E8EEA2 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 11294E411CF3C97A00E8EEA2 /* LaunchScreen.storyboard */; };
+		A63ABB63716FB4483771D047 /* Pods_VKAudioPlayer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 26B8640E32B8892D3EAE8165 /* Pods_VKAudioPlayer.framework */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		11294E251CF3C7FF00E8EEA2 /* VKAudioPlayer.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = VKAudioPlayer.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		11294E281CF3C7FF00E8EEA2 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		11294E2A1CF3C7FF00E8EEA2 /* MasterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MasterViewController.swift; sourceTree = "<group>"; };
+		11294E301CF3C7FF00E8EEA2 /* VKAudioPlayer.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = VKAudioPlayer.xcdatamodel; sourceTree = "<group>"; };
+		11294E321CF3C7FF00E8EEA2 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		11294E371CF3C7FF00E8EEA2 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		11294E3D1CF3C94200E8EEA2 /* Utils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Utils.swift; sourceTree = "<group>"; };
+		11294E3F1CF3C96700E8EEA2 /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
+		11294E411CF3C97A00E8EEA2 /* LaunchScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = LaunchScreen.storyboard; sourceTree = "<group>"; };
+		26B8640E32B8892D3EAE8165 /* Pods_VKAudioPlayer.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_VKAudioPlayer.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		A1F041E64002C0CA25E1A736 /* Pods-VKAudioPlayer.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-VKAudioPlayer.release.xcconfig"; path = "Pods/Target Support Files/Pods-VKAudioPlayer/Pods-VKAudioPlayer.release.xcconfig"; sourceTree = "<group>"; };
+		FF23D35E03F977759073C427 /* Pods-VKAudioPlayer.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-VKAudioPlayer.debug.xcconfig"; path = "Pods/Target Support Files/Pods-VKAudioPlayer/Pods-VKAudioPlayer.debug.xcconfig"; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		11294E221CF3C7FF00E8EEA2 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				A63ABB63716FB4483771D047 /* Pods_VKAudioPlayer.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		11294E1C1CF3C7FF00E8EEA2 = {
+			isa = PBXGroup;
+			children = (
+				11294E271CF3C7FF00E8EEA2 /* VKAudioPlayer */,
+				11294E261CF3C7FF00E8EEA2 /* Products */,
+				129D295F067A4B60E3762D7C /* Pods */,
+				853F559960142AFB0947169B /* Frameworks */,
+			);
+			sourceTree = "<group>";
+		};
+		11294E261CF3C7FF00E8EEA2 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				11294E251CF3C7FF00E8EEA2 /* VKAudioPlayer.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		11294E271CF3C7FF00E8EEA2 /* VKAudioPlayer */ = {
+			isa = PBXGroup;
+			children = (
+				11294E281CF3C7FF00E8EEA2 /* AppDelegate.swift */,
+				11294E2A1CF3C7FF00E8EEA2 /* MasterViewController.swift */,
+				11294E3D1CF3C94200E8EEA2 /* Utils.swift */,
+				11294E3F1CF3C96700E8EEA2 /* Main.storyboard */,
+				11294E411CF3C97A00E8EEA2 /* LaunchScreen.storyboard */,
+				11294E321CF3C7FF00E8EEA2 /* Assets.xcassets */,
+				11294E371CF3C7FF00E8EEA2 /* Info.plist */,
+				11294E2F1CF3C7FF00E8EEA2 /* VKAudioPlayer.xcdatamodeld */,
+			);
+			path = VKAudioPlayer;
+			sourceTree = "<group>";
+		};
+		129D295F067A4B60E3762D7C /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				FF23D35E03F977759073C427 /* Pods-VKAudioPlayer.debug.xcconfig */,
+				A1F041E64002C0CA25E1A736 /* Pods-VKAudioPlayer.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
+		853F559960142AFB0947169B /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				26B8640E32B8892D3EAE8165 /* Pods_VKAudioPlayer.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		11294E241CF3C7FF00E8EEA2 /* VKAudioPlayer */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 11294E3A1CF3C7FF00E8EEA2 /* Build configuration list for PBXNativeTarget "VKAudioPlayer" */;
+			buildPhases = (
+				53110A68BE9FDC51DEFFF213 /* Check Pods Manifest.lock */,
+				11294E211CF3C7FF00E8EEA2 /* Sources */,
+				11294E221CF3C7FF00E8EEA2 /* Frameworks */,
+				11294E231CF3C7FF00E8EEA2 /* Resources */,
+				62B2DFF819127B315D42EA60 /* Embed Pods Frameworks */,
+				9DEB494EFC37067A0CE1929E /* Copy Pods Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = VKAudioPlayer;
+			productName = VKAudioPlayer;
+			productReference = 11294E251CF3C7FF00E8EEA2 /* VKAudioPlayer.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		11294E1D1CF3C7FF00E8EEA2 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastSwiftUpdateCheck = 0730;
+				LastUpgradeCheck = 0730;
+				ORGANIZATIONNAME = "Nikita Belousov";
+				TargetAttributes = {
+					11294E241CF3C7FF00E8EEA2 = {
+						CreatedOnToolsVersion = 7.3;
+					};
+				};
+			};
+			buildConfigurationList = 11294E201CF3C7FF00E8EEA2 /* Build configuration list for PBXProject "VKAudioPlayer" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 11294E1C1CF3C7FF00E8EEA2;
+			productRefGroup = 11294E261CF3C7FF00E8EEA2 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				11294E241CF3C7FF00E8EEA2 /* VKAudioPlayer */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		11294E231CF3C7FF00E8EEA2 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				11294E421CF3C97A00E8EEA2 /* LaunchScreen.storyboard in Resources */,
+				11294E401CF3C96700E8EEA2 /* Main.storyboard in Resources */,
+				11294E331CF3C7FF00E8EEA2 /* Assets.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		53110A68BE9FDC51DEFFF213 /* Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		62B2DFF819127B315D42EA60 /* Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-VKAudioPlayer/Pods-VKAudioPlayer-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		9DEB494EFC37067A0CE1929E /* Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-VKAudioPlayer/Pods-VKAudioPlayer-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		11294E211CF3C7FF00E8EEA2 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				11294E2B1CF3C7FF00E8EEA2 /* MasterViewController.swift in Sources */,
+				11294E291CF3C7FF00E8EEA2 /* AppDelegate.swift in Sources */,
+				11294E311CF3C7FF00E8EEA2 /* VKAudioPlayer.xcdatamodeld in Sources */,
+				11294E3E1CF3C94200E8EEA2 /* Utils.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin XCBuildConfiguration section */
+		11294E381CF3C7FF00E8EEA2 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		11294E391CF3C7FF00E8EEA2 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		11294E3B1CF3C7FF00E8EEA2 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = FF23D35E03F977759073C427 /* Pods-VKAudioPlayer.debug.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				INFOPLIST_FILE = VKAudioPlayer/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "dev.Nikita-Belousov.VKAudioPlayer";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		11294E3C1CF3C7FF00E8EEA2 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = A1F041E64002C0CA25E1A736 /* Pods-VKAudioPlayer.release.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				INFOPLIST_FILE = VKAudioPlayer/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "dev.Nikita-Belousov.VKAudioPlayer";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		11294E201CF3C7FF00E8EEA2 /* Build configuration list for PBXProject "VKAudioPlayer" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				11294E381CF3C7FF00E8EEA2 /* Debug */,
+				11294E391CF3C7FF00E8EEA2 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		11294E3A1CF3C7FF00E8EEA2 /* Build configuration list for PBXNativeTarget "VKAudioPlayer" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				11294E3B1CF3C7FF00E8EEA2 /* Debug */,
+				11294E3C1CF3C7FF00E8EEA2 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		11294E2F1CF3C7FF00E8EEA2 /* VKAudioPlayer.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				11294E301CF3C7FF00E8EEA2 /* VKAudioPlayer.xcdatamodel */,
+			);
+			currentVersion = 11294E301CF3C7FF00E8EEA2 /* VKAudioPlayer.xcdatamodel */;
+			path = VKAudioPlayer.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
+	};
+	rootObject = 11294E1D1CF3C7FF00E8EEA2 /* Project object */;
+}

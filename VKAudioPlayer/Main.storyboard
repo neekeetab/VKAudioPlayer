@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10116" systemVersion="15E65" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="NP8-bW-F77">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
+    </dependencies>
+    <scenes>
+        <!--VKAudioPlayer-->
+        <scene sceneID="75N-3Y-X0h">
+            <objects>
+                <viewController id="mBz-RN-8Ca" customClass="MasterViewController" customModule="VKAudioPlayer" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="x1Q-vp-wHM"/>
+                        <viewControllerLayoutGuide type="bottom" id="33T-Dx-dXy"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="Dou-YK-AWa">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="bzd-2l-lKi">
+                                <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <connections>
+                                    <outlet property="dataSource" destination="mBz-RN-8Ca" id="uQC-ll-uHH"/>
+                                    <outlet property="delegate" destination="mBz-RN-8Ca" id="COY-O7-luK"/>
+                                </connections>
+                            </tableView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="33T-Dx-dXy" firstAttribute="top" secondItem="bzd-2l-lKi" secondAttribute="bottom" id="IYZ-pj-Q3W"/>
+                            <constraint firstItem="bzd-2l-lKi" firstAttribute="leading" secondItem="Dou-YK-AWa" secondAttribute="leadingMargin" constant="-20" id="ftX-8f-fIa"/>
+                            <constraint firstItem="bzd-2l-lKi" firstAttribute="top" secondItem="Dou-YK-AWa" secondAttribute="topMargin" id="gpH-O1-UUa"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="bzd-2l-lKi" secondAttribute="trailing" constant="-20" id="wdB-y1-Ucr"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" title="VKAudioPlayer" id="8hR-ZR-HCD">
+                        <barButtonItem key="leftBarButtonItem" image="settingsIcon" id="8TP-hz-RVj">
+                            <color key="tintColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                        </barButtonItem>
+                        <barButtonItem key="rightBarButtonItem" systemItem="search" id="Dr3-Fg-OIy">
+                            <color key="tintColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                            <connections>
+                                <action selector="searchButtonPressed:" destination="mBz-RN-8Ca" id="3cu-yf-Rkc"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                    <connections>
+                        <outlet property="tableView" destination="bzd-2l-lKi" id="K0W-Ov-hxe"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="sNq-02-5hq" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="132" y="160"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="Ff5-xh-kz4">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="NP8-bW-F77" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="EVu-Kx-twK">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <color key="barTintColor" red="0.0" green="0.40000000000000002" blue="0.80000000000000004" alpha="1" colorSpace="calibratedRGB"/>
+                        <textAttributes key="titleTextAttributes">
+                            <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                        </textAttributes>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="mBz-RN-8Ca" kind="relationship" relationship="rootViewController" id="oT9-NL-xou"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="VBk-W8-aKC" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-680" y="160"/>
+        </scene>
+    </scenes>
+    <resources>
+        <image name="settingsIcon" width="20" height="20"/>
+    </resources>
+</document>
