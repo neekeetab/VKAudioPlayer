@@ -67,5 +67,4 @@ extension MasterViewController: UISearchResultsUpdating, UISearchBarDelegate {
         
     }
 
-    
 }

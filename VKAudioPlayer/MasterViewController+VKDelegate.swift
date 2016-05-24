@@ -16,7 +16,7 @@ extension MasterViewController: VKSdkDelegate, VKSdkUIDelegate {
     }
     
     func vkSdkAccessAuthorizationFinishedWithResult(result: VKAuthorizationResult!) {
-        //        print("Authorization finished with token: \(result.token.accessToken)")
+//        print("Authorization finished with token: \(result.token.accessToken)")
         executeInitialRequest()
     }
     

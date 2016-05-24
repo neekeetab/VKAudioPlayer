@@ -10,9 +10,8 @@ import UIKit
 import VK_ios_sdk
 
 extension MasterViewController: UITableViewDelegate, UITableViewDataSource {
-        
-    func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        tableView.deselectRowAtIndexPath(indexPath, animated: true)
+    
+    func audioItemForIndexPath(indexPath: NSIndexPath) -> VKAudioItem {
         
         var audioItem: VKAudioItem
         if userAudios.count != 0 && indexPath.section == 0 {
@@ -21,8 +20,15 @@ extension MasterViewController: UITableViewDelegate, UITableViewDataSource {
             audioItem = globalAudios[indexPath.row]
         }
         
+        return audioItem
+        
+    }
+    
+    func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+        tableView.deselectRowAtIndexPath(indexPath, animated: true)
+        
         audioStream.stop()
-        audioStream.playFromURL(audioItem.url)
+        audioStream.playFromURL(audioItemForIndexPath(indexPath).url)
         
     }
     
@@ -48,14 +54,8 @@ extension MasterViewController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         
-        var audioItem: VKAudioItem
-        if userAudios.count != 0 && indexPath.section == 0 {
-            audioItem = userAudios[indexPath.row]
-        } else {
-            audioItem = globalAudios[indexPath.row]
-        }
-        
         let cell = UITableViewCell()
+        let audioItem = audioItemForIndexPath(indexPath)
         cell.textLabel?.text = audioItem.title + " - " + audioItem.artist
         
         return cell

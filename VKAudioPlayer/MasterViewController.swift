@@ -61,16 +61,6 @@ class MasterViewController: UIViewController {
                 // TODO: handle appropriately
         })
     }
-        
-    //    func scrollViewDidEndDecelerating(scrollView: UIScrollView) {
-    //        let height = scrollView.frame.size.height
-    //        let contentYoffset = scrollView.contentOffset.y
-    //        let distanceFromBottom = scrollView.contentSize.height - contentYoffset
-    //
-    //        if distanceFromBottom <= height {
-    //            print("need to load more")
-    //        }
-    //    }
     
     func sectionForGlobalAudios() -> Int {
         if userAudios.count != 0 {
@@ -155,8 +145,7 @@ class MasterViewController: UIViewController {
         
     }
     
-    // MARK: View controller customization
-    
+    // MARK: - View controller customization
     override func viewDidLoad() {
         super.viewDidLoad()
         
