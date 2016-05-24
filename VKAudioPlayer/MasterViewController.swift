@@ -2,7 +2,7 @@
 //  ViewController.swift
 //  VKAudioPlayer
 //
-//  Created by Nikitab Belousov on 5/6/16.
+//  Created by Nikita Belousov on 5/6/16.
 //  Copyright © 2016 Nikita Belousov. All rights reserved.
 //
 

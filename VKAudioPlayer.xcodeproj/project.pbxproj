@@ -20,9 +20,9 @@
 		11DD92CB1CF4A4EF00A8FC4A /* VKAudioResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11DD92CA1CF4A4EF00A8FC4A /* VKAudioResponse.swift */; };
 		11DD92D11CF4A9FB00A8FC4A /* VKAudioItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11DD92D01CF4A9FB00A8FC4A /* VKAudioItem.swift */; };
 		11DD92D31CF4B58B00A8FC4A /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11DD92D21CF4B58B00A8FC4A /* Constants.swift */; };
-		11DD92D71CF4DB3100A8FC4A /* UserAudioModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11DD92D61CF4DB3100A8FC4A /* UserAudioModel.swift */; };
-		11DD92D91CF4DB4700A8FC4A /* SearchAudioModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11DD92D81CF4DB4700A8FC4A /* SearchAudioModel.swift */; };
-		11DD92DB1CF4DB5600A8FC4A /* Model.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11DD92DA1CF4DB5600A8FC4A /* Model.swift */; };
+		11DD92D71CF4DB3100A8FC4A /* UserAudioContext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11DD92D61CF4DB3100A8FC4A /* UserAudioContext.swift */; };
+		11DD92D91CF4DB4700A8FC4A /* SearchAudioContext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11DD92D81CF4DB4700A8FC4A /* SearchAudioContext.swift */; };
+		11DD92DB1CF4DB5600A8FC4A /* AudioContext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11DD92DA1CF4DB5600A8FC4A /* AudioContext.swift */; };
 		11DD92DD1CF4DC2B00A8FC4A /* VKAudioRequestQueue.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11DD92DC1CF4DC2B00A8FC4A /* VKAudioRequestQueue.swift */; };
 		11DD92E01CF4DCFC00A8FC4A /* VKAudioRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11DD92DF1CF4DCFC00A8FC4A /* VKAudioRequest.swift */; };
 		A63ABB63716FB4483771D047 /* Pods_VKAudioPlayer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 26B8640E32B8892D3EAE8165 /* Pods_VKAudioPlayer.framework */; };
@@ -44,9 +44,9 @@
 		11DD92CA1CF4A4EF00A8FC4A /* VKAudioResponse.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VKAudioResponse.swift; sourceTree = "<group>"; };
 		11DD92D01CF4A9FB00A8FC4A /* VKAudioItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VKAudioItem.swift; sourceTree = "<group>"; };
 		11DD92D21CF4B58B00A8FC4A /* Constants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
-		11DD92D61CF4DB3100A8FC4A /* UserAudioModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserAudioModel.swift; sourceTree = "<group>"; };
-		11DD92D81CF4DB4700A8FC4A /* SearchAudioModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchAudioModel.swift; sourceTree = "<group>"; };
-		11DD92DA1CF4DB5600A8FC4A /* Model.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Model.swift; sourceTree = "<group>"; };
+		11DD92D61CF4DB3100A8FC4A /* UserAudioContext.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserAudioContext.swift; sourceTree = "<group>"; };
+		11DD92D81CF4DB4700A8FC4A /* SearchAudioContext.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchAudioContext.swift; sourceTree = "<group>"; };
+		11DD92DA1CF4DB5600A8FC4A /* AudioContext.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AudioContext.swift; sourceTree = "<group>"; };
 		11DD92DC1CF4DC2B00A8FC4A /* VKAudioRequestQueue.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VKAudioRequestQueue.swift; sourceTree = "<group>"; };
 		11DD92DF1CF4DCFC00A8FC4A /* VKAudioRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VKAudioRequest.swift; sourceTree = "<group>"; };
 		26B8640E32B8892D3EAE8165 /* Pods_VKAudioPlayer.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_VKAudioPlayer.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -90,9 +90,9 @@
 				11DD92D21CF4B58B00A8FC4A /* Constants.swift */,
 				11DD92D41CF4DAAB00A8FC4A /* MasterViewController */,
 				11DD92D51CF4DABC00A8FC4A /* Model */,
-				11DD92DE1CF4DCB700A8FC4A /* VKAudioRequests */,
 				11DD92D01CF4A9FB00A8FC4A /* VKAudioItem.swift */,
 				11DD92DC1CF4DC2B00A8FC4A /* VKAudioRequestQueue.swift */,
+				11DD92DF1CF4DCFC00A8FC4A /* VKAudioRequest.swift */,
 				11DD92CA1CF4A4EF00A8FC4A /* VKAudioResponse.swift */,
 				11294E281CF3C7FF00E8EEA2 /* AppDelegate.swift */,
 				11294E3D1CF3C94200E8EEA2 /* Utils.swift */,
@@ -119,19 +119,11 @@
 		11DD92D51CF4DABC00A8FC4A /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				11DD92D61CF4DB3100A8FC4A /* UserAudioModel.swift */,
-				11DD92D81CF4DB4700A8FC4A /* SearchAudioModel.swift */,
-				11DD92DA1CF4DB5600A8FC4A /* Model.swift */,
+				11DD92D61CF4DB3100A8FC4A /* UserAudioContext.swift */,
+				11DD92D81CF4DB4700A8FC4A /* SearchAudioContext.swift */,
+				11DD92DA1CF4DB5600A8FC4A /* AudioContext.swift */,
 			);
 			name = Model;
-			sourceTree = "<group>";
-		};
-		11DD92DE1CF4DCB700A8FC4A /* VKAudioRequests */ = {
-			isa = PBXGroup;
-			children = (
-				11DD92DF1CF4DCFC00A8FC4A /* VKAudioRequest.swift */,
-			);
-			name = VKAudioRequests;
 			sourceTree = "<group>";
 		};
 		129D295F067A4B60E3762D7C /* Pods */ = {
@@ -274,9 +266,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				11DD92C71CF49D2A00A8FC4A /* MasterViewController+SearchDelegate.swift in Sources */,
-				11DD92D91CF4DB4700A8FC4A /* SearchAudioModel.swift in Sources */,
-				11DD92D71CF4DB3100A8FC4A /* UserAudioModel.swift in Sources */,
-				11DD92DB1CF4DB5600A8FC4A /* Model.swift in Sources */,
+				11DD92D91CF4DB4700A8FC4A /* SearchAudioContext.swift in Sources */,
+				11DD92D71CF4DB3100A8FC4A /* UserAudioContext.swift in Sources */,
+				11DD92DB1CF4DB5600A8FC4A /* AudioContext.swift in Sources */,
 				11294E2B1CF3C7FF00E8EEA2 /* MasterViewController.swift in Sources */,
 				11DD92DD1CF4DC2B00A8FC4A /* VKAudioRequestQueue.swift in Sources */,
 				11DD92CB1CF4A4EF00A8FC4A /* VKAudioResponse.swift in Sources */,
