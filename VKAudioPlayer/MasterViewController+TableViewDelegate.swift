@@ -14,10 +14,10 @@ extension MasterViewController: UITableViewDelegate, UITableViewDataSource {
     func audioItemForIndexPath(indexPath: NSIndexPath) -> VKAudioItem {
         
         var audioItem: VKAudioItem
-        if userAudios.count != 0 && indexPath.section == 0 {
-            audioItem = userAudios[indexPath.row]
+        if usersAudio.count != 0 && indexPath.section == 0 {
+            audioItem = usersAudio[indexPath.row]
         } else {
-            audioItem = globalAudios[indexPath.row]
+            audioItem = globalAudio[indexPath.row]
         }
         
         return audioItem
@@ -34,10 +34,10 @@ extension MasterViewController: UITableViewDelegate, UITableViewDataSource {
     
     func numberOfSectionsInTableView(tableView: UITableView) -> Int {
         var count = 0
-        if userAudios.count != 0 {
+        if usersAudio.count != 0 {
             count += 1
         }
-        if globalAudios.count != 0 {
+        if globalAudio.count != 0 {
             count += 1
         }
         return count
@@ -45,10 +45,10 @@ extension MasterViewController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         
-        if userAudios.count != 0 && section == 0 {
-            return userAudios.count
+        if usersAudio.count != 0 && section == 0 {
+            return usersAudio.count
         }
-        return globalAudios.count
+        return globalAudio.count
         
     }
     
@@ -62,7 +62,7 @@ extension MasterViewController: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-        if userAudios.count != 0 && section == 0 {
+        if usersAudio.count != 0 && section == 0 {
             return "My audios"
         }
         return "Global audios"

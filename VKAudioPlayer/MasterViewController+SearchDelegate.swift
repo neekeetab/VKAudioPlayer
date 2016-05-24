@@ -13,8 +13,8 @@ extension MasterViewController: UISearchResultsUpdating, UISearchBarDelegate {
     
     func updateSearchResultsForSearchController(searchController: UISearchController) {
         
-        userAudios = []
-        globalAudios = []
+        usersAudio = []
+        globalAudio = []
         tableView.reloadData()
         
         if searchController.active == false {
@@ -31,8 +31,8 @@ extension MasterViewController: UISearchResultsUpdating, UISearchBarDelegate {
             ])
         searchAudioRequest.completeBlock = { response in
             
-            self.userAudios += response.userAudios()
-            self.globalAudios += response.globalAudios()
+            self.usersAudio += response.usersAudio()
+            self.globalAudio += response.globalAudio()
             
             self.tableView?.reloadData()
             self.indicatorView.stopAnimating()

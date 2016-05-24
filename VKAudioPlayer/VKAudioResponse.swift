@@ -28,28 +28,28 @@ extension VKResponse {
     }
     
     // audios owned by user
-    func userAudios() -> [VKAudioItem] {
+    func usersAudio() -> [VKAudioItem] {
         
         let items = (self.json as! [String: AnyObject])["items"] as! [[String: AnyObject]]
-        var userAudios = [VKAudioItem]()
+        var usersAudio = [VKAudioItem]()
         for i in items {
-            userAudios.append(VKAudioItem.audioItemFromVKResponseItem(i))
+            usersAudio.append(VKAudioItem.audioItemFromVKResponseItem(i))
         }
     
-        return userAudios
+        return usersAudio
         
     }
     
     // audios that aren't owned by user
-    func globalAudios() -> [VKAudioItem] {
+    func globalAudio() -> [VKAudioItem] {
         
         let items = (self.json as! [String: AnyObject])["items"] as! [[String: AnyObject]]
-        var globalAudios = [VKAudioItem]()
+        var globalAudio = [VKAudioItem]()
         for i in items {
-           globalAudios.append(VKAudioItem.audioItemFromVKResponseItem(i))
+           globalAudio.append(VKAudioItem.audioItemFromVKResponseItem(i))
         }
         
-        return globalAudios
+        return globalAudio
         
     }
 

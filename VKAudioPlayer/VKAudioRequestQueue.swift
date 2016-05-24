@@ -10,6 +10,6 @@ import Foundation
 
 class VKAudioRequestQueue {
     
-    let requestOperationQueue
+    
     
 }

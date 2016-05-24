@@ -1,5 +1,5 @@
 //
-//  UserAudioModel.swift
+//  UserModel.swift
 //  VKAudioPlayer
 //
 //  Created by Nikitab Belousov on 5/24/16.
@@ -7,3 +7,8 @@
 //
 
 import Foundation
+
+class UserModel: Model {
+    
+}
+

@@ -25,8 +25,8 @@ class MasterViewController: UIViewController {
     
     // MARK: -
     var audioStream = FSAudioStream()
-    var userAudios = [VKAudioItem]()
-    var globalAudios = [VKAudioItem]()
+    var usersAudio = [VKAudioItem]()
+    var globalAudio = [VKAudioItem]()
     let searchController = UISearchController(searchResultsController: nil)
     var indicatorView = UIActivityIndicatorView()
     let requestOperationQueue = NSOperationQueue() // in this queue only last operation is executed, all others are canceled
@@ -34,8 +34,8 @@ class MasterViewController: UIViewController {
     // MARK: -
     func executeInitialRequest() {
         
-        userAudios = []
-        globalAudios = []
+        usersAudio = []
+        globalAudio = []
         tableView.reloadData()
         
         indicatorView.startAnimating()
@@ -44,8 +44,8 @@ class MasterViewController: UIViewController {
             ])
         audioRequest.executeWithResultBlock({ response in
             
-            self.userAudios += response.userAudios()
-            self.globalAudios += self.globalAudios
+            self.usersAudio += response.usersAudio()
+            self.globalAudio += self.globalAudio
             
             self.tableView?.reloadData()
             self.indicatorView.stopAnimating()
@@ -56,8 +56,8 @@ class MasterViewController: UIViewController {
         })
     }
     
-    func sectionForGlobalAudios() -> Int {
-        if userAudios.count != 0 {
+    func sectionForglobalAudio() -> Int {
+        if usersAudio.count != 0 {
             return 1
         }
         return 0
@@ -71,7 +71,7 @@ class MasterViewController: UIViewController {
         let distanceFromBottom = scrollView.contentSize.height - contentYoffset
         if distanceFromBottom - height < distanceFromBottomToPreload {
             
-            if userAudios.count != 0 || globalAudios.count != 0 {
+            if usersAudio.count != 0 || globalAudio.count != 0 {
                 if requestOperationQueue.operationCount == 0 && requestExecuted {
                     
                     indicatorView.startAnimating()
@@ -82,33 +82,33 @@ class MasterViewController: UIViewController {
                             "q": searchController.searchBar.text!,
                             "auto_complete": 1,
                             "search_own": 1,
-                            "offset": userAudios.count + globalAudios.count
+                            "offset": usersAudio.count + globalAudio.count
                             ])
                         
                         audioRequest.completeBlock = { response in
-                            let items = response.globalAudios()
+                            let items = response.globalAudio()
                             var paths = [NSIndexPath]()
                             for i in 0 ..< items.count {
-                                paths.append(NSIndexPath(forRow: self.globalAudios.count + i, inSection: self.sectionForGlobalAudios()))
+                                paths.append(NSIndexPath(forRow: self.globalAudio.count + i, inSection: self.sectionForglobalAudio()))
                             }
-                            self.globalAudios += items
+                            self.globalAudio += items
                             self.tableView.insertRowsAtIndexPaths(paths, withRowAnimation: UITableViewRowAnimation.Automatic)
                             self.indicatorView.stopAnimating()
                             self.requestExecuted = true
                         }
                     } else {
                         audioRequest = VKApi.requestWithMethod("audio.get", andParameters: [
-                            "offset": userAudios.count,
+                            "offset": usersAudio.count,
                             "count": elementsPerRequest,
                             "need_user": 0
                             ])
                         audioRequest.completeBlock = { response in
-                            let items = response.userAudios()
+                            let items = response.usersAudio()
                             var paths = [NSIndexPath]()
                             for i in 0 ..< items.count {
-                                paths.append(NSIndexPath(forRow: self.userAudios.count + i, inSection: 0))
+                                paths.append(NSIndexPath(forRow: self.usersAudio.count + i, inSection: 0))
                             }
-                            self.userAudios += items
+                            self.usersAudio += items
                             self.tableView.insertRowsAtIndexPaths(paths, withRowAnimation: UITableViewRowAnimation.Automatic)
                             self.indicatorView.stopAnimating()
                             self.requestExecuted = true

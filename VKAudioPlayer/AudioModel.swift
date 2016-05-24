@@ -1,5 +1,5 @@
 //
-//  AudioModel.swift
+//  Model.swift
 //  VKAudioPlayer
 //
 //  Created by Nikitab Belousov on 5/24/16.
@@ -8,19 +8,38 @@
 
 import Foundation
 
-// Think of it as an abstract class
-class AudioModel {
+class Model {
     
-    var userAudios: [VKAudioItem]!
-    var globalAudios: [VKAudioItem]!
+    var usersAudio: [VKAudioItem]!
+    var globalAudio: [VKAudioItem]!
     var fetchedAudioIDs: Set<Int>!
+    var numberOfPortions: Int!
     
-    func loadNextPortion(withCompletionBlock block: () -> ()) {
+    func loadNextPortion(withCompletionBlock block: (suc: Bool) -> ()) {
         fatalError("Not implemented")
     }
     
-    func reload(withCompletionBlock block: () -> ()) {
+    func reload(withCompletionBlock block: (suc: Bool) -> ()) {
         fatalError("Not implemented")
+    }
+    
+    static func searchModel(withSearchString stris: String) -> Model {
+        
+        let searchModel = Model()
+        
+        
+        return searchModel
+        
+    }
+    
+    static func usersModel() -> Model {
+        
+        let userModel = Model()
+        
+        return userModel
+        
     }
     
 }
+
+// TODO: CoreData requests
