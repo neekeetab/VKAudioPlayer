@@ -23,19 +23,13 @@ class MasterViewController: UIViewController {
         self.searchController.searchBar.becomeFirstResponder()
     }
     
-    // MARK: Constants
-    let appID = "5450086"
-    let timePerRequestsMilliseconds: UInt32 = 333333
-    let elementsPerRequest = 50
-    let distanceFromBottomToPreload: CGFloat = 0
-    
     // MARK: -
     var audioStream = FSAudioStream()
     var userAudios = [VKAudioItem]()
     var globalAudios = [VKAudioItem]()
     let searchController = UISearchController(searchResultsController: nil)
     var indicatorView = UIActivityIndicatorView()
-    let requestOperationQueue = NSOperationQueue()
+    let requestOperationQueue = NSOperationQueue() // in this queue only last operation is executed, all others are canceled
     
     // MARK: -
     func executeInitialRequest() {
@@ -90,6 +84,7 @@ class MasterViewController: UIViewController {
                             "search_own": 1,
                             "offset": userAudios.count + globalAudios.count
                             ])
+                        
                         audioRequest.completeBlock = { response in
                             let items = response.globalAudios()
                             var paths = [NSIndexPath]()
@@ -130,7 +125,7 @@ class MasterViewController: UIViewController {
                     let operation = NSBlockOperation()
                     weak var opWeak = operation
                     operation.addExecutionBlock({
-                        usleep(self.timePerRequestsMilliseconds)
+                        usleep(timePerRequestsMilliseconds)
                         self.indicatorView.startAnimating()
                         if opWeak != nil && opWeak!.cancelled == false {
                             self.requestExecuted = false

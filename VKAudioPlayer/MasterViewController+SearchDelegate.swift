@@ -49,7 +49,7 @@ extension MasterViewController: UISearchResultsUpdating, UISearchBarDelegate {
         let operation = NSBlockOperation()
         weak var opWeak = operation
         operation.addExecutionBlock({
-            usleep(self.timePerRequestsMilliseconds)
+            usleep(timePerRequestsMilliseconds)
             self.indicatorView.startAnimating()
             if opWeak != nil && opWeak!.cancelled == false {
                 searchAudioRequest.start()
