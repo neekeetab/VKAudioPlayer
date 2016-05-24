@@ -14,16 +14,15 @@ extension MasterViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         tableView.deselectRowAtIndexPath(indexPath, animated: true)
         
-        var audioItem: [String: AnyObject]!
+        var audioItem: VKAudioItem
         if userAudios.count != 0 && indexPath.section == 0 {
             audioItem = userAudios[indexPath.row]
         } else {
             audioItem = globalAudios[indexPath.row]
         }
         
-        let audioUrl = NSURL(string: audioItem["url"] as! String)
         audioStream.stop()
-        audioStream.playFromURL(audioUrl)
+        audioStream.playFromURL(audioItem.url)
         
     }
     
@@ -49,7 +48,7 @@ extension MasterViewController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         
-        var audioItem: [String: AnyObject]!
+        var audioItem: VKAudioItem
         if userAudios.count != 0 && indexPath.section == 0 {
             audioItem = userAudios[indexPath.row]
         } else {
@@ -57,9 +56,7 @@ extension MasterViewController: UITableViewDelegate, UITableViewDataSource {
         }
         
         let cell = UITableViewCell()
-        let title = audioItem["title"] as? String
-        let author = audioItem["artist"] as? String
-        cell.textLabel?.text = title! + " - " + author!
+        cell.textLabel?.text = audioItem.title + " - " + audioItem.artist
         
         return cell
     }

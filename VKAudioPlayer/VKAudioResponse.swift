@@ -11,30 +11,44 @@ import VK_ios_sdk
 
 extension VKResponse {
     
-    // returns parsed json that contains only user's audios
-    func userAudios() -> [[String: AnyObject]] {
+    // WARNING: call of further methods on non-audio responses gives unexpected results!
+    
+    // all audios
+    func audios() -> [VKAudioItem] {
         
         let items = (self.json as! [String: AnyObject])["items"] as! [[String: AnyObject]]
-        var userAudios = [[String: AnyObject]]()
+        var audios = [VKAudioItem]()
         for i in items {
-            if i["owner_id"] as? Int == Int(VKSdk.accessToken().userId) {
-                userAudios.append(i)
-            }
+            audios.append(VKAudioItem.audioItemFromVKResponseItem(i))
+            
         }
+        
+        return audios
+        
+    }
+    
+    // audios owned by user
+    func userAudios() -> [VKAudioItem] {
+        
+        let items = (self.json as! [String: AnyObject])["items"] as! [[String: AnyObject]]
+        var userAudios = [VKAudioItem]()
+        for i in items {
+            userAudios.append(VKAudioItem.audioItemFromVKResponseItem(i))
+        }
+    
         return userAudios
         
     }
     
-    // returns parsed json that contains only of global audios
-    func globalAudios() -> [[String: AnyObject]] {
+    // audios that aren't owned by user
+    func globalAudios() -> [VKAudioItem] {
         
         let items = (self.json as! [String: AnyObject])["items"] as! [[String: AnyObject]]
-        var globalAudios = [[String: AnyObject]]()
+        var globalAudios = [VKAudioItem]()
         for i in items {
-            if i["owner_id"] as? Int != Int(VKSdk.accessToken().userId) {
-                globalAudios.append(i)
-            }
+           globalAudios.append(VKAudioItem.audioItemFromVKResponseItem(i))
         }
+        
         return globalAudios
         
     }

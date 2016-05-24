@@ -31,8 +31,8 @@ class MasterViewController: UIViewController {
     
     // MARK: -
     var audioStream = FSAudioStream()
-    var userAudios = [[String: AnyObject]]()
-    var globalAudios = [[String: AnyObject]]()
+    var userAudios = [VKAudioItem]()
+    var globalAudios = [VKAudioItem]()
     let searchController = UISearchController(searchResultsController: nil)
     var indicatorView = UIActivityIndicatorView()
     let requestOperationQueue = NSOperationQueue()
