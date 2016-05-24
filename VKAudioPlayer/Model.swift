@@ -23,7 +23,7 @@ class Model {
         fatalError("Not implemented")
     }
     
-    static func searchModel(withSearchString stris: String) -> Model {
+    static func searchModel(withSearchString string: String) -> Model {
         
         let searchModel = Model()
         

@@ -7,9 +7,26 @@
 //
 
 import Foundation
+import VK_ios_sdk
 
-class VKAudioRequest {
+extension VKRequest {
     
+    static func searchAudioRequest(searchString: String, offset: Int) -> VKRequest {
+        return VKApi.requestWithMethod("audio.search", andParameters: [
+            "q": searchString,
+            "auto_complete": 1,
+            "search_own": 1,
+            "count": elementsPerRequest,
+            "offset": offset
+            ])
+    }
     
+    static func usersAudioRequest(offset: Int) -> VKRequest {
+        return VKApi.requestWithMethod("audio.get", andParameters: [
+            "count": elementsPerRequest,
+            "offset": offset,
+            "need_user": 0
+            ])
+    }
     
 }
