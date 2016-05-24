@@ -1,2 +1,2 @@
 # VKAudioPlayer
-Listen audios from your VK profile.
+Listen audios from your VK profile with your iOS device.
