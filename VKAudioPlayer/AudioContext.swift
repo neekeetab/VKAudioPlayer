@@ -13,7 +13,7 @@ import VK_ios_sdk
 class AudioContext {
     
     let audioRequestDescription: AudioRequestDescription
-    let block: (suc: Bool) -> ()
+    let block: (suc: Bool, usersAudio: [VKAudioItem], globalAudio: [VKAudioItem]) -> ()
     
     var usersAudio = [VKAudioItem]()
     var globalAudio = [VKAudioItem]()
@@ -25,23 +25,28 @@ class AudioContext {
         let audioRequest = audioRequestDescription.request(numberOfLoadedPortions * elementsPerRequest)
         audioRequest.completeBlock = { response in
             let count = self.usersAudio.count + self.globalAudio.count
-            self.usersAudio += response.usersAudio()
-            self.globalAudio += response.usersAudio()
+            
+            let usersAudio = response.usersAudio()
+            let globalAudio = response.globalAudio()
+            
+            self.usersAudio += usersAudio
+            self.globalAudio += globalAudio
+            
             if count != self.usersAudio.count + self.globalAudio.count {
                 self.numberOfLoadedPortions += 1
             }
-            self.block(suc: true)
+            self.block(suc: true, usersAudio: usersAudio, globalAudio: globalAudio)
         }
         audioRequest.errorBlock = { error in
             print(error)
-            self.block(suc: false)
+            self.block(suc: false, usersAudio: [], globalAudio: [])
         }
         
         VKAudioRequestExecutor.sharedExecutor.executeRequest(audioRequest)
         
     }
     
-    init(audioRequestDescription: AudioRequestDescription, completionBlock block: (suc: Bool) -> ()) {
+    init(audioRequestDescription: AudioRequestDescription, completionBlock block: (suc: Bool, usersAudio: [VKAudioItem], globalAudio: [VKAudioItem]) -> ()) {
         self.audioRequestDescription = audioRequestDescription
         self.block = block
     }

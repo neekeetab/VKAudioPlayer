@@ -13,7 +13,7 @@ import VK_ios_sdk
 class AudioRequestDescription {
     
     static func usersAudioRequestDescription() -> UsersAudioRequestDescription {
-        return usersAudioRequestDescription()
+        return UsersAudioRequestDescription()
     }
     
     static func searchAudioRequestDescription(searchString: String) -> SearchAudioRequestDescription {

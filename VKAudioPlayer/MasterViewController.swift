@@ -31,6 +31,8 @@ class MasterViewController: UIViewController {
     var indicatorView = UIActivityIndicatorView()
     let requestOperationQueue = NSOperationQueue() // in this queue only last operation is executed, all others are canceled
     
+    var context: AudioContext!
+    
     // MARK: -
     func executeInitialRequest() {
         
@@ -169,6 +171,20 @@ class MasterViewController: UIViewController {
             }
         })
         
+        let audioRequestDescription = AudioRequestDescription.usersAudioRequestDescription()
+        context = AudioContext(audioRequestDescription: audioRequestDescription, completionBlock: { suc, usersAudio, globalAudio in
+            
+            if suc {
+                
+                
+                self.tableView.insertRowsAtIndexPaths(paths, withRowAnimation: UITableViewRowAnimation.Automatic)
+                self.indicatorView.stopAnimating()
+                self.requestExecuted = true
+
+            }
+            
+        })
+        
         requestOperationQueue.maxConcurrentOperationCount = 1
         
         indicatorView.center = view.center
@@ -180,6 +196,7 @@ class MasterViewController: UIViewController {
         searchController.searchBar.delegate = self
         searchController.dimsBackgroundDuringPresentation = false
         tableView.tableHeaderView = searchController.searchBar
+        
     }
     
     override func preferredStatusBarStyle() -> UIStatusBarStyle {

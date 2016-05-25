@@ -92,8 +92,6 @@
 				11DD92D21CF4B58B00A8FC4A /* Constants.swift */,
 				11DD92D41CF4DAAB00A8FC4A /* MasterViewController */,
 				11DD92D51CF4DABC00A8FC4A /* Model */,
-				11DD92D01CF4A9FB00A8FC4A /* VKAudioItem.swift */,
-				11DD92DC1CF4DC2B00A8FC4A /* VKAudioRequestExecutor.swift */,
 				11DD92DF1CF4DCFC00A8FC4A /* VKRequest+.swift */,
 				11DD92CA1CF4A4EF00A8FC4A /* VKResponse+.swift */,
 				11294E281CF3C7FF00E8EEA2 /* AppDelegate.swift */,
@@ -125,6 +123,8 @@
 				1160EF0C1CF65331007DB453 /* AudioRequestDescription.swift */,
 				1160EF0E1CF65480007DB453 /* UsersAudioRequestDescription.swift */,
 				1160EF101CF65493007DB453 /* SearchAudioRequestDescription.swift */,
+				11DD92D01CF4A9FB00A8FC4A /* VKAudioItem.swift */,
+				11DD92DC1CF4DC2B00A8FC4A /* VKAudioRequestExecutor.swift */,
 			);
 			name = Model;
 			sourceTree = "<group>";
