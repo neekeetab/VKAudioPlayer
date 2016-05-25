@@ -11,8 +11,6 @@ import VK_ios_sdk
 
 extension VKResponse {
     
-    // WARNING: call of further methods on non-audio responses gives unexpected results!
-    
     // all audios
     func audios() -> [VKAudioItem] {
         
@@ -52,6 +50,5 @@ extension VKResponse {
         return globalAudio
         
     }
-
     
 }

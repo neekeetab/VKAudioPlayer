@@ -18,11 +18,11 @@ class UsersAudioContext: AudioContext {
     private(set) var scope: UsersAudioContextScope!
     var block: ((suc: Bool) -> ())!
     
-    override func loadNextPortion(withCompletionBlock block: (suc: Bool) -> ()) {
+    override func loadNextPortion(completionBlock block: (suc: Bool) -> ()) {
         
     }
     
-    override func load(withCompletionBlock block: (suc: Bool) -> ()) {
+    override func load(completionBlock block: (suc: Bool) -> ()) {
         //        let audioRequest
     }
     

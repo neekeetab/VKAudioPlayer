@@ -14,14 +14,14 @@ class AudioContext {
     
     var usersAudio = [VKAudioItem]()
     var globalAudio = [VKAudioItem]()
-    var fetchedAudioIDs = Set<Int>()
-    var numberOfPortions = 0
+//    var fetchedAudioIDs = Set<Int>()
+    var numberOfLoadedPortions = 0
     
-    func loadNextPortion(withCompletionBlock block: (suc: Bool) -> ()) {
+    func loadNextPortion(completionBlock block: (suc: Bool) -> ()) {
         fatalError("Not implemented")
     }
     
-    func load(withCompletionBlock block: (suc: Bool) -> ()) {
+    func load(completionBlock block: (suc: Bool) -> ()) {
         fatalError("Not implemented")
     }
     
