@@ -1,5 +1,5 @@
 //
-//  VKAudioRequest.swift
+//  VKRequest+.swift
 //  VKAudioPlayer
 //
 //  Created by Nikita Belousov on 5/24/16.
