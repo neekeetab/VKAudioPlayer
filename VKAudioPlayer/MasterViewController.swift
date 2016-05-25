@@ -176,14 +176,15 @@ class MasterViewController: UIViewController {
             
             if suc {
                 
-                
-                self.tableView.insertRowsAtIndexPaths(paths, withRowAnimation: UITableViewRowAnimation.Automatic)
-                self.indicatorView.stopAnimating()
-                self.requestExecuted = true
+                print("suc")
+//                self.tableView.insertRowsAtIndexPaths(paths, withRowAnimation: UITableViewRowAnimation.Automatic)
+//                self.indicatorView.stopAnimating()
+//                self.requestExecuted = true
 
             }
             
         })
+        context.loadNextPortion()
         
         requestOperationQueue.maxConcurrentOperationCount = 1
         

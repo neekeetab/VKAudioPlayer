@@ -24,7 +24,6 @@ class AudioContext {
         
         let audioRequest = audioRequestDescription.request(numberOfLoadedPortions * elementsPerRequest)
         audioRequest.completeBlock = { response in
-            let count = self.usersAudio.count + self.globalAudio.count
             
             let usersAudio = response.usersAudio()
             let globalAudio = response.globalAudio()
@@ -32,7 +31,7 @@ class AudioContext {
             self.usersAudio += usersAudio
             self.globalAudio += globalAudio
             
-            if count != self.usersAudio.count + self.globalAudio.count {
+            if usersAudio.count + globalAudio.count > 0 {
                 self.numberOfLoadedPortions += 1
             }
             self.block(suc: true, usersAudio: usersAudio, globalAudio: globalAudio)

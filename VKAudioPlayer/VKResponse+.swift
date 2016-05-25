@@ -30,8 +30,12 @@ extension VKResponse {
         
         let items = (self.json as! [String: AnyObject])["items"] as! [[String: AnyObject]]
         var usersAudio = [VKAudioItem]()
+        let userId = Int(VKSdk.accessToken().userId)!
         for i in items {
-            usersAudio.append(VKAudioItem.audioItemFromVKResponseItem(i))
+            let audioItem = VKAudioItem.audioItemFromVKResponseItem(i)
+            if audioItem.ownerId == userId {
+                usersAudio.append(audioItem)
+            }
         }
     
         return usersAudio
@@ -43,8 +47,12 @@ extension VKResponse {
         
         let items = (self.json as! [String: AnyObject])["items"] as! [[String: AnyObject]]
         var globalAudio = [VKAudioItem]()
+        let userId = Int(VKSdk.accessToken().userId)!
         for i in items {
-           globalAudio.append(VKAudioItem.audioItemFromVKResponseItem(i))
+            let audioItem = VKAudioItem.audioItemFromVKResponseItem(i)
+            if audioItem.ownerId != userId {
+                globalAudio.append(audioItem)
+            }
         }
         
         return globalAudio
