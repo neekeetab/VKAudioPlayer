@@ -40,7 +40,15 @@ class MasterViewController: UIViewController {
         }
     }
     
-    // MARK: - 
+    // MARK: -
+    func showMessage(message: String, title: String) {
+        let alertVC = UIAlertController(title: title, message: message, preferredStyle: UIAlertControllerStyle.Alert)
+        let action = UIAlertAction(title: "OK", style: UIAlertActionStyle.Default, handler: nil)
+        alertVC.addAction(action)
+        self.presentViewController(alertVC, animated: true, completion: nil)
+    }
+    
+    // MARK: -
     func initializeContext(audioRequestDescription: AudioRequestDescription) {
         self.indicatorView.startAnimating()
         context = AudioContext(audioRequestDescription: audioRequestDescription, completionBlock: { suc, usersAudio, globalAudio in
@@ -66,11 +74,10 @@ class MasterViewController: UIViewController {
                 self.indicatorView.stopAnimating()
                 
             } else {
-                let alertVC = UIAlertController(title: "Network is unreachable", message: "You will be switched to cache-only mode", preferredStyle: UIAlertControllerStyle.Alert)
-                let action = UIAlertAction(title: "OK", style: UIAlertActionStyle.Default, handler: nil)
-                alertVC.addAction(action)
-                self.presentViewController(alertVC, animated: true, completion: nil)
+                
+                self.showMessage("You will be switched to cache-only mode", title: "Network is unreachable")
                 self.indicatorView.stopAnimating()
+                // TODO: swifch to cache-only mode
             }
         })
         tableView.reloadData()
@@ -99,7 +106,7 @@ class MasterViewController: UIViewController {
                 // auth needed
                 VKSdk.authorize(scope)
             } else if state == VKAuthorizationState.Error {
-                fatalError("Cannot get session")
+                self.showMessage("You will be switched to cache-only mode", title: "Failed to authorize")
                 // TODO: Handle appropriately
             } else if error != nil {
                 fatalError(error.description)
@@ -110,6 +117,7 @@ class MasterViewController: UIViewController {
         indicatorView.center = view.center
         indicatorView.activityIndicatorViewStyle = .Gray
         indicatorView.hidesWhenStopped = true
+        indicatorView.startAnimating()
         view.addSubview(indicatorView)
         
         searchController.searchResultsUpdater = self
