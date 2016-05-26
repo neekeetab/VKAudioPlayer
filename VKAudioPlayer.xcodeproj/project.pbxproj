@@ -94,8 +94,8 @@
 				11DD92D51CF4DABC00A8FC4A /* Model */,
 				11DD92DF1CF4DCFC00A8FC4A /* VKRequest+.swift */,
 				11DD92CA1CF4A4EF00A8FC4A /* VKResponse+.swift */,
-				11294E281CF3C7FF00E8EEA2 /* AppDelegate.swift */,
 				11294E3D1CF3C94200E8EEA2 /* Utils.swift */,
+				11294E281CF3C7FF00E8EEA2 /* AppDelegate.swift */,
 				11294E3F1CF3C96700E8EEA2 /* Main.storyboard */,
 				11294E411CF3C97A00E8EEA2 /* LaunchScreen.storyboard */,
 				11294E321CF3C7FF00E8EEA2 /* Assets.xcassets */,
@@ -181,6 +181,7 @@
 				TargetAttributes = {
 					11294E241CF3C7FF00E8EEA2 = {
 						CreatedOnToolsVersion = 7.3;
+						DevelopmentTeam = H9Y5SY2TM4;
 					};
 				};
 			};
@@ -381,10 +382,12 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				INFOPLIST_FILE = VKAudioPlayer/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "dev.Nikita-Belousov.VKAudioPlayer";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 			};
 			name = Debug;
 		};
@@ -394,10 +397,12 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				INFOPLIST_FILE = VKAudioPlayer/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "dev.Nikita-Belousov.VKAudioPlayer";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 			};
 			name = Release;
 		};

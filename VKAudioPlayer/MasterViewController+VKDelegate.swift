@@ -16,8 +16,8 @@ extension MasterViewController: VKSdkDelegate, VKSdkUIDelegate {
     }
     
     func vkSdkAccessAuthorizationFinishedWithResult(result: VKAuthorizationResult!) {
-//        print("Authorization finished with token: \(result.token.accessToken)")
-        executeInitialRequest()
+        let audioRequestDescription = AudioRequestDescription.usersAudioRequestDescription()
+        initializeContext(audioRequestDescription)
     }
     
     func vkSdkShouldPresentViewController(controller: UIViewController!) {

@@ -34,6 +34,8 @@ class VKAudioRequestExecutor {
         operationQueue.addOperation(operation)
     }
     
-    private init() {}
+    private init() {
+        operationQueue.maxConcurrentOperationCount = 1
+    }
     
 }
