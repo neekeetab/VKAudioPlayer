@@ -47,6 +47,7 @@ class AudioContext {
             print(error)
             self.block!(suc: false, usersAudio: [], globalAudio: [])
         }
+        audioRequest.requestTimeout = 10
         
         VKAudioRequestExecutor.sharedExecutor.executeRequest(audioRequest)
         

@@ -32,9 +32,7 @@ class MasterViewController: UIViewController {
     func scrollViewDidScroll(scrollView: UIScrollView) {
         if context.usersAudio.count != 0 || context.globalAudio.count != 0{
             let height = scrollView.frame.size.height
-            print(height)
             let contentYoffset = scrollView.contentOffset.y
-            print(contentYoffset)
             let distanceFromBottom = scrollView.contentSize.height - contentYoffset
             if distanceFromBottom - height < distanceFromBottomToPreload {
                 context.loadNextPortion()
@@ -68,8 +66,11 @@ class MasterViewController: UIViewController {
                 self.indicatorView.stopAnimating()
                 
             } else {
-                // TODO: Handle appropriately
-                print("error")
+                let alertVC = UIAlertController(title: "Network is unreachable", message: "You will be switched to cache-only mode", preferredStyle: UIAlertControllerStyle.Alert)
+                let action = UIAlertAction(title: "OK", style: UIAlertActionStyle.Default, handler: nil)
+                alertVC.addAction(action)
+                self.presentViewController(alertVC, animated: true, completion: nil)
+                self.indicatorView.stopAnimating()
             }
         })
         tableView.reloadData()
