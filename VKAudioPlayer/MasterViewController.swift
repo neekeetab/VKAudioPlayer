@@ -30,11 +30,15 @@ class MasterViewController: UIViewController {
     
     // MARK: -
     func scrollViewDidScroll(scrollView: UIScrollView) {
-        let height = scrollView.frame.size.height
-        let contentYoffset = scrollView.contentOffset.y
-        let distanceFromBottom = scrollView.contentSize.height - contentYoffset
-        if distanceFromBottom - height < distanceFromBottomToPreload {
-            context.loadNextPortion()
+        if context.usersAudio.count != 0 || context.globalAudio.count != 0{
+            let height = scrollView.frame.size.height
+            print(height)
+            let contentYoffset = scrollView.contentOffset.y
+            print(contentYoffset)
+            let distanceFromBottom = scrollView.contentSize.height - contentYoffset
+            if distanceFromBottom - height < distanceFromBottomToPreload {
+                context.loadNextPortion()
+            }
         }
     }
     
