@@ -13,13 +13,14 @@ extension MasterViewController: UISearchResultsUpdating, UISearchBarDelegate {
     
     func updateSearchResultsForSearchController(searchController: UISearchController) {
         if searchController.active {
+            context.cancel()
             let audioRequestDescription = AudioRequestDescription.searchAudioRequestDescription(searchController.searchBar.text!)
             initializeContext(audioRequestDescription)
         }
-        indicatorView.startAnimating()
     }
     
     func searchBarCancelButtonClicked(searchBar: UISearchBar) {
+        context.cancel()
         let audioRequestDescription = AudioRequestDescription.usersAudioRequestDescription()
         initializeContext(audioRequestDescription)
     }

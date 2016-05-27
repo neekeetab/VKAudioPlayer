@@ -18,10 +18,22 @@ class AudioContext {
     var usersAudio = [VKAudioItem]()
     var globalAudio = [VKAudioItem]()
     var numberOfLoadedPortions = 0
+    var canceled = false
     //    var fetchedAudioIDs = Set<Int>()
+    
+    // cancel requests
+    func cancel() {
+        canceled = true
+    }
+    
+    // true if context is performing request
+    func busy() -> Bool {
+        return VKAudioRequestExecutor.sharedExecutor.operationQueue.operationCount > 0
+    }
     
     func loadNextPortion() {
         
+        canceled = false
         if block == nil {
             fatalError("Completion block hasn't been provided")
         }
@@ -31,23 +43,26 @@ class AudioContext {
         
         let audioRequest = audioRequestDescription!.request(numberOfLoadedPortions * elementsPerRequest)
         audioRequest.completeBlock = { response in
+            if !self.canceled {
             
-            let usersAudio = response.usersAudio()
-            let globalAudio = response.globalAudio()
+                let usersAudio = response.usersAudio()
+                let globalAudio = response.globalAudio()
             
-            self.usersAudio += usersAudio
-            self.globalAudio += globalAudio
+                self.usersAudio += usersAudio
+                self.globalAudio += globalAudio
             
-            if usersAudio.count + globalAudio.count > 0 {
-                self.numberOfLoadedPortions += 1
+                if usersAudio.count + globalAudio.count > 0 {
+                    self.numberOfLoadedPortions += 1
+                }
+                self.block!(suc: true, usersAudio: usersAudio, globalAudio: globalAudio)
             }
-            self.block!(suc: true, usersAudio: usersAudio, globalAudio: globalAudio)
         }
         audioRequest.errorBlock = { error in
             print(error)
             self.block!(suc: false, usersAudio: [], globalAudio: [])
         }
-        audioRequest.requestTimeout = 10
+        audioRequest.requestTimeout = 3
+        audioRequest.attempts = 3
         
         VKAudioRequestExecutor.sharedExecutor.executeRequest(audioRequest)
         

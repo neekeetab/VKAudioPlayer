@@ -15,6 +15,7 @@ class MasterViewController: UIViewController {
     
     // MARK: Interface builder
     @IBOutlet weak var tableView: UITableView!
+    @IBOutlet var footerView: UIView!
     @IBAction func searchButtonPressed(sender: AnyObject) {
         UIView.animateWithDuration(0.3, animations: {
             self.tableView.contentOffset = CGPoint(x: 0, y: -self.tableView.contentInset.top)
@@ -29,13 +30,19 @@ class MasterViewController: UIViewController {
     var context = AudioContext()
     
     // MARK: -
+    var allowedToFetchNewData = true
     func scrollViewDidScroll(scrollView: UIScrollView) {
-        if context.usersAudio.count != 0 || context.globalAudio.count != 0{
+        if context.usersAudio.count != 0 || context.globalAudio.count != 0 {
             let height = scrollView.frame.size.height
             let contentYoffset = scrollView.contentOffset.y
             let distanceFromBottom = scrollView.contentSize.height - contentYoffset
-            if distanceFromBottom - height < distanceFromBottomToPreload {
+            if distanceFromBottom - height < distanceFromBottomToPreload && context.busy() == false && allowedToFetchNewData {
+                self.tableView.tableFooterView?.hidden = false
                 context.loadNextPortion()
+                allowedToFetchNewData = false
+                delay(1, closure: {
+                    self.allowedToFetchNewData = true
+                })
             }
         }
     }
@@ -50,7 +57,7 @@ class MasterViewController: UIViewController {
     
     // MARK: -
     func initializeContext(audioRequestDescription: AudioRequestDescription) {
-        self.indicatorView.startAnimating()
+        tableView.tableFooterView?.hidden = false
         context = AudioContext(audioRequestDescription: audioRequestDescription, completionBlock: { suc, usersAudio, globalAudio in
             if suc {
                 
@@ -69,16 +76,15 @@ class MasterViewController: UIViewController {
                     }
                 }
                 if paths.count > 0 {
-                    self.tableView.insertRowsAtIndexPaths(paths, withRowAnimation: UITableViewRowAnimation.Automatic)
+                    self.tableView.insertRowsAtIndexPaths(paths, withRowAnimation: .Automatic)
                 }
-                self.indicatorView.stopAnimating()
                 
             } else {
-                
                 self.showMessage("You're now switched to cache-only mode. Refresh to retry.", title: "Network is unreachable")
-                self.indicatorView.stopAnimating()
                 // TODO: swifch to cache-only mode
             }
+            self.tableView.tableFooterView?.hidden = true
+        
         })
         tableView.reloadData()
         context.loadNextPortion()
@@ -91,7 +97,7 @@ class MasterViewController: UIViewController {
 //        VKSdk.forceLogout()
 //        return
         
-        definesPresentationContext = true
+        definesPresentationContext = false
         let sdkInstance = VKSdk.initializeWithAppId(appID)
         sdkInstance.uiDelegate = self
         sdkInstance.registerDelegate(self)
@@ -120,8 +126,6 @@ class MasterViewController: UIViewController {
                 // TODO: Handle appropriately
             }
         })
-        
-        
         
         searchController.searchResultsUpdater = self
         searchController.searchBar.delegate = self

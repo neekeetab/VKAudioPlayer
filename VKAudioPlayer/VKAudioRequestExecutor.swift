@@ -16,7 +16,7 @@ import VK_ios_sdk
 
 class VKAudioRequestExecutor {
     
-    private let operationQueue = NSOperationQueue()
+    let operationQueue = NSOperationQueue()
     static let sharedExecutor = VKAudioRequestExecutor()
     
     func executeRequest(request: VKRequest) {
