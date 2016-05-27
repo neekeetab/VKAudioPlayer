@@ -37,7 +37,7 @@ class MasterViewController: UIViewController {
             let contentYoffset = scrollView.contentOffset.y
             let distanceFromBottom = scrollView.contentSize.height - contentYoffset
             if distanceFromBottom - height < distanceFromBottomToPreload && context.busy() == false && allowedToFetchNewData {
-                self.tableView.tableFooterView?.hidden = false
+                tableView.tableFooterView = footerView
                 context.loadNextPortion()
                 allowedToFetchNewData = false
                 delay(1, closure: {
@@ -57,7 +57,7 @@ class MasterViewController: UIViewController {
     
     // MARK: -
     func initializeContext(audioRequestDescription: AudioRequestDescription) {
-        tableView.tableFooterView?.hidden = false
+        tableView.tableFooterView = footerView
         context = AudioContext(audioRequestDescription: audioRequestDescription, completionBlock: { suc, usersAudio, globalAudio in
             if suc {
                 
@@ -83,7 +83,9 @@ class MasterViewController: UIViewController {
                 self.showMessage("You're now switched to cache-only mode. Refresh to retry.", title: "Network is unreachable")
                 // TODO: swifch to cache-only mode
             }
-            self.tableView.tableFooterView?.hidden = true
+            UIView.animateWithDuration(0.3, animations: {
+                self.tableView.tableFooterView = nil
+            })
         
         })
         tableView.reloadData()
