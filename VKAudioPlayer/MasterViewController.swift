@@ -80,7 +80,7 @@ class MasterViewController: UIViewController {
                 }
                 
             } else {
-                self.showMessage("You're now switched to cache-only mode. Refresh to retry.", title: "Network is unreachable")
+                self.showMessage("You're now switched to cache-only mode. Pull down to retry.", title: "Network is unreachable")
                 // TODO: swifch to cache-only mode
             }
             UIView.animateWithDuration(0.3, animations: {
@@ -121,7 +121,7 @@ class MasterViewController: UIViewController {
                 // auth needed
                 VKSdk.authorize(scope)
             } else if state == VKAuthorizationState.Error {
-                self.showMessage("You're now switched to cache-only mode. Refresh to retry.", title: "Failed to authorize")
+                self.showMessage("You're now switched to cache-only mode. Pull down to retry.", title: "Failed to authorize")
                 // TODO: Handle appropriately
             } else if error != nil {
                 fatalError(error.description)
