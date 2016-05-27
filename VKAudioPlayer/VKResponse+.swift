@@ -1,8 +1,8 @@
 //
-//  VKAudioResponse.swift
+//  VKResponse+.swift
 //  VKAudioPlayer
 //
-//  Created by Nikitab Belousov on 5/24/16.
+//  Created by Nikita Belousov on 5/24/16.
 //  Copyright © 2016 Nikita Belousov. All rights reserved.
 //
 
@@ -10,8 +10,6 @@ import Foundation
 import VK_ios_sdk
 
 extension VKResponse {
-    
-    // WARNING: call of further methods on non-audio responses gives unexpected results!
     
     // all audios
     func audios() -> [VKAudioItem] {
@@ -28,30 +26,37 @@ extension VKResponse {
     }
     
     // audios owned by user
-    func userAudios() -> [VKAudioItem] {
+    func usersAudio() -> [VKAudioItem] {
         
         let items = (self.json as! [String: AnyObject])["items"] as! [[String: AnyObject]]
-        var userAudios = [VKAudioItem]()
+        var usersAudio = [VKAudioItem]()
+        let userId = Int(VKSdk.accessToken().userId)!
         for i in items {
-            userAudios.append(VKAudioItem.audioItemFromVKResponseItem(i))
+            let audioItem = VKAudioItem.audioItemFromVKResponseItem(i)
+            if audioItem.ownerId == userId {
+                usersAudio.append(audioItem)
+            }
         }
     
-        return userAudios
+        return usersAudio
         
     }
     
     // audios that aren't owned by user
-    func globalAudios() -> [VKAudioItem] {
+    func globalAudio() -> [VKAudioItem] {
         
         let items = (self.json as! [String: AnyObject])["items"] as! [[String: AnyObject]]
-        var globalAudios = [VKAudioItem]()
+        var globalAudio = [VKAudioItem]()
+        let userId = Int(VKSdk.accessToken().userId)!
         for i in items {
-           globalAudios.append(VKAudioItem.audioItemFromVKResponseItem(i))
+            let audioItem = VKAudioItem.audioItemFromVKResponseItem(i)
+            if audioItem.ownerId != userId {
+                globalAudio.append(audioItem)
+            }
         }
         
-        return globalAudios
+        return globalAudio
         
     }
-
     
 }

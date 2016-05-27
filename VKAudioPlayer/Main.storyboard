@@ -9,7 +9,7 @@
         <!--VKAudioPlayer-->
         <scene sceneID="75N-3Y-X0h">
             <objects>
-                <viewController id="mBz-RN-8Ca" customClass="MasterViewController" customModule="VKAudioPlayer" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController extendedLayoutIncludesOpaqueBars="YES" id="mBz-RN-8Ca" customClass="MasterViewController" customModule="VKAudioPlayer" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="x1Q-vp-wHM"/>
                         <viewControllerLayoutGuide type="bottom" id="33T-Dx-dXy"/>
@@ -21,6 +21,30 @@
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="bzd-2l-lKi">
                                 <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <view key="tableFooterView" contentMode="scaleToFill" id="GAh-2D-YkA">
+                                    <rect key="frame" x="0.0" y="136" width="600" height="44"/>
+                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                    <subviews>
+                                        <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" animating="YES" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="VKE-3G-aw0">
+                                            <rect key="frame" x="290" y="12" width="20" height="20"/>
+                                        </activityIndicatorView>
+                                    </subviews>
+                                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                    <constraints>
+                                        <constraint firstItem="VKE-3G-aw0" firstAttribute="centerY" secondItem="GAh-2D-YkA" secondAttribute="centerY" id="dkM-3B-hMy"/>
+                                        <constraint firstItem="VKE-3G-aw0" firstAttribute="centerX" secondItem="GAh-2D-YkA" secondAttribute="centerX" id="qZe-NH-0cW"/>
+                                    </constraints>
+                                </view>
+                                <prototypes>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="Yy2-HJ-dl8">
+                                        <rect key="frame" x="0.0" y="92" width="600" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Yy2-HJ-dl8" id="90Z-0a-JYO">
+                                            <rect key="frame" x="0.0" y="0.0" width="600" height="44"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                </prototypes>
                                 <connections>
                                     <outlet property="dataSource" destination="mBz-RN-8Ca" id="uQC-ll-uHH"/>
                                     <outlet property="delegate" destination="mBz-RN-8Ca" id="COY-O7-luK"/>
@@ -47,6 +71,7 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
+                        <outlet property="footerView" destination="GAh-2D-YkA" id="Ve2-Yb-ZPE"/>
                         <outlet property="tableView" destination="bzd-2l-lKi" id="K0W-Ov-hxe"/>
                     </connections>
                 </viewController>
@@ -57,9 +82,9 @@
         <!--Navigation Controller-->
         <scene sceneID="Ff5-xh-kz4">
             <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="NP8-bW-F77" sceneMemberID="viewController">
+                <navigationController extendedLayoutIncludesOpaqueBars="YES" automaticallyAdjustsScrollViewInsets="NO" id="NP8-bW-F77" sceneMemberID="viewController">
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="EVu-Kx-twK">
+                    <navigationBar key="navigationBar" opaque="NO" contentMode="scaleToFill" id="EVu-Kx-twK">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="barTintColor" red="0.0" green="0.40000000000000002" blue="0.80000000000000004" alpha="1" colorSpace="calibratedRGB"/>
@@ -68,6 +93,10 @@
                         </textAttributes>
                     </navigationBar>
                     <nil name="viewControllers"/>
+                    <toolbar key="toolbar" opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="mWV-J6-KXQ">
+                        <rect key="frame" x="0.0" y="556" width="600" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </toolbar>
                     <connections>
                         <segue destination="mBz-RN-8Ca" kind="relationship" relationship="rootViewController" id="oT9-NL-xou"/>
                     </connections>

@@ -14,11 +14,18 @@
 		11294E3E1CF3C94200E8EEA2 /* Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11294E3D1CF3C94200E8EEA2 /* Utils.swift */; };
 		11294E401CF3C96700E8EEA2 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 11294E3F1CF3C96700E8EEA2 /* Main.storyboard */; };
 		11294E421CF3C97A00E8EEA2 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 11294E411CF3C97A00E8EEA2 /* LaunchScreen.storyboard */; };
+		1160EF0D1CF65331007DB453 /* AudioRequestDescription.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1160EF0C1CF65331007DB453 /* AudioRequestDescription.swift */; };
+		1160EF0F1CF65480007DB453 /* UsersAudioRequestDescription.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1160EF0E1CF65480007DB453 /* UsersAudioRequestDescription.swift */; };
+		1160EF111CF65493007DB453 /* SearchAudioRequestDescription.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1160EF101CF65493007DB453 /* SearchAudioRequestDescription.swift */; };
 		11DD92C31CF49AE100A8FC4A /* MasterViewController+VKDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11DD92C21CF49AE100A8FC4A /* MasterViewController+VKDelegate.swift */; };
 		11DD92C51CF49CAE00A8FC4A /* MasterViewController+TableViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11DD92C41CF49CAE00A8FC4A /* MasterViewController+TableViewDelegate.swift */; };
 		11DD92C71CF49D2A00A8FC4A /* MasterViewController+SearchDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11DD92C61CF49D2A00A8FC4A /* MasterViewController+SearchDelegate.swift */; };
-		11DD92CB1CF4A4EF00A8FC4A /* VKAudioResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11DD92CA1CF4A4EF00A8FC4A /* VKAudioResponse.swift */; };
+		11DD92CB1CF4A4EF00A8FC4A /* VKResponse+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11DD92CA1CF4A4EF00A8FC4A /* VKResponse+.swift */; };
 		11DD92D11CF4A9FB00A8FC4A /* VKAudioItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11DD92D01CF4A9FB00A8FC4A /* VKAudioItem.swift */; };
+		11DD92D31CF4B58B00A8FC4A /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11DD92D21CF4B58B00A8FC4A /* Constants.swift */; };
+		11DD92DB1CF4DB5600A8FC4A /* AudioContext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11DD92DA1CF4DB5600A8FC4A /* AudioContext.swift */; };
+		11DD92DD1CF4DC2B00A8FC4A /* VKAudioRequestExecutor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11DD92DC1CF4DC2B00A8FC4A /* VKAudioRequestExecutor.swift */; };
+		11DD92E01CF4DCFC00A8FC4A /* VKRequest+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11DD92DF1CF4DCFC00A8FC4A /* VKRequest+.swift */; };
 		A63ABB63716FB4483771D047 /* Pods_VKAudioPlayer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 26B8640E32B8892D3EAE8165 /* Pods_VKAudioPlayer.framework */; };
 /* End PBXBuildFile section */
 
@@ -32,11 +39,18 @@
 		11294E3D1CF3C94200E8EEA2 /* Utils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Utils.swift; sourceTree = "<group>"; };
 		11294E3F1CF3C96700E8EEA2 /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
 		11294E411CF3C97A00E8EEA2 /* LaunchScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = LaunchScreen.storyboard; sourceTree = "<group>"; };
+		1160EF0C1CF65331007DB453 /* AudioRequestDescription.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AudioRequestDescription.swift; sourceTree = "<group>"; };
+		1160EF0E1CF65480007DB453 /* UsersAudioRequestDescription.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UsersAudioRequestDescription.swift; sourceTree = "<group>"; };
+		1160EF101CF65493007DB453 /* SearchAudioRequestDescription.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchAudioRequestDescription.swift; sourceTree = "<group>"; };
 		11DD92C21CF49AE100A8FC4A /* MasterViewController+VKDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "MasterViewController+VKDelegate.swift"; sourceTree = "<group>"; };
 		11DD92C41CF49CAE00A8FC4A /* MasterViewController+TableViewDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "MasterViewController+TableViewDelegate.swift"; sourceTree = "<group>"; };
 		11DD92C61CF49D2A00A8FC4A /* MasterViewController+SearchDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "MasterViewController+SearchDelegate.swift"; sourceTree = "<group>"; };
-		11DD92CA1CF4A4EF00A8FC4A /* VKAudioResponse.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VKAudioResponse.swift; sourceTree = "<group>"; };
+		11DD92CA1CF4A4EF00A8FC4A /* VKResponse+.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "VKResponse+.swift"; sourceTree = "<group>"; };
 		11DD92D01CF4A9FB00A8FC4A /* VKAudioItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VKAudioItem.swift; sourceTree = "<group>"; };
+		11DD92D21CF4B58B00A8FC4A /* Constants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
+		11DD92DA1CF4DB5600A8FC4A /* AudioContext.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AudioContext.swift; sourceTree = "<group>"; };
+		11DD92DC1CF4DC2B00A8FC4A /* VKAudioRequestExecutor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VKAudioRequestExecutor.swift; sourceTree = "<group>"; };
+		11DD92DF1CF4DCFC00A8FC4A /* VKRequest+.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "VKRequest+.swift"; sourceTree = "<group>"; };
 		26B8640E32B8892D3EAE8165 /* Pods_VKAudioPlayer.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_VKAudioPlayer.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		A1F041E64002C0CA25E1A736 /* Pods-VKAudioPlayer.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-VKAudioPlayer.release.xcconfig"; path = "Pods/Target Support Files/Pods-VKAudioPlayer/Pods-VKAudioPlayer.release.xcconfig"; sourceTree = "<group>"; };
 		FF23D35E03F977759073C427 /* Pods-VKAudioPlayer.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-VKAudioPlayer.debug.xcconfig"; path = "Pods/Target Support Files/Pods-VKAudioPlayer/Pods-VKAudioPlayer.debug.xcconfig"; sourceTree = "<group>"; };
@@ -75,14 +89,13 @@
 		11294E271CF3C7FF00E8EEA2 /* VKAudioPlayer */ = {
 			isa = PBXGroup;
 			children = (
-				11294E281CF3C7FF00E8EEA2 /* AppDelegate.swift */,
-				11294E2A1CF3C7FF00E8EEA2 /* MasterViewController.swift */,
-				11DD92C41CF49CAE00A8FC4A /* MasterViewController+TableViewDelegate.swift */,
-				11DD92C61CF49D2A00A8FC4A /* MasterViewController+SearchDelegate.swift */,
-				11DD92C21CF49AE100A8FC4A /* MasterViewController+VKDelegate.swift */,
-				11DD92CA1CF4A4EF00A8FC4A /* VKAudioResponse.swift */,
-				11DD92D01CF4A9FB00A8FC4A /* VKAudioItem.swift */,
+				11DD92D21CF4B58B00A8FC4A /* Constants.swift */,
+				11DD92D41CF4DAAB00A8FC4A /* MasterViewController */,
+				11DD92D51CF4DABC00A8FC4A /* Model */,
+				11DD92DF1CF4DCFC00A8FC4A /* VKRequest+.swift */,
+				11DD92CA1CF4A4EF00A8FC4A /* VKResponse+.swift */,
 				11294E3D1CF3C94200E8EEA2 /* Utils.swift */,
+				11294E281CF3C7FF00E8EEA2 /* AppDelegate.swift */,
 				11294E3F1CF3C96700E8EEA2 /* Main.storyboard */,
 				11294E411CF3C97A00E8EEA2 /* LaunchScreen.storyboard */,
 				11294E321CF3C7FF00E8EEA2 /* Assets.xcassets */,
@@ -90,6 +103,30 @@
 				11294E2F1CF3C7FF00E8EEA2 /* VKAudioPlayer.xcdatamodeld */,
 			);
 			path = VKAudioPlayer;
+			sourceTree = "<group>";
+		};
+		11DD92D41CF4DAAB00A8FC4A /* MasterViewController */ = {
+			isa = PBXGroup;
+			children = (
+				11294E2A1CF3C7FF00E8EEA2 /* MasterViewController.swift */,
+				11DD92C61CF49D2A00A8FC4A /* MasterViewController+SearchDelegate.swift */,
+				11DD92C41CF49CAE00A8FC4A /* MasterViewController+TableViewDelegate.swift */,
+				11DD92C21CF49AE100A8FC4A /* MasterViewController+VKDelegate.swift */,
+			);
+			name = MasterViewController;
+			sourceTree = "<group>";
+		};
+		11DD92D51CF4DABC00A8FC4A /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				11DD92DA1CF4DB5600A8FC4A /* AudioContext.swift */,
+				1160EF0C1CF65331007DB453 /* AudioRequestDescription.swift */,
+				1160EF0E1CF65480007DB453 /* UsersAudioRequestDescription.swift */,
+				1160EF101CF65493007DB453 /* SearchAudioRequestDescription.swift */,
+				11DD92D01CF4A9FB00A8FC4A /* VKAudioItem.swift */,
+				11DD92DC1CF4DC2B00A8FC4A /* VKAudioRequestExecutor.swift */,
+			);
+			name = Model;
 			sourceTree = "<group>";
 		};
 		129D295F067A4B60E3762D7C /* Pods */ = {
@@ -144,6 +181,7 @@
 				TargetAttributes = {
 					11294E241CF3C7FF00E8EEA2 = {
 						CreatedOnToolsVersion = 7.3;
+						DevelopmentTeam = H9Y5SY2TM4;
 					};
 				};
 			};
@@ -232,14 +270,21 @@
 			buildActionMask = 2147483647;
 			files = (
 				11DD92C71CF49D2A00A8FC4A /* MasterViewController+SearchDelegate.swift in Sources */,
+				11DD92DB1CF4DB5600A8FC4A /* AudioContext.swift in Sources */,
 				11294E2B1CF3C7FF00E8EEA2 /* MasterViewController.swift in Sources */,
-				11DD92CB1CF4A4EF00A8FC4A /* VKAudioResponse.swift in Sources */,
+				11DD92DD1CF4DC2B00A8FC4A /* VKAudioRequestExecutor.swift in Sources */,
+				11DD92CB1CF4A4EF00A8FC4A /* VKResponse+.swift in Sources */,
+				1160EF0D1CF65331007DB453 /* AudioRequestDescription.swift in Sources */,
 				11DD92C31CF49AE100A8FC4A /* MasterViewController+VKDelegate.swift in Sources */,
+				1160EF0F1CF65480007DB453 /* UsersAudioRequestDescription.swift in Sources */,
 				11DD92D11CF4A9FB00A8FC4A /* VKAudioItem.swift in Sources */,
+				11DD92D31CF4B58B00A8FC4A /* Constants.swift in Sources */,
 				11294E291CF3C7FF00E8EEA2 /* AppDelegate.swift in Sources */,
 				11DD92C51CF49CAE00A8FC4A /* MasterViewController+TableViewDelegate.swift in Sources */,
+				11DD92E01CF4DCFC00A8FC4A /* VKRequest+.swift in Sources */,
 				11294E311CF3C7FF00E8EEA2 /* VKAudioPlayer.xcdatamodeld in Sources */,
 				11294E3E1CF3C94200E8EEA2 /* Utils.swift in Sources */,
+				1160EF111CF65493007DB453 /* SearchAudioRequestDescription.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -337,10 +382,12 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				INFOPLIST_FILE = VKAudioPlayer/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "dev.Nikita-Belousov.VKAudioPlayer";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 			};
 			name = Debug;
 		};
@@ -350,10 +397,12 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				INFOPLIST_FILE = VKAudioPlayer/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "dev.Nikita-Belousov.VKAudioPlayer";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 			};
 			name = Release;
 		};

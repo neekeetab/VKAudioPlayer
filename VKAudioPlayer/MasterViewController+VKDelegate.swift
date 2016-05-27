@@ -2,7 +2,7 @@
 //  MasterViewController+VKDelegate.swift
 //  VKAudioPlayer
 //
-//  Created by Nikitab Belousov on 5/24/16.
+//  Created by Nikita Belousov on 5/24/16.
 //  Copyright © 2016 Nikita Belousov. All rights reserved.
 //
 
@@ -16,8 +16,8 @@ extension MasterViewController: VKSdkDelegate, VKSdkUIDelegate {
     }
     
     func vkSdkAccessAuthorizationFinishedWithResult(result: VKAuthorizationResult!) {
-//        print("Authorization finished with token: \(result.token.accessToken)")
-        executeInitialRequest()
+        let audioRequestDescription = AudioRequestDescription.usersAudioRequestDescription()
+        initializeContext(audioRequestDescription)
     }
     
     func vkSdkShouldPresentViewController(controller: UIViewController!) {

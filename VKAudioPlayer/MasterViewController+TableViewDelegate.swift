@@ -2,7 +2,7 @@
 //  MasterViewController+TableViewDelegate.swift
 //  VKAudioPlayer
 //
-//  Created by Nikitab Belousov on 5/24/16.
+//  Created by Nikita Belousov on 5/24/16.
 //  Copyright © 2016 Nikita Belousov. All rights reserved.
 //
 
@@ -12,44 +12,49 @@ import VK_ios_sdk
 extension MasterViewController: UITableViewDelegate, UITableViewDataSource {
     
     func audioItemForIndexPath(indexPath: NSIndexPath) -> VKAudioItem {
-        
-        var audioItem: VKAudioItem
-        if userAudios.count != 0 && indexPath.section == 0 {
-            audioItem = userAudios[indexPath.row]
-        } else {
-            audioItem = globalAudios[indexPath.row]
+        if context.audioRequestDescription is UsersAudioRequestDescription {
+            return context.usersAudio[indexPath.row]
         }
-        
-        return audioItem
-        
+        if context.audioRequestDescription is SearchAudioRequestDescription {
+            if indexPath.section == 0 {
+                return context.usersAudio[indexPath.row]
+            }
+            if indexPath.section == 1 {
+                return context.globalAudio[indexPath.row]
+            }
+        }
+        return VKAudioItem()
     }
     
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         tableView.deselectRowAtIndexPath(indexPath, animated: true)
-        
         audioStream.stop()
         audioStream.playFromURL(audioItemForIndexPath(indexPath).url)
-        
     }
     
     func numberOfSectionsInTableView(tableView: UITableView) -> Int {
-        var count = 0
-        if userAudios.count != 0 {
-            count += 1
+        if context.audioRequestDescription is UsersAudioRequestDescription {
+            return 1
         }
-        if globalAudios.count != 0 {
-            count += 1
+        if context.audioRequestDescription is SearchAudioRequestDescription {
+            return 2
         }
-        return count
+        return 1
     }
     
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        
-        if userAudios.count != 0 && section == 0 {
-            return userAudios.count
+        if context.audioRequestDescription is UsersAudioRequestDescription {
+            return context.usersAudio.count
         }
-        return globalAudios.count
-        
+        if context.audioRequestDescription is SearchAudioRequestDescription {
+            if section == 0 {
+                return context.usersAudio.count
+            }
+            if section == 1 {
+                return context.globalAudio.count
+            }
+        }
+        return 0
     }
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
@@ -62,10 +67,18 @@ extension MasterViewController: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-        if userAudios.count != 0 && section == 0 {
+        if context.audioRequestDescription is UsersAudioRequestDescription {
             return "My audios"
         }
-        return "Global audios"
+        if context.audioRequestDescription is SearchAudioRequestDescription {
+            if section == 0 {
+                return "My audios"
+            }
+            if section == 1 {
+                return "Global audios"
+            }
+        }
+        return ""
     }
     
 }
