@@ -130,6 +130,8 @@ class MasterViewController: UIViewController {
         searchController.searchResultsUpdater = self
         searchController.searchBar.delegate = self
         searchController.dimsBackgroundDuringPresentation = false
+        searchController.searchBar.translucent = false
+        searchController.searchBar.opaque = true
         tableView.tableHeaderView = searchController.searchBar
         
     }

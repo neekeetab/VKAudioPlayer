@@ -21,7 +21,8 @@ class AudioContext {
     var canceled = false
     //    var fetchedAudioIDs = Set<Int>()
     
-    // cancel requests
+    // Cancel requests. This is useful in case when some request is performing but at the same time we decide to switch context.
+    // Without calling cancel() we would end up with old block running on new context
     func cancel() {
         canceled = true
     }
