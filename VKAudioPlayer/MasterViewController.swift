@@ -75,7 +75,7 @@ class MasterViewController: UIViewController {
                 
             } else {
                 
-                self.showMessage("You will be switched to cache-only mode", title: "Network is unreachable")
+                self.showMessage("You're now switched to cache-only mode. Refresh to retry.", title: "Network is unreachable")
                 self.indicatorView.stopAnimating()
                 // TODO: swifch to cache-only mode
             }
@@ -96,8 +96,15 @@ class MasterViewController: UIViewController {
         sdkInstance.uiDelegate = self
         sdkInstance.registerDelegate(self)
         
+        indicatorView.center = view.center
+        indicatorView.activityIndicatorViewStyle = .Gray
+        indicatorView.hidesWhenStopped = true
+        view.addSubview(indicatorView)
+        
         let scope = ["audio"]
+        indicatorView.startAnimating()
         VKSdk.wakeUpSession(scope, completeBlock: { state, error in
+            self.indicatorView.stopAnimating()
             if state == VKAuthorizationState.Authorized {
                 // ready to go
                 let audioRequestDescription = AudioRequestDescription.usersAudioRequestDescription()
@@ -106,7 +113,7 @@ class MasterViewController: UIViewController {
                 // auth needed
                 VKSdk.authorize(scope)
             } else if state == VKAuthorizationState.Error {
-                self.showMessage("You will be switched to cache-only mode", title: "Failed to authorize")
+                self.showMessage("You're now switched to cache-only mode. Refresh to retry.", title: "Failed to authorize")
                 // TODO: Handle appropriately
             } else if error != nil {
                 fatalError(error.description)
@@ -114,11 +121,7 @@ class MasterViewController: UIViewController {
             }
         })
         
-        indicatorView.center = view.center
-        indicatorView.activityIndicatorViewStyle = .Gray
-        indicatorView.hidesWhenStopped = true
-        indicatorView.startAnimating()
-        view.addSubview(indicatorView)
+        
         
         searchController.searchResultsUpdater = self
         searchController.searchBar.delegate = self
