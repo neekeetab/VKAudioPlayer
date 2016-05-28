@@ -42,7 +42,7 @@
                             <constraint firstAttribute="trailingMargin" secondItem="oMn-gw-1rH" secondAttribute="trailing" constant="-20" id="aUX-aC-STt"/>
                             <constraint firstAttribute="trailingMargin" secondItem="Jw5-R0-zgY" secondAttribute="trailing" constant="-20" id="aqs-W8-kqA"/>
                             <constraint firstItem="KsA-yb-qSc" firstAttribute="top" secondItem="Jw5-R0-zgY" secondAttribute="bottom" id="blL-hA-u6M"/>
-                            <constraint firstItem="Jw5-R0-zgY" firstAttribute="top" secondItem="9LS-qW-Uoj" secondAttribute="topMargin" id="eub-tm-GON"/>
+                            <constraint firstItem="Jw5-R0-zgY" firstAttribute="top" secondItem="9LS-qW-Uoj" secondAttribute="topMargin" id="e03-g9-8id"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="OgJ-DW-0it">
@@ -76,7 +76,7 @@
         <!--Table View Controller-->
         <scene sceneID="ixm-Ok-5cf">
             <objects>
-                <tableViewController title="Table View Controller" id="oRU-EC-6tq" customClass="TableViewController" customModule="VKAudioPlayer" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController title="Table View Controller" extendedLayoutIncludesOpaqueBars="YES" id="oRU-EC-6tq" customClass="TableViewController" customModule="VKAudioPlayer" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="kPC-Yf-QYM">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -125,9 +125,10 @@
         <!--Navigation Controller-->
         <scene sceneID="Ff5-xh-kz4">
             <objects>
-                <navigationController extendedLayoutIncludesOpaqueBars="YES" automaticallyAdjustsScrollViewInsets="NO" id="NP8-bW-F77" sceneMemberID="viewController">
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="NP8-bW-F77" sceneMemberID="viewController">
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" opaque="NO" contentMode="scaleToFill" id="EVu-Kx-twK">
+                    <simulatedStatusBarMetrics key="simulatedStatusBarMetrics" statusBarStyle="lightContent"/>
+                    <navigationBar key="navigationBar" opaque="NO" contentMode="scaleToFill" translucent="NO" id="EVu-Kx-twK">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="barTintColor" red="0.0" green="0.40000000000000002" blue="0.80000000000000004" alpha="1" colorSpace="calibratedRGB"/>
