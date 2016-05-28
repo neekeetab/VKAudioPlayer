@@ -1,5 +1,5 @@
 //
-//  MasterViewController+VKDelegate.swift
+//  TableViewController+VKDelegate.swift
 //  VKAudioPlayer
 //
 //  Created by Nikita Belousov on 5/24/16.
@@ -8,7 +8,7 @@
 
 import VK_ios_sdk
 
-extension MasterViewController: VKSdkDelegate, VKSdkUIDelegate {
+extension TableViewController: VKSdkDelegate, VKSdkUIDelegate {
     
     func vkSdkUserAuthorizationFailed() {
         print("Authorization failed")
