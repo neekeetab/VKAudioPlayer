@@ -84,12 +84,16 @@ strip_invalid_archs() {
 
 
 if [[ "$CONFIGURATION" == "Debug" ]]; then
+  install_framework "Pods-VKAudioPlayer/AddButton.framework"
   install_framework "Pods-VKAudioPlayer/FreeStreamer.framework"
+  install_framework "Pods-VKAudioPlayer/NAKPlaybackIndicatorView.framework"
   install_framework "Pods-VKAudioPlayer/Reachability.framework"
   install_framework "Pods-VKAudioPlayer/VK_ios_sdk.framework"
 fi
 if [[ "$CONFIGURATION" == "Release" ]]; then
+  install_framework "Pods-VKAudioPlayer/AddButton.framework"
   install_framework "Pods-VKAudioPlayer/FreeStreamer.framework"
+  install_framework "Pods-VKAudioPlayer/NAKPlaybackIndicatorView.framework"
   install_framework "Pods-VKAudioPlayer/Reachability.framework"
   install_framework "Pods-VKAudioPlayer/VK_ios_sdk.framework"
 fi

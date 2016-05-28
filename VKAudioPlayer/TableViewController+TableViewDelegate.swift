@@ -8,6 +8,7 @@
 
 import UIKit
 import VK_ios_sdk
+import NAKPlaybackIndicatorView
 
 extension TableViewController {
     
@@ -59,9 +60,15 @@ extension TableViewController {
     
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         
-        let cell = UITableViewCell()
+        let cell = tableView.dequeueReusableCellWithIdentifier("audioCell") as! TableViewCell
+        
+        if indexPath.row % 5 == 0 {
+            cell.playbackIndicator.state = NAKPlaybackIndicatorViewState.Playing
+        }
+        
         let audioItem = audioItemForIndexPath(indexPath)
-        cell.textLabel?.text = audioItem.title + " - " + audioItem.artist
+        
+//        cell.textLabel?.text = audioItem.title + " - " + audioItem.artist
         
         return cell
     }
@@ -79,6 +86,24 @@ extension TableViewController {
             }
         }
         return ""
+    }
+    
+    override func tableView(tableView: UITableView, canEditRowAtIndexPath indexPath: NSIndexPath) -> Bool {
+        if indexPath.section == 0 {
+            return true
+        }
+        return false
+    }
+    
+    override func tableView(tableView: UITableView, titleForDeleteConfirmationButtonForRowAtIndexPath indexPath: NSIndexPath) -> String? {
+        return "Remove"
+    }
+
+    override func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
+        if editingStyle == .Delete {
+            context.usersAudio.removeAtIndex(indexPath.row)
+            tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: .Automatic)
+        }
     }
     
 }

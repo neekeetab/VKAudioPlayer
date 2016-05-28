@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		111DE6621CF9E64C006CBCDB /* MasterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 111DE6611CF9E64C006CBCDB /* MasterViewController.swift */; };
 		111DE6641CF9F481006CBCDB /* AudioPlayerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 111DE6631CF9F481006CBCDB /* AudioPlayerViewController.swift */; };
+		111DE6671CFA47B3006CBCDB /* TableVIewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 111DE6661CFA47B3006CBCDB /* TableVIewCell.swift */; };
 		11294E291CF3C7FF00E8EEA2 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11294E281CF3C7FF00E8EEA2 /* AppDelegate.swift */; };
 		11294E2B1CF3C7FF00E8EEA2 /* TableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11294E2A1CF3C7FF00E8EEA2 /* TableViewController.swift */; };
 		11294E311CF3C7FF00E8EEA2 /* VKAudioPlayer.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 11294E2F1CF3C7FF00E8EEA2 /* VKAudioPlayer.xcdatamodeld */; };
@@ -34,6 +35,7 @@
 /* Begin PBXFileReference section */
 		111DE6611CF9E64C006CBCDB /* MasterViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MasterViewController.swift; sourceTree = "<group>"; };
 		111DE6631CF9F481006CBCDB /* AudioPlayerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AudioPlayerViewController.swift; sourceTree = "<group>"; };
+		111DE6661CFA47B3006CBCDB /* TableVIewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TableVIewCell.swift; sourceTree = "<group>"; };
 		11294E251CF3C7FF00E8EEA2 /* VKAudioPlayer.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = VKAudioPlayer.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		11294E281CF3C7FF00E8EEA2 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		11294E2A1CF3C7FF00E8EEA2 /* TableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableViewController.swift; sourceTree = "<group>"; };
@@ -98,6 +100,14 @@
 			name = MasterViewController;
 			sourceTree = "<group>";
 		};
+		111DE6651CFA4784006CBCDB /* Cell */ = {
+			isa = PBXGroup;
+			children = (
+				111DE6661CFA47B3006CBCDB /* TableVIewCell.swift */,
+			);
+			name = Cell;
+			sourceTree = "<group>";
+		};
 		11294E1C1CF3C7FF00E8EEA2 = {
 			isa = PBXGroup;
 			children = (
@@ -120,6 +130,7 @@
 			isa = PBXGroup;
 			children = (
 				11DD92D21CF4B58B00A8FC4A /* Constants.swift */,
+				111DE6651CFA4784006CBCDB /* Cell */,
 				111DE65F1CF9E600006CBCDB /* ViewControllers */,
 				11DD92D51CF4DABC00A8FC4A /* Model */,
 				11DD92DF1CF4DCFC00A8FC4A /* VKRequest+.swift */,
@@ -300,6 +311,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				11DD92C71CF49D2A00A8FC4A /* MasterViewController+SearchDelegate.swift in Sources */,
+				111DE6671CFA47B3006CBCDB /* TableVIewCell.swift in Sources */,
 				11DD92DB1CF4DB5600A8FC4A /* AudioContext.swift in Sources */,
 				11294E2B1CF3C7FF00E8EEA2 /* TableViewController.swift in Sources */,
 				11DD92DD1CF4DC2B00A8FC4A /* VKAudioRequestExecutor.swift in Sources */,
