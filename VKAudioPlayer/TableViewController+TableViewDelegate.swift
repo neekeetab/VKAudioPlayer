@@ -1,5 +1,5 @@
 //
-//  MasterViewController+TableViewDelegate.swift
+//  TableViewController+TableViewDelegate.swift
 //  VKAudioPlayer
 //
 //  Created by Nikita Belousov on 5/24/16.
@@ -9,7 +9,7 @@
 import UIKit
 import VK_ios_sdk
 
-extension MasterViewController: UITableViewDelegate, UITableViewDataSource {
+extension TableViewController {
     
     func audioItemForIndexPath(indexPath: NSIndexPath) -> VKAudioItem {
         if context.audioRequestDescription is UsersAudioRequestDescription {
@@ -26,13 +26,13 @@ extension MasterViewController: UITableViewDelegate, UITableViewDataSource {
         return VKAudioItem()
     }
     
-    func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+    override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         tableView.deselectRowAtIndexPath(indexPath, animated: true)
         audioStream.stop()
         audioStream.playFromURL(audioItemForIndexPath(indexPath).url)
     }
     
-    func numberOfSectionsInTableView(tableView: UITableView) -> Int {
+    override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
         if context.audioRequestDescription is UsersAudioRequestDescription {
             return 1
         }
@@ -42,7 +42,7 @@ extension MasterViewController: UITableViewDelegate, UITableViewDataSource {
         return 1
     }
     
-    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if context.audioRequestDescription is UsersAudioRequestDescription {
             return context.usersAudio.count
         }
@@ -57,7 +57,7 @@ extension MasterViewController: UITableViewDelegate, UITableViewDataSource {
         return 0
     }
     
-    func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+    override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         
         let cell = UITableViewCell()
         let audioItem = audioItemForIndexPath(indexPath)
@@ -66,7 +66,7 @@ extension MasterViewController: UITableViewDelegate, UITableViewDataSource {
         return cell
     }
     
-    func tableView(tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+    override func tableView(tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
         if context.audioRequestDescription is UsersAudioRequestDescription {
             return "My audios"
         }
