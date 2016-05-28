@@ -24,13 +24,10 @@ class TableViewController: UITableViewController {
     
     // MARK: -
     func search(sender: AnyObject) {
-        // there's a bug that cause search bar to hide behind status bar without following
         UIView.animateWithDuration(0.3, animations: {
             self.tableView.contentOffset = CGPoint(x: 0, y: -self.tableView.contentInset.top)
         })
-        delay(0.01, closure: {
-            self.searchController.searchBar.becomeFirstResponder()
-        })
+        self.searchController.searchBar.becomeFirstResponder()
     }
     
     // MARK: -
