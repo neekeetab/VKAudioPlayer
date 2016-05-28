@@ -7,8 +7,9 @@
 //
 
 import UIKit
+import VK_ios_sdk
 
-class MasterViewController: UIViewController {
+class MasterViewController: UIViewController, VKSdkDelegate, VKSdkUIDelegate {
 
     var tableViewController: TableViewController!
     var audioPlayerViewController: AudioPlayerViewController!
@@ -18,6 +19,26 @@ class MasterViewController: UIViewController {
         tableViewController.search(self)
     }
     @IBAction func settingsButtonPressed(sender: AnyObject) {
+    }
+    
+    func vkSdkUserAuthorizationFailed() {
+        print("Authorization failed")
+        // TODO: handle appropriately
+    }
+    
+    func vkSdkAccessAuthorizationFinishedWithResult(result: VKAuthorizationResult!) {
+        let audioRequestDescription = AudioRequestDescription.usersAudioRequestDescription()
+        tableViewController.initializeContext(audioRequestDescription)
+    }
+    
+    func vkSdkShouldPresentViewController(controller: UIViewController!) {
+        self.navigationController!.presentViewController(controller, animated: true, completion: nil)
+    }
+    
+    func vkSdkNeedCaptchaEnter(captchaError: VKError!) {
+        tableViewController.searchController.active = false
+        let captchaController = VKCaptchaViewController.captchaControllerWithError(captchaError)
+        captchaController.presentIn(self)
     }
     
     // MARK: -

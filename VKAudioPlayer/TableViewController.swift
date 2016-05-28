@@ -63,14 +63,6 @@ class TableViewController: UITableViewController {
     }
     
     // MARK: -
-    func showMessage(message: String, title: String) {
-        let alertVC = UIAlertController(title: title, message: message, preferredStyle: UIAlertControllerStyle.Alert)
-        let action = UIAlertAction(title: "OK", style: UIAlertActionStyle.Default, handler: nil)
-        alertVC.addAction(action)
-        self.presentViewController(alertVC, animated: true, completion: nil)
-    }
-    
-    // MARK: -
     func initializeContext(audioRequestDescription: AudioRequestDescription) {
         tableView.tableFooterView = footerView
         context = AudioContext(audioRequestDescription: audioRequestDescription, completionBlock: { suc, usersAudio, globalAudio in

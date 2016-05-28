@@ -20,7 +20,7 @@
 		1160EF0D1CF65331007DB453 /* AudioRequestDescription.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1160EF0C1CF65331007DB453 /* AudioRequestDescription.swift */; };
 		1160EF0F1CF65480007DB453 /* UsersAudioRequestDescription.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1160EF0E1CF65480007DB453 /* UsersAudioRequestDescription.swift */; };
 		1160EF111CF65493007DB453 /* SearchAudioRequestDescription.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1160EF101CF65493007DB453 /* SearchAudioRequestDescription.swift */; };
-		11DD92C31CF49AE100A8FC4A /* TableViewController+VKDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11DD92C21CF49AE100A8FC4A /* TableViewController+VKDelegate.swift */; };
+		11AEDAA81CFA59E700E2BBDC /* UIViewController+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11AEDAA71CFA59E700E2BBDC /* UIViewController+.swift */; };
 		11DD92C51CF49CAE00A8FC4A /* TableViewController+TableViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11DD92C41CF49CAE00A8FC4A /* TableViewController+TableViewDelegate.swift */; };
 		11DD92C71CF49D2A00A8FC4A /* MasterViewController+SearchDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11DD92C61CF49D2A00A8FC4A /* MasterViewController+SearchDelegate.swift */; };
 		11DD92CB1CF4A4EF00A8FC4A /* VKResponse+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11DD92CA1CF4A4EF00A8FC4A /* VKResponse+.swift */; };
@@ -48,7 +48,7 @@
 		1160EF0C1CF65331007DB453 /* AudioRequestDescription.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AudioRequestDescription.swift; sourceTree = "<group>"; };
 		1160EF0E1CF65480007DB453 /* UsersAudioRequestDescription.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UsersAudioRequestDescription.swift; sourceTree = "<group>"; };
 		1160EF101CF65493007DB453 /* SearchAudioRequestDescription.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchAudioRequestDescription.swift; sourceTree = "<group>"; };
-		11DD92C21CF49AE100A8FC4A /* TableViewController+VKDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "TableViewController+VKDelegate.swift"; sourceTree = "<group>"; };
+		11AEDAA71CFA59E700E2BBDC /* UIViewController+.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIViewController+.swift"; sourceTree = "<group>"; };
 		11DD92C41CF49CAE00A8FC4A /* TableViewController+TableViewDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "TableViewController+TableViewDelegate.swift"; sourceTree = "<group>"; };
 		11DD92C61CF49D2A00A8FC4A /* MasterViewController+SearchDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "MasterViewController+SearchDelegate.swift"; sourceTree = "<group>"; };
 		11DD92CA1CF4A4EF00A8FC4A /* VKResponse+.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "VKResponse+.swift"; sourceTree = "<group>"; };
@@ -88,6 +88,7 @@
 				111DE6601CF9E622006CBCDB /* MasterViewController */,
 				11DD92D41CF4DAAB00A8FC4A /* TableViewController */,
 				111DE65E1CF9E182006CBCDB /* AudioPlayerViewController */,
+				11AEDAA71CFA59E700E2BBDC /* UIViewController+.swift */,
 			);
 			name = ViewControllers;
 			sourceTree = "<group>";
@@ -152,7 +153,6 @@
 				11294E2A1CF3C7FF00E8EEA2 /* TableViewController.swift */,
 				11DD92C61CF49D2A00A8FC4A /* MasterViewController+SearchDelegate.swift */,
 				11DD92C41CF49CAE00A8FC4A /* TableViewController+TableViewDelegate.swift */,
-				11DD92C21CF49AE100A8FC4A /* TableViewController+VKDelegate.swift */,
 			);
 			name = TableViewController;
 			sourceTree = "<group>";
@@ -317,7 +317,6 @@
 				11DD92DD1CF4DC2B00A8FC4A /* VKAudioRequestExecutor.swift in Sources */,
 				11DD92CB1CF4A4EF00A8FC4A /* VKResponse+.swift in Sources */,
 				1160EF0D1CF65331007DB453 /* AudioRequestDescription.swift in Sources */,
-				11DD92C31CF49AE100A8FC4A /* TableViewController+VKDelegate.swift in Sources */,
 				1160EF0F1CF65480007DB453 /* UsersAudioRequestDescription.swift in Sources */,
 				111DE6641CF9F481006CBCDB /* AudioPlayerViewController.swift in Sources */,
 				11DD92D11CF4A9FB00A8FC4A /* VKAudioItem.swift in Sources */,
@@ -328,6 +327,7 @@
 				11DD92E01CF4DCFC00A8FC4A /* VKRequest+.swift in Sources */,
 				11294E311CF3C7FF00E8EEA2 /* VKAudioPlayer.xcdatamodeld in Sources */,
 				11294E3E1CF3C94200E8EEA2 /* Utils.swift in Sources */,
+				11AEDAA81CFA59E700E2BBDC /* UIViewController+.swift in Sources */,
 				1160EF111CF65493007DB453 /* SearchAudioRequestDescription.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
