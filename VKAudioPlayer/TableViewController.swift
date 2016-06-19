@@ -105,14 +105,10 @@ class TableViewController: UITableViewController {
         
         tableView.contentInset = UIEdgeInsets(top: 0, left: 0, bottom: 100, right: 0)
         refreshControl!.addTarget(self, action: #selector(refresh(_:)), forControlEvents: UIControlEvents.ValueChanged)
-        
-        definesPresentationContext = false
-        
+    
         searchController.searchResultsUpdater = self
         searchController.searchBar.delegate = self
         searchController.dimsBackgroundDuringPresentation = false
-        searchController.searchBar.translucent = false
-        searchController.searchBar.opaque = true
         tableView.tableHeaderView = searchController.searchBar
         
     }

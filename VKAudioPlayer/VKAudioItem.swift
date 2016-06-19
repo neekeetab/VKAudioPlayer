@@ -17,6 +17,7 @@ class VKAudioItem {
     var artist = ""
     var title = ""
     var url = NSURL()
+    var duration = 0
     
     static func audioItemFromVKResponseItem(responseItem: [String: AnyObject]) -> VKAudioItem {
         
@@ -26,6 +27,7 @@ class VKAudioItem {
         audioItem.artist = responseItem["artist"] as! String
         audioItem.title = responseItem["title"] as! String
         audioItem.url =  NSURL(string: responseItem["url"] as! String)!
+        audioItem.duration = responseItem["duration"] as! Int
         
         return  audioItem
         

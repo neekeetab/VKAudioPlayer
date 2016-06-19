@@ -67,8 +67,8 @@ extension TableViewController {
         }
         
         let audioItem = audioItemForIndexPath(indexPath)
-        
-//        cell.textLabel?.text = audioItem.title + " - " + audioItem.artist
+        cell.titleLabel.text = audioItem.title
+        cell.artistLabel.text = audioItem.artist
         
         return cell
     }
