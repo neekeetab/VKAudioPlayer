@@ -16,6 +16,7 @@ class MasterViewController: UIViewController, VKSdkDelegate, VKSdkUIDelegate {
     let indicatorView = UIActivityIndicatorView()
     
     // MARK: - IB
+    @IBOutlet weak var searchButton: UIBarButtonItem!
     @IBAction func searchButtonPressed(sender: AnyObject) {
         tableViewController.search(self)
     }
@@ -94,6 +95,7 @@ class MasterViewController: UIViewController, VKSdkDelegate, VKSdkUIDelegate {
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         if segue.identifier == "tableViewController_embedded" {
             tableViewController = segue.destinationViewController as! TableViewController
+            tableViewController.masterViewController = self
         }
         if segue.identifier == "auidioPlayerViewController" {
             audioPlayerViewController = segue.destinationViewController as! AudioPlayerViewController

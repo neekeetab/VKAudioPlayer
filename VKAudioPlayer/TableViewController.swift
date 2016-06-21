@@ -17,6 +17,7 @@ class TableViewController: UITableViewController {
     @IBOutlet var footerView: UIView!
     
     // MARK: -
+    var masterViewController: MasterViewController!
     var audioStream = FSAudioStream()
     let searchController = UISearchController(searchResultsController: nil)
     var indicatorView = UIActivityIndicatorView()
@@ -33,7 +34,12 @@ class TableViewController: UITableViewController {
     // MARK: -
     func refresh(sender: AnyObject) {
         print("bump")
+        
         tableView.userInteractionEnabled = false
+        masterViewController.searchButton.enabled = false
+        
+        context.cancel()
+        initializeContext(AudioRequestDescription.usersAudioRequestDescription())
         
         delay(1, closure: {
             self.refreshControl?.endRefreshing()
@@ -65,7 +71,13 @@ class TableViewController: UITableViewController {
     // MARK: -
     func initializeContext(audioRequestDescription: AudioRequestDescription) {
         tableView.tableFooterView = footerView
+        context.cancel()
         context = AudioContext(audioRequestDescription: audioRequestDescription, completionBlock: { suc, usersAudio, globalAudio in
+            
+            self.refreshControl?.endRefreshing()
+            self.tableView.userInteractionEnabled = true
+            self.masterViewController.searchButton.enabled = true
+            
             if suc {
                 
                 var paths = [NSIndexPath]()

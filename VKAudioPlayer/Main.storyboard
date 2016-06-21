@@ -68,6 +68,9 @@
                             </connections>
                         </barButtonItem>
                     </navigationItem>
+                    <connections>
+                        <outlet property="searchButton" destination="zKe-xc-NQR" id="nNa-to-z3N"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="8KJ-W3-tVn" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
