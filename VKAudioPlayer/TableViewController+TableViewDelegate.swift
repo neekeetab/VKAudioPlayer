@@ -8,6 +8,7 @@
 
 import UIKit
 import VK_ios_sdk
+import NAKPlaybackIndicatorView
 
 extension TableViewController {
     
@@ -28,6 +29,8 @@ extension TableViewController {
     
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         tableView.deselectRowAtIndexPath(indexPath, animated: true)
+        let cell = tableView.cellForRowAtIndexPath(indexPath) as! AudioCell
+        cell.playing = true
         audioStream.stop()
         audioStream.playFromURL(audioItemForIndexPath(indexPath).url)
     }
@@ -57,11 +60,25 @@ extension TableViewController {
         return 0
     }
     
-    override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+    override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> AudioCell {
         
-        let cell = UITableViewCell()
+        let cell = tableView.dequeueReusableCellWithIdentifier("audioCell") as! AudioCell
+        cell.delegate = self
+        
+        if indexPath.section == 0 {
+            cell.ownedByUser = true
+        }
+        
+        if indexPath.section == 1 {
+            cell.ownedByUser = false
+        }
+        
+        cell.downloaded = false
+        cell.playing = false
+        
         let audioItem = audioItemForIndexPath(indexPath)
-        cell.textLabel?.text = audioItem.title + " - " + audioItem.artist
+        cell.titleLabel.text = audioItem.title
+        cell.artistLabel.text = audioItem.artist
         
         return cell
     }
@@ -79,6 +96,24 @@ extension TableViewController {
             }
         }
         return ""
+    }
+    
+    override func tableView(tableView: UITableView, canEditRowAtIndexPath indexPath: NSIndexPath) -> Bool {
+        if indexPath.section == 0 {
+            return true
+        }
+        return false
+    }
+    
+    override func tableView(tableView: UITableView, titleForDeleteConfirmationButtonForRowAtIndexPath indexPath: NSIndexPath) -> String? {
+        return "Remove"
+    }
+
+    override func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
+        if editingStyle == .Delete {
+            context.usersAudio.removeAtIndex(indexPath.row)
+            tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: .Automatic)
+        }
     }
     
 }

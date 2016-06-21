@@ -29,4 +29,11 @@ extension VKRequest {
             ])
     }
     
+    static func addAudioRequest(audioItem: VKAudioItem) -> VKRequest {
+        return VKApi.requestWithMethod("audio.add", andParameters: [
+            "audio_id": audioItem.id,
+            "owner_id": audioItem.ownerId
+            ])
+    }
+    
 }

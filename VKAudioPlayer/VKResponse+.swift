@@ -59,4 +59,9 @@ extension VKResponse {
         
     }
     
+    // id of added audio
+    func audioId() -> Int {
+        return self.json as! Int
+    }
+    
 }
