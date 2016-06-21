@@ -110,7 +110,7 @@ class TableViewController: UITableViewController {
         searchController.searchBar.delegate = self
         searchController.dimsBackgroundDuringPresentation = false
         tableView.tableHeaderView = searchController.searchBar
-        
+
     }
     
     override func preferredStatusBarStyle() -> UIStatusBarStyle {

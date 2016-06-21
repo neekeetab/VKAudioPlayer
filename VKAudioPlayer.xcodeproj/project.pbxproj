@@ -9,7 +9,7 @@
 /* Begin PBXBuildFile section */
 		111DE6621CF9E64C006CBCDB /* MasterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 111DE6611CF9E64C006CBCDB /* MasterViewController.swift */; };
 		111DE6641CF9F481006CBCDB /* AudioPlayerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 111DE6631CF9F481006CBCDB /* AudioPlayerViewController.swift */; };
-		111DE6671CFA47B3006CBCDB /* TableVIewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 111DE6661CFA47B3006CBCDB /* TableVIewCell.swift */; };
+		111DE6671CFA47B3006CBCDB /* AudioCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 111DE6661CFA47B3006CBCDB /* AudioCell.swift */; };
 		11294E291CF3C7FF00E8EEA2 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11294E281CF3C7FF00E8EEA2 /* AppDelegate.swift */; };
 		11294E2B1CF3C7FF00E8EEA2 /* TableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11294E2A1CF3C7FF00E8EEA2 /* TableViewController.swift */; };
 		11294E311CF3C7FF00E8EEA2 /* VKAudioPlayer.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 11294E2F1CF3C7FF00E8EEA2 /* VKAudioPlayer.xcdatamodeld */; };
@@ -22,20 +22,22 @@
 		1160EF111CF65493007DB453 /* SearchAudioRequestDescription.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1160EF101CF65493007DB453 /* SearchAudioRequestDescription.swift */; };
 		11AEDAA81CFA59E700E2BBDC /* UIViewController+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11AEDAA71CFA59E700E2BBDC /* UIViewController+.swift */; };
 		11DD92C51CF49CAE00A8FC4A /* TableViewController+TableViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11DD92C41CF49CAE00A8FC4A /* TableViewController+TableViewDelegate.swift */; };
-		11DD92C71CF49D2A00A8FC4A /* MasterViewController+SearchDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11DD92C61CF49D2A00A8FC4A /* MasterViewController+SearchDelegate.swift */; };
+		11DD92C71CF49D2A00A8FC4A /* TableViewController+SearchDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11DD92C61CF49D2A00A8FC4A /* TableViewController+SearchDelegate.swift */; };
 		11DD92CB1CF4A4EF00A8FC4A /* VKResponse+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11DD92CA1CF4A4EF00A8FC4A /* VKResponse+.swift */; };
 		11DD92D11CF4A9FB00A8FC4A /* VKAudioItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11DD92D01CF4A9FB00A8FC4A /* VKAudioItem.swift */; };
 		11DD92D31CF4B58B00A8FC4A /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11DD92D21CF4B58B00A8FC4A /* Constants.swift */; };
 		11DD92DB1CF4DB5600A8FC4A /* AudioContext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11DD92DA1CF4DB5600A8FC4A /* AudioContext.swift */; };
 		11DD92DD1CF4DC2B00A8FC4A /* VKAudioRequestExecutor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11DD92DC1CF4DC2B00A8FC4A /* VKAudioRequestExecutor.swift */; };
 		11DD92E01CF4DCFC00A8FC4A /* VKRequest+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11DD92DF1CF4DCFC00A8FC4A /* VKRequest+.swift */; };
+		11F3B8981D1984A8005E3452 /* TableViewController+AudioCellDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11F3B8971D1984A8005E3452 /* TableViewController+AudioCellDelegate.swift */; };
+		11F3B89B1D198F8C005E3452 /* AudioController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11F3B89A1D198F8C005E3452 /* AudioController.swift */; };
 		A63ABB63716FB4483771D047 /* Pods_VKAudioPlayer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 26B8640E32B8892D3EAE8165 /* Pods_VKAudioPlayer.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		111DE6611CF9E64C006CBCDB /* MasterViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MasterViewController.swift; sourceTree = "<group>"; };
 		111DE6631CF9F481006CBCDB /* AudioPlayerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AudioPlayerViewController.swift; sourceTree = "<group>"; };
-		111DE6661CFA47B3006CBCDB /* TableVIewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TableVIewCell.swift; sourceTree = "<group>"; };
+		111DE6661CFA47B3006CBCDB /* AudioCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AudioCell.swift; sourceTree = "<group>"; };
 		11294E251CF3C7FF00E8EEA2 /* VKAudioPlayer.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = VKAudioPlayer.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		11294E281CF3C7FF00E8EEA2 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		11294E2A1CF3C7FF00E8EEA2 /* TableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableViewController.swift; sourceTree = "<group>"; };
@@ -50,13 +52,15 @@
 		1160EF101CF65493007DB453 /* SearchAudioRequestDescription.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchAudioRequestDescription.swift; sourceTree = "<group>"; };
 		11AEDAA71CFA59E700E2BBDC /* UIViewController+.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIViewController+.swift"; sourceTree = "<group>"; };
 		11DD92C41CF49CAE00A8FC4A /* TableViewController+TableViewDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "TableViewController+TableViewDelegate.swift"; sourceTree = "<group>"; };
-		11DD92C61CF49D2A00A8FC4A /* MasterViewController+SearchDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "MasterViewController+SearchDelegate.swift"; sourceTree = "<group>"; };
+		11DD92C61CF49D2A00A8FC4A /* TableViewController+SearchDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "TableViewController+SearchDelegate.swift"; sourceTree = "<group>"; };
 		11DD92CA1CF4A4EF00A8FC4A /* VKResponse+.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "VKResponse+.swift"; sourceTree = "<group>"; };
 		11DD92D01CF4A9FB00A8FC4A /* VKAudioItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VKAudioItem.swift; sourceTree = "<group>"; };
 		11DD92D21CF4B58B00A8FC4A /* Constants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		11DD92DA1CF4DB5600A8FC4A /* AudioContext.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AudioContext.swift; sourceTree = "<group>"; };
 		11DD92DC1CF4DC2B00A8FC4A /* VKAudioRequestExecutor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VKAudioRequestExecutor.swift; sourceTree = "<group>"; };
 		11DD92DF1CF4DCFC00A8FC4A /* VKRequest+.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "VKRequest+.swift"; sourceTree = "<group>"; };
+		11F3B8971D1984A8005E3452 /* TableViewController+AudioCellDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "TableViewController+AudioCellDelegate.swift"; sourceTree = "<group>"; };
+		11F3B89A1D198F8C005E3452 /* AudioController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AudioController.swift; sourceTree = "<group>"; };
 		26B8640E32B8892D3EAE8165 /* Pods_VKAudioPlayer.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_VKAudioPlayer.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		A1F041E64002C0CA25E1A736 /* Pods-VKAudioPlayer.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-VKAudioPlayer.release.xcconfig"; path = "Pods/Target Support Files/Pods-VKAudioPlayer/Pods-VKAudioPlayer.release.xcconfig"; sourceTree = "<group>"; };
 		FF23D35E03F977759073C427 /* Pods-VKAudioPlayer.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-VKAudioPlayer.debug.xcconfig"; path = "Pods/Target Support Files/Pods-VKAudioPlayer/Pods-VKAudioPlayer.debug.xcconfig"; sourceTree = "<group>"; };
@@ -101,14 +105,6 @@
 			name = MasterViewController;
 			sourceTree = "<group>";
 		};
-		111DE6651CFA4784006CBCDB /* Cell */ = {
-			isa = PBXGroup;
-			children = (
-				111DE6661CFA47B3006CBCDB /* TableVIewCell.swift */,
-			);
-			name = Cell;
-			sourceTree = "<group>";
-		};
 		11294E1C1CF3C7FF00E8EEA2 = {
 			isa = PBXGroup;
 			children = (
@@ -133,8 +129,9 @@
 				11DD92D21CF4B58B00A8FC4A /* Constants.swift */,
 				111DE65F1CF9E600006CBCDB /* ViewControllers */,
 				11DD92D51CF4DABC00A8FC4A /* Model */,
-				11DD92DF1CF4DCFC00A8FC4A /* VKRequest+.swift */,
+				11F3B8991D198F56005E3452 /* AudioController */,
 				11DD92CA1CF4A4EF00A8FC4A /* VKResponse+.swift */,
+				11DD92DF1CF4DCFC00A8FC4A /* VKRequest+.swift */,
 				11294E3D1CF3C94200E8EEA2 /* Utils.swift */,
 				11294E281CF3C7FF00E8EEA2 /* AppDelegate.swift */,
 				11294E3F1CF3C96700E8EEA2 /* Main.storyboard */,
@@ -149,10 +146,11 @@
 		11DD92D41CF4DAAB00A8FC4A /* TableViewController */ = {
 			isa = PBXGroup;
 			children = (
-				111DE6651CFA4784006CBCDB /* Cell */,
+				111DE6661CFA47B3006CBCDB /* AudioCell.swift */,
 				11294E2A1CF3C7FF00E8EEA2 /* TableViewController.swift */,
-				11DD92C61CF49D2A00A8FC4A /* MasterViewController+SearchDelegate.swift */,
+				11DD92C61CF49D2A00A8FC4A /* TableViewController+SearchDelegate.swift */,
 				11DD92C41CF49CAE00A8FC4A /* TableViewController+TableViewDelegate.swift */,
+				11F3B8971D1984A8005E3452 /* TableViewController+AudioCellDelegate.swift */,
 			);
 			name = TableViewController;
 			sourceTree = "<group>";
@@ -168,6 +166,14 @@
 				11DD92DC1CF4DC2B00A8FC4A /* VKAudioRequestExecutor.swift */,
 			);
 			name = Model;
+			sourceTree = "<group>";
+		};
+		11F3B8991D198F56005E3452 /* AudioController */ = {
+			isa = PBXGroup;
+			children = (
+				11F3B89A1D198F8C005E3452 /* AudioController.swift */,
+			);
+			name = AudioController;
 			sourceTree = "<group>";
 		};
 		129D295F067A4B60E3762D7C /* Pods */ = {
@@ -315,10 +321,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				11DD92C71CF49D2A00A8FC4A /* MasterViewController+SearchDelegate.swift in Sources */,
-				111DE6671CFA47B3006CBCDB /* TableVIewCell.swift in Sources */,
+				11DD92C71CF49D2A00A8FC4A /* TableViewController+SearchDelegate.swift in Sources */,
+				111DE6671CFA47B3006CBCDB /* AudioCell.swift in Sources */,
 				11DD92DB1CF4DB5600A8FC4A /* AudioContext.swift in Sources */,
 				11294E2B1CF3C7FF00E8EEA2 /* TableViewController.swift in Sources */,
+				11F3B89B1D198F8C005E3452 /* AudioController.swift in Sources */,
 				11DD92DD1CF4DC2B00A8FC4A /* VKAudioRequestExecutor.swift in Sources */,
 				11DD92CB1CF4A4EF00A8FC4A /* VKResponse+.swift in Sources */,
 				1160EF0D1CF65331007DB453 /* AudioRequestDescription.swift in Sources */,
@@ -332,6 +339,7 @@
 				11DD92E01CF4DCFC00A8FC4A /* VKRequest+.swift in Sources */,
 				11294E311CF3C7FF00E8EEA2 /* VKAudioPlayer.xcdatamodeld in Sources */,
 				11294E3E1CF3C94200E8EEA2 /* Utils.swift in Sources */,
+				11F3B8981D1984A8005E3452 /* TableViewController+AudioCellDelegate.swift in Sources */,
 				11AEDAA81CFA59E700E2BBDC /* UIViewController+.swift in Sources */,
 				1160EF111CF65493007DB453 /* SearchAudioRequestDescription.swift in Sources */,
 			);

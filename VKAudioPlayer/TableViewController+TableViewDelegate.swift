@@ -29,6 +29,8 @@ extension TableViewController {
     
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         tableView.deselectRowAtIndexPath(indexPath, animated: true)
+        let cell = tableView.cellForRowAtIndexPath(indexPath) as! AudioCell
+        cell.playing = true
         audioStream.stop()
         audioStream.playFromURL(audioItemForIndexPath(indexPath).url)
     }
@@ -58,13 +60,21 @@ extension TableViewController {
         return 0
     }
     
-    override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+    override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> AudioCell {
         
-        let cell = tableView.dequeueReusableCellWithIdentifier("audioCell") as! TableViewCell
+        let cell = tableView.dequeueReusableCellWithIdentifier("audioCell") as! AudioCell
+        cell.delegate = self
         
-        if indexPath.row % 5 == 0 {
-            cell.playbackIndicator.state = NAKPlaybackIndicatorViewState.Playing
+        if indexPath.section == 0 {
+            cell.ownedByUser = true
         }
+        
+        if indexPath.section == 1 {
+            cell.ownedByUser = false
+        }
+        
+        cell.downloaded = false
+        cell.playing = false
         
         let audioItem = audioItemForIndexPath(indexPath)
         cell.titleLabel.text = audioItem.title

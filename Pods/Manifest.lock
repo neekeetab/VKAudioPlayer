@@ -1,4 +1,5 @@
 PODS:
+  - ACPDownload (1.1.0)
   - AddButton (0.1.0)
   - FreeStreamer (3.5.5):
     - Reachability (~> 3.0)
@@ -7,12 +8,14 @@ PODS:
   - VK-ios-sdk (1.3.16)
 
 DEPENDENCIES:
+  - ACPDownload
   - AddButton
   - FreeStreamer
   - NAKPlaybackIndicatorView
   - VK-ios-sdk (~> 1.3.16)
 
 SPEC CHECKSUMS:
+  ACPDownload: 9c6349be96019b6c8c87ad46570af1cbc7106bf4
   AddButton: 2f3e82564f359d4e2ad7cdf0f9c862694017f6e5
   FreeStreamer: c1ffd513b7445cfee20c0e87f9881c99a644a863
   NAKPlaybackIndicatorView: 794dd97576fe074bb1844c19ebcbf7509384a47f

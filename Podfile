@@ -4,5 +4,6 @@ target 'VKAudioPlayer' do
   pod 'FreeStreamer'
   pod 'NAKPlaybackIndicatorView'
   pod 'AddButton'
+  pod 'ACPDownload'
 end
 
