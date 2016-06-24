@@ -33,9 +33,8 @@ class TableViewController: UITableViewController {
     
     // MARK: -
     func refresh(sender: AnyObject) {
-//        tableView.userInteractionEnabled = false
-//        masterViewController.searchButton.enabled = false
-        
+        tableView.userInteractionEnabled = false
+        masterViewController.searchButton.enabled = false
         context.cancel()
         initializeContext(AudioRequestDescription.usersAudioRequestDescription())
         
@@ -63,27 +62,37 @@ class TableViewController: UITableViewController {
         context.cancel()
         context = AudioContext(audioRequestDescription: audioRequestDescription, completionBlock: { suc, usersAudio, globalAudio in
             
+            var wasRefreshing = false
             if let refresher = self.refreshControl  {
                 if refresher.refreshing {
+                    wasRefreshing = true
                     refresher.endRefreshing()
                 }
             }
 
-            delay(1, closure: {
-                self.allowedToFetchNewData = true
-            })
-            
-            self.tableView.userInteractionEnabled = true
-            self.masterViewController.searchButton.enabled = true
-            
             if suc {
                 if usersAudio.count + globalAudio.count > 0 {
-                    self.tableView.reloadData()
+                    // to avoid bugy animation when refresher is hiding
+                    if wasRefreshing {
+                        delay(0.3, closure: {
+                            self.tableView.reloadData()
+                        })
+                    } else {
+                        self.tableView.reloadData()
+                    }
                 }
             } else {
                 self.showMessage("You're now switched to cache-only mode. Pull down to retry.", title: "Network is unreachable")
                 // TODO: swifch to cache-only mode
             }
+            
+            self.tableView.userInteractionEnabled = true
+            self.masterViewController.searchButton.enabled = true
+            
+            delay(1, closure: {
+                self.allowedToFetchNewData = true
+            })
+            
             UIView.animateWithDuration(0.3, animations: {
                 self.tableView.tableFooterView = nil
             })
