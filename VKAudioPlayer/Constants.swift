@@ -11,4 +11,4 @@ import UIKit
 let appID = "5450086" // use your VK's AppID
 let timePerRequestsMilliseconds: UInt32 = 333333 // standard 3 requests per second VK's restriction
 let elementsPerRequest = 20
-let distanceFromBottomToPreload: CGFloat = 500
+let distanceFromBottomToPreload: CGFloat = 0

@@ -33,8 +33,8 @@ class TableViewController: UITableViewController {
     
     // MARK: -
     func refresh(sender: AnyObject) {
-        tableView.userInteractionEnabled = false
-        masterViewController.searchButton.enabled = false
+//        tableView.userInteractionEnabled = false
+//        masterViewController.searchButton.enabled = false
         
         context.cancel()
         initializeContext(AudioRequestDescription.usersAudioRequestDescription())
@@ -63,8 +63,10 @@ class TableViewController: UITableViewController {
         context.cancel()
         context = AudioContext(audioRequestDescription: audioRequestDescription, completionBlock: { suc, usersAudio, globalAudio in
             
-            if self.refreshControl!.refreshing  {
-                self.refreshControl!.endRefreshing()
+            if let refresher = self.refreshControl  {
+                if refresher.refreshing {
+                    refresher.endRefreshing()
+                }
             }
 
             delay(1, closure: {
@@ -102,6 +104,8 @@ class TableViewController: UITableViewController {
         searchController.searchBar.delegate = self
         searchController.dimsBackgroundDuringPresentation = false
         tableView.tableHeaderView = searchController.searchBar
+        
+        tableView.tableFooterView = footerView
 
     }
     
