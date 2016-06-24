@@ -48,13 +48,11 @@ class TableViewController: UITableViewController {
             let height = scrollView.frame.size.height
             let contentYoffset = scrollView.contentOffset.y
             let distanceFromBottom = scrollView.contentSize.height - contentYoffset
+            print(distanceFromBottom - height)
             if distanceFromBottom - height + 100 /* player height */ < distanceFromBottomToPreload && context.busy() == false && allowedToFetchNewData {
                 tableView.tableFooterView = footerView
                 context.loadNextPortion()
                 allowedToFetchNewData = false
-                delay(1, closure: {
-                    self.allowedToFetchNewData = true
-                })
             }
         }
     }
@@ -64,35 +62,22 @@ class TableViewController: UITableViewController {
         tableView.tableFooterView = footerView
         context.cancel()
         context = AudioContext(audioRequestDescription: audioRequestDescription, completionBlock: { suc, usersAudio, globalAudio in
+            
+            if self.refreshControl!.refreshing  {
+                self.refreshControl!.endRefreshing()
+            }
 
-            self.refreshControl?.endRefreshing()
+            delay(1, closure: {
+                self.allowedToFetchNewData = true
+            })
+            
             self.tableView.userInteractionEnabled = true
             self.masterViewController.searchButton.enabled = true
             
             if suc {
-                
-                self.tableView.reloadData()
-                
-//                UIView.setAnimationsEnabled(false)
-//                var paths = [NSIndexPath]()
-//                if audioRequestDescription is UsersAudioRequestDescription {
-//                    for i in 0 ..< usersAudio.count {
-//                        paths.append(NSIndexPath(forRow: self.context.usersAudio.count - usersAudio.count + i, inSection: 0))
-//                    }
-//                }
-//                if audioRequestDescription is SearchAudioRequestDescription {
-//                    for i in 0 ..< usersAudio.count {
-//                        paths.append(NSIndexPath(forRow: self.context.usersAudio.count - usersAudio.count + i, inSection: 0))
-//                    }
-//                    for i in 0 ..< globalAudio.count {
-//                        paths.append(NSIndexPath(forRow: self.context.globalAudio.count - globalAudio.count + i, inSection: 1))
-//                    }
-//                }
-//                if paths.count > 0 {
-//                    self.tableView.insertRowsAtIndexPaths(paths, withRowAnimation: .Automatic)
-//                }
-//                UIView.setAnimationsEnabled(true)
-                
+                if usersAudio.count + globalAudio.count > 0 {
+                    self.tableView.reloadData()
+                }
             } else {
                 self.showMessage("You're now switched to cache-only mode. Pull down to retry.", title: "Network is unreachable")
                 // TODO: swifch to cache-only mode
