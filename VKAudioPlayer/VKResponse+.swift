@@ -59,6 +59,14 @@ extension VKResponse {
         
     }
     
+    // returns true if 1, else -- false
+    func success() -> Bool {
+        if let r = self.json as? Int {
+            return r == 1
+        }
+        return false
+    }
+    
     // id of added audio
     func audioId() -> Int {
         return self.json as! Int

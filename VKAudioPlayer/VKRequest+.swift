@@ -36,4 +36,11 @@ extension VKRequest {
             ])
     }
     
+    static func deleteAudioRequest(audioItem: VKAudioItem) -> VKRequest {
+        return VKApi.requestWithMethod("audio.delete", andParameters: [
+            "audio_id": audioItem.id,
+            "owner_id": audioItem.ownerId
+            ])
+    }
+    
 }

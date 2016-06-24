@@ -33,21 +33,12 @@ class TableViewController: UITableViewController {
     
     // MARK: -
     func refresh(sender: AnyObject) {
-        print("bump")
-        
         tableView.userInteractionEnabled = false
         masterViewController.searchButton.enabled = false
         
         context.cancel()
         initializeContext(AudioRequestDescription.usersAudioRequestDescription())
         
-        delay(1, closure: {
-            self.refreshControl?.endRefreshing()
-            delay(0.3, closure: {
-                
-                self.tableView.userInteractionEnabled = true
-            })
-        })
     }
     
     // MARK: -
@@ -57,7 +48,7 @@ class TableViewController: UITableViewController {
             let height = scrollView.frame.size.height
             let contentYoffset = scrollView.contentOffset.y
             let distanceFromBottom = scrollView.contentSize.height - contentYoffset
-            if distanceFromBottom - height < distanceFromBottomToPreload && context.busy() == false && allowedToFetchNewData {
+            if distanceFromBottom - height + 100 /* player height */ < distanceFromBottomToPreload && context.busy() == false && allowedToFetchNewData {
                 tableView.tableFooterView = footerView
                 context.loadNextPortion()
                 allowedToFetchNewData = false
@@ -73,30 +64,34 @@ class TableViewController: UITableViewController {
         tableView.tableFooterView = footerView
         context.cancel()
         context = AudioContext(audioRequestDescription: audioRequestDescription, completionBlock: { suc, usersAudio, globalAudio in
-            
+
             self.refreshControl?.endRefreshing()
             self.tableView.userInteractionEnabled = true
             self.masterViewController.searchButton.enabled = true
             
             if suc {
                 
-                var paths = [NSIndexPath]()
-                if audioRequestDescription is UsersAudioRequestDescription {
-                    for i in 0 ..< usersAudio.count {
-                        paths.append(NSIndexPath(forRow: self.context.usersAudio.count - usersAudio.count + i, inSection: 0))
-                    }
-                }
-                if audioRequestDescription is SearchAudioRequestDescription {
-                    for i in 0 ..< usersAudio.count {
-                        paths.append(NSIndexPath(forRow: self.context.usersAudio.count - usersAudio.count + i, inSection: 0))
-                    }
-                    for i in 0 ..< globalAudio.count {
-                        paths.append(NSIndexPath(forRow: self.context.globalAudio.count - globalAudio.count + i, inSection: 1))
-                    }
-                }
-                if paths.count > 0 {
-                    self.tableView.insertRowsAtIndexPaths(paths, withRowAnimation: .Automatic)
-                }
+                self.tableView.reloadData()
+                
+//                UIView.setAnimationsEnabled(false)
+//                var paths = [NSIndexPath]()
+//                if audioRequestDescription is UsersAudioRequestDescription {
+//                    for i in 0 ..< usersAudio.count {
+//                        paths.append(NSIndexPath(forRow: self.context.usersAudio.count - usersAudio.count + i, inSection: 0))
+//                    }
+//                }
+//                if audioRequestDescription is SearchAudioRequestDescription {
+//                    for i in 0 ..< usersAudio.count {
+//                        paths.append(NSIndexPath(forRow: self.context.usersAudio.count - usersAudio.count + i, inSection: 0))
+//                    }
+//                    for i in 0 ..< globalAudio.count {
+//                        paths.append(NSIndexPath(forRow: self.context.globalAudio.count - globalAudio.count + i, inSection: 1))
+//                    }
+//                }
+//                if paths.count > 0 {
+//                    self.tableView.insertRowsAtIndexPaths(paths, withRowAnimation: .Automatic)
+//                }
+//                UIView.setAnimationsEnabled(true)
                 
             } else {
                 self.showMessage("You're now switched to cache-only mode. Pull down to retry.", title: "Network is unreachable")

@@ -106,15 +106,28 @@ extension TableViewController {
         return false
     }
     
+    override func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
+        if indexPath.section == 0 {
+            if editingStyle == .Delete {
+                let audioItem = audioItemForIndexPath(indexPath)
+                let request = VKRequest.deleteAudioRequest(audioItem)
+                request.executeWithResultBlock({ response in
+                    if response.success() {
+                       self.showMessage("audio has been deleted!", title: "")
+                    } else {
+                        self.showError("unknown")
+                    }
+                    self.context.usersAudio.removeAtIndex(indexPath.row)
+                    self.tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: .Automatic)
+                    }, errorBlock: { error in
+                        self.showError(error.description)
+                })
+            }
+        }
+    }
+    
     override func tableView(tableView: UITableView, titleForDeleteConfirmationButtonForRowAtIndexPath indexPath: NSIndexPath) -> String? {
         return "Remove"
-    }
-
-    override func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
-        if editingStyle == .Delete {
-            context.usersAudio.removeAtIndex(indexPath.row)
-            tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: .Automatic)
-        }
     }
     
 }

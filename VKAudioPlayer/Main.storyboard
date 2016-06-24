@@ -24,7 +24,7 @@
                                     <segue destination="oRU-EC-6tq" kind="embed" identifier="tableViewController_embedded" id="egY-R5-pC8"/>
                                 </connections>
                             </containerView>
-                            <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="oMn-gw-1rH" userLabel="Audio Player Container">
+                            <containerView opaque="NO" alpha="0.5" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="oMn-gw-1rH" userLabel="Audio Player Container">
                                 <rect key="frame" x="0.0" y="500" width="600" height="100"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="100" id="YIh-au-dFi"/>
