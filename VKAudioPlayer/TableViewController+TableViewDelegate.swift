@@ -9,6 +9,7 @@
 import UIKit
 import VK_ios_sdk
 import NAKPlaybackIndicatorView
+import LNPopupController
 
 extension TableViewController {
     
@@ -33,6 +34,8 @@ extension TableViewController {
         cell.playing = true
         audioStream.stop()
         audioStream.playFromURL(audioItemForIndexPath(indexPath).url)
+        
+               
     }
     
     override func numberOfSectionsInTableView(tableView: UITableView) -> Int {

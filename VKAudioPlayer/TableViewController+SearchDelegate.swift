@@ -26,6 +26,11 @@ extension TableViewController: UISearchResultsUpdating, UISearchBarDelegate {
         refreshControl!.addTarget(self, action: #selector(refresh(_:)), forControlEvents: UIControlEvents.ValueChanged)
         let audioRequestDescription = AudioRequestDescription.usersAudioRequestDescription()
         self.initializeContext(audioRequestDescription)
+        
+        delay(0.5, closure: {
+            self.navigationController?.view.bringSubviewToFront(self.navigationController!.popupContentView)
+        })
+        
     }
     
     func searchBarSearchButtonClicked(searchBar: UISearchBar) {}
