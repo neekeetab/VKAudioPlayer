@@ -5,5 +5,6 @@ target 'VKAudioPlayer' do
   pod 'NAKPlaybackIndicatorView'
   pod 'AddButton'
   pod 'ACPDownload'
+  pod 'LNPopupController', '~> 0.0'
 end
 
