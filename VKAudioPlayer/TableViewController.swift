@@ -55,8 +55,7 @@ class TableViewController: UITableViewController {
             let height = scrollView.frame.size.height
             let contentYoffset = scrollView.contentOffset.y
             let distanceFromBottom = scrollView.contentSize.height - contentYoffset
-            print(distanceFromBottom - height)
-            if distanceFromBottom - height  /* player height */ < distanceFromBottomToPreload && context.busy() == false && allowedToFetchNewData {
+            if distanceFromBottom - height < distanceFromBottomToPreload && context.busy() == false && allowedToFetchNewData {
 //                tableView.tableFooterView = footerView
                 context.loadNextPortion()
                 allowedToFetchNewData = false
@@ -158,8 +157,7 @@ class TableViewController: UITableViewController {
         tableView.contentInset = insets
         tableView.scrollIndicatorInsets = insets
         
-        
-//        self.navigationController?.popupContentView.bring
+        navigationController?.popupContentView.popupCloseButton?.setImage(UIImage(named: "DismissChevron"), forState: .Normal)
         
     }
     

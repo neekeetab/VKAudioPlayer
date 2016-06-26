@@ -18,7 +18,6 @@ extension VKResponse {
         var audios = [VKAudioItem]()
         for i in items {
             audios.append(VKAudioItem.audioItemFromVKResponseItem(i))
-            
         }
         
         return audios
