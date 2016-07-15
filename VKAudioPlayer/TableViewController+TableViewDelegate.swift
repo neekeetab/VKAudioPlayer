@@ -12,6 +12,7 @@ import NAKPlaybackIndicatorView
 import AVFoundation
 import LNPopupController
 import FreeStreamer
+import Cache
 
 extension TableViewController {
     
@@ -31,15 +32,38 @@ extension TableViewController {
     }
     
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+        
+        audioPlayerViewController.popupItem.progress = 0.0
+    
         tableView.deselectRowAtIndexPath(indexPath, animated: true)
         let cell = tableView.cellForRowAtIndexPath(indexPath) as! AudioCell
         cell.playing = true
         
-        let playerItem = CachingPlayerItem(url: self.audioItemForIndexPath(indexPath).url)
-        playerItem.delegate = self
-        player = AVPlayer(playerItem: playerItem)
-        self.player.play()
-    
+        var playerItem: VKCachingPlayerItem!
+        
+        cache.object(String(audioItemForIndexPath(indexPath).id), completion: { (data : NSData?) in
+            
+            
+            if data == nil { // file isn't in cache
+                playerItem = VKCachingPlayerItem(url: self.audioItemForIndexPath(indexPath).url)
+            } else { // file is in cache
+                playerItem = VKCachingPlayerItem(data: data!, mimeType: "audio/mpeg", fileExtension: "mp3")
+            }
+            playerItem.audioItem = self.audioItemForIndexPath(indexPath)
+            playerItem.delegate = self
+            self.player = AVPlayer(playerItem: playerItem)
+            self.player.play()
+
+            if data == nil {
+                print("file isn't in cache")
+            } else {
+                print("file is in cache")
+            }
+            
+        })
+        
+//        playerItem.delagate = self
+        
         // ----------------------------
         
         navigationController!.presentPopupBarWithContentViewController(audioPlayerViewController, animated: true, completion: {})
@@ -62,7 +86,7 @@ extension TableViewController {
         audioPlayerViewController.popupItem.subtitle = audioItemForIndexPath(indexPath).artist
         audioPlayerViewController.popupItem.title = audioItemForIndexPath(indexPath).title
         
-        print(audioItemForIndexPath(indexPath).url)
+//        print(audioItemForIndexPath(indexPath).url)
         
     }
     

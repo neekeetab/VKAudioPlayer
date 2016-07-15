@@ -12,14 +12,17 @@ import LNPopupController
 
 extension TableViewController: CachingPlayerItemDelegate {
     
-    func playerItem(playerItem: CachingPlayerItem, didFinishLoadingData data: NSData) {
-        let cache = HybridCache(name: "VKAudioPlayerStorage")
-        cache.add("", object: data)
+    func playerItem(playerItem: CachingPlayerItem, didFinishDownloadingData data: NSData) {
+        if let unwrappedPlayerItem = playerItem as? VKCachingPlayerItem {
+            if let audioItem = unwrappedPlayerItem.audioItem {
+                cache.add(String(audioItem.id), object: data)
+            }
+        }
     }
     
-    func playerItem(playerItem: CachingPlayerItem, didLoadBytesSoFar bytesLoaded: Int, outOf bytesExpected: Int) {
-        print("\(Float(Double(bytesLoaded)/Double(bytesExpected)) * 100)%")
-        audioPlayerViewController.popupItem.progress = Float(Double(bytesLoaded)/Double(bytesExpected))
+    func playerItem(playerItem: CachingPlayerItem, didDownloadBytesSoFar bytesDownloaded: Int, outOf bytesExpected: Int) {
+        print("\(Float(Double(bytesDownloaded)/Double(bytesExpected)) * 100)%")
+        audioPlayerViewController.popupItem.progress = Float(Double(bytesDownloaded)/Double(bytesExpected))
     }
     
 }

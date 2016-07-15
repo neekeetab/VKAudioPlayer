@@ -16,6 +16,7 @@
 		11294E3E1CF3C94200E8EEA2 /* Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11294E3D1CF3C94200E8EEA2 /* Utils.swift */; };
 		11294E401CF3C96700E8EEA2 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 11294E3F1CF3C96700E8EEA2 /* Main.storyboard */; };
 		11294E421CF3C97A00E8EEA2 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 11294E411CF3C97A00E8EEA2 /* LaunchScreen.storyboard */; };
+		1160D3C31D3966330044DF02 /* VKCachingPlayerItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1160D3C21D3966330044DF02 /* VKCachingPlayerItem.swift */; };
 		1160EF0D1CF65331007DB453 /* AudioRequestDescription.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1160EF0C1CF65331007DB453 /* AudioRequestDescription.swift */; };
 		1160EF0F1CF65480007DB453 /* UsersAudioRequestDescription.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1160EF0E1CF65480007DB453 /* UsersAudioRequestDescription.swift */; };
 		1160EF111CF65493007DB453 /* SearchAudioRequestDescription.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1160EF101CF65493007DB453 /* SearchAudioRequestDescription.swift */; };
@@ -50,6 +51,7 @@
 		11294E3D1CF3C94200E8EEA2 /* Utils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Utils.swift; sourceTree = "<group>"; };
 		11294E3F1CF3C96700E8EEA2 /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
 		11294E411CF3C97A00E8EEA2 /* LaunchScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = LaunchScreen.storyboard; sourceTree = "<group>"; };
+		1160D3C21D3966330044DF02 /* VKCachingPlayerItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VKCachingPlayerItem.swift; sourceTree = "<group>"; };
 		1160EF0C1CF65331007DB453 /* AudioRequestDescription.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AudioRequestDescription.swift; sourceTree = "<group>"; };
 		1160EF0E1CF65480007DB453 /* UsersAudioRequestDescription.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UsersAudioRequestDescription.swift; sourceTree = "<group>"; };
 		1160EF101CF65493007DB453 /* SearchAudioRequestDescription.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchAudioRequestDescription.swift; sourceTree = "<group>"; };
@@ -164,6 +166,7 @@
 				1160EF0E1CF65480007DB453 /* UsersAudioRequestDescription.swift */,
 				1160EF101CF65493007DB453 /* SearchAudioRequestDescription.swift */,
 				11DD92D01CF4A9FB00A8FC4A /* VKAudioItem.swift */,
+				1160D3C21D3966330044DF02 /* VKCachingPlayerItem.swift */,
 				11DD92DC1CF4DC2B00A8FC4A /* VKAudioRequestExecutor.swift */,
 				11EF779C1D20626F00AEA610 /* Audio+CoreDataProperties.swift */,
 				11EF779D1D20626F00AEA610 /* Audio.swift */,
@@ -349,6 +352,7 @@
 				11F3B8981D1984A8005E3452 /* TableViewController+AudioCellDelegate.swift in Sources */,
 				11EF779F1D20626F00AEA610 /* Audio.swift in Sources */,
 				11AEDAA81CFA59E700E2BBDC /* UIViewController+.swift in Sources */,
+				1160D3C31D3966330044DF02 /* VKCachingPlayerItem.swift in Sources */,
 				1160EF111CF65493007DB453 /* SearchAudioRequestDescription.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

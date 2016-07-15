@@ -10,6 +10,7 @@ import UIKit
 import VK_ios_sdk
 import AVFoundation
 import LNPopupController
+import Cache
 
 class TableViewController: UITableViewController {
     
@@ -26,6 +27,7 @@ class TableViewController: UITableViewController {
     
     // MARK: -
     var player = AVPlayer()
+    let cache = HybridCache(name: "VKAudioPlayerStorage")
     let searchController = UISearchController(searchResultsController: nil)
     let audioPlayerViewController = AudioPlayerViewController()
     var indicatorView = UIActivityIndicatorView()
