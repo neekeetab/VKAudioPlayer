@@ -37,6 +37,7 @@ class TableViewController: UITableViewController {
             self.tableView.contentOffset = CGPoint(x: 0, y: -self.tableView.contentInset.top)
         })
         self.searchController.searchBar.becomeFirstResponder()
+        
     }
     
     // MARK: -
