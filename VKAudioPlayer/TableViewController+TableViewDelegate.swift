@@ -36,13 +36,13 @@ extension TableViewController {
         cell.playing = true
         
         let playerItem = CachingPlayerItem(url: self.audioItemForIndexPath(indexPath).url)
+        playerItem.delegate = self
         player = AVPlayer(playerItem: playerItem)
         self.player.play()
     
         // ----------------------------
         
-        let contentController = UIViewController()
-        navigationController!.presentPopupBarWithContentViewController(contentController, animated: true, completion: {})
+        navigationController!.presentPopupBarWithContentViewController(audioPlayerViewController, animated: true, completion: {})
         
         let insets = UIEdgeInsetsMake(topLayoutGuide.length, 0, 40, 0)
         tableView.contentInset = insets
@@ -56,11 +56,11 @@ extension TableViewController {
         let save = UIBarButtonItem(image: UIImage(named: "downloadButton"), style: .Plain, target: nil, action: nil)
 //        let list = UIBarButtonItem(image: UIImage(named: "next"), style: .Plain, target: nil, action: nil)
         
-        contentController.popupItem.leftBarButtonItems = [ prev, pause, next ]
-        contentController.popupItem.rightBarButtonItems = [ save ]
+        audioPlayerViewController.popupItem.leftBarButtonItems = [ prev, pause, next ]
+        audioPlayerViewController.popupItem.rightBarButtonItems = [ save ]
         
-        contentController.popupItem.subtitle = audioItemForIndexPath(indexPath).artist
-        contentController.popupItem.title = audioItemForIndexPath(indexPath).title
+        audioPlayerViewController.popupItem.subtitle = audioItemForIndexPath(indexPath).artist
+        audioPlayerViewController.popupItem.title = audioItemForIndexPath(indexPath).title
         
         print(audioItemForIndexPath(indexPath).url)
         

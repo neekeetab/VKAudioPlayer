@@ -1,6 +1,7 @@
 PODS:
   - ACPDownload (1.1.0)
   - AddButton (0.1.0)
+  - Cache (1.0.0)
   - LNPopupController (0.0.4)
   - NAKPlaybackIndicatorView (0.0.3)
   - VK-ios-sdk (1.3.16)
@@ -8,6 +9,7 @@ PODS:
 DEPENDENCIES:
   - ACPDownload
   - AddButton
+  - Cache
   - LNPopupController (~> 0.0)
   - NAKPlaybackIndicatorView
   - VK-ios-sdk (~> 1.3.16)
@@ -15,6 +17,7 @@ DEPENDENCIES:
 SPEC CHECKSUMS:
   ACPDownload: 9c6349be96019b6c8c87ad46570af1cbc7106bf4
   AddButton: 2f3e82564f359d4e2ad7cdf0f9c862694017f6e5
+  Cache: 78f58bc008313c7a1182967a2ebcb3de9fddecd4
   LNPopupController: 31c84b06e6b6eb71842037dd6a3a4ac325265f35
   NAKPlaybackIndicatorView: 794dd97576fe074bb1844c19ebcbf7509384a47f
   VK-ios-sdk: 7804776d9947cf9b6f54a259fac589b9212156f1

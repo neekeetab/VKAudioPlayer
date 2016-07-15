@@ -27,6 +27,7 @@ class TableViewController: UITableViewController {
     // MARK: -
     var player = AVPlayer()
     let searchController = UISearchController(searchResultsController: nil)
+    let audioPlayerViewController = AudioPlayerViewController()
     var indicatorView = UIActivityIndicatorView()
     var context = AudioContext()
     
