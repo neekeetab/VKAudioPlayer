@@ -45,7 +45,6 @@ class TableViewController: UITableViewController {
         searchButton.enabled = false
         context.cancel()
         initializeContext(AudioRequestDescription.usersAudioRequestDescription())
-        
     }
     
     // MARK: -
