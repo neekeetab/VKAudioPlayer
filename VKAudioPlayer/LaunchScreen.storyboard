@@ -25,7 +25,7 @@
                                 <color key="shadowColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                             </label>
                         </subviews>
-                        <color key="backgroundColor" red="0.0" green="0.40000000000000002" blue="0.80000000000000004" alpha="1" colorSpace="calibratedRGB"/>
+                        <color key="backgroundColor" red="0.20000000000000001" green="0.20000000000000001" blue="0.20000000000000001" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
                             <constraint firstItem="YC5-cV-gy7" firstAttribute="centerY" secondItem="Ze5-6b-2t3" secondAttribute="centerY" id="0mI-yM-Lui"/>
                             <constraint firstItem="YC5-cV-gy7" firstAttribute="centerX" secondItem="Ze5-6b-2t3" secondAttribute="centerX" id="XM4-4z-3tq"/>

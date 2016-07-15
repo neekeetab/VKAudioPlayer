@@ -141,24 +141,17 @@ class TableViewController: UITableViewController {
         searchController.dimsBackgroundDuringPresentation = false
         tableView.tableHeaderView = searchController.searchBar
         tableView.tableFooterView = footerView
+        
+        //
+//        print(audioStream.configuration.cacheDirectory)
+//        print(audioStream.configuration.cacheEnabled)
+//        audioStream.expungeCache()
+        do {
+            try print(NSFileManager.defaultManager().contentsOfDirectoryAtPath(audioStream.configuration.cacheDirectory))
+        } catch _ {
+            
+        }
     
-    }
-    
-    override func viewDidLayoutSubviews() {
-//        tableView.contentInset = UIEdgeInsets(top: 0, left: 0, bottom: 40, right: 0)
-    }
-    
-    override func viewDidAppear(animated: Bool) {
-        
-        let contentController = UIViewController()
-        navigationController!.presentPopupBarWithContentViewController(contentController, animated: true, completion: {})
-        
-        let insets = UIEdgeInsetsMake(topLayoutGuide.length, 0, 40, 0)
-        tableView.contentInset = insets
-        tableView.scrollIndicatorInsets = insets
-        
-        navigationController?.popupContentView.popupCloseButton?.setImage(UIImage(named: "DismissChevron"), forState: .Normal)
-        
     }
     
     override func preferredStatusBarStyle() -> UIStatusBarStyle {

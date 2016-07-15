@@ -10,6 +10,7 @@ import UIKit
 import VK_ios_sdk
 import NAKPlaybackIndicatorView
 import LNPopupController
+import FreeStreamer
 
 extension TableViewController {
     
@@ -35,7 +36,31 @@ extension TableViewController {
         audioStream.stop()
         audioStream.playFromURL(audioItemForIndexPath(indexPath).url)
         
-               
+        // ----------------------------
+        
+        let contentController = UIViewController()
+        navigationController!.presentPopupBarWithContentViewController(contentController, animated: true, completion: {})
+        
+        let insets = UIEdgeInsetsMake(topLayoutGuide.length, 0, 40, 0)
+        tableView.contentInset = insets
+        tableView.scrollIndicatorInsets = insets
+        
+        navigationController?.popupContentView.popupCloseButton?.setImage(UIImage(named: "DismissChevron"), forState: .Normal)
+        
+        let pause = UIBarButtonItem(image: UIImage(named: "pause"), style: .Plain, target: nil, action: nil)
+        let prev = UIBarButtonItem(image: UIImage(named: "prev"), style: .Plain, target: nil, action: nil)
+        let next = UIBarButtonItem(image: UIImage(named: "nextFwd"), style: .Plain, target: nil, action: nil)
+        let save = UIBarButtonItem(image: UIImage(named: "downloadButton"), style: .Plain, target: nil, action: nil)
+//        let list = UIBarButtonItem(image: UIImage(named: "next"), style: .Plain, target: nil, action: nil)
+        
+        contentController.popupItem.leftBarButtonItems = [ prev, pause, next ]
+        contentController.popupItem.rightBarButtonItems = [ save ]
+        
+        contentController.popupItem.subtitle = audioItemForIndexPath(indexPath).artist
+        contentController.popupItem.title = audioItemForIndexPath(indexPath).title
+        
+        print(audioItemForIndexPath(indexPath).url)
+        
     }
     
     override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
@@ -82,6 +107,11 @@ extension TableViewController {
         let audioItem = audioItemForIndexPath(indexPath)
         cell.titleLabel.text = audioItem.title
         cell.artistLabel.text = audioItem.artist
+        
+//        let audioStream1 = FSAudioStream(url: audioItem.url)
+//        
+//        print("\(audioItem.title) - \(audioStream1.cached)")
+//        cell.downloaded = audioStream1.cached
         
         return cell
     }
