@@ -8,7 +8,6 @@
 
 import UIKit
 import VK_ios_sdk
-import FreeStreamer
 import AVFoundation
 import LNPopupController
 
@@ -26,7 +25,7 @@ class TableViewController: UITableViewController {
     }
     
     // MARK: -
-    var audioStream = FSAudioStream()
+    var player = AVPlayer()
     let searchController = UISearchController(searchResultsController: nil)
     var indicatorView = UIActivityIndicatorView()
     var context = AudioContext()
@@ -37,7 +36,6 @@ class TableViewController: UITableViewController {
             self.tableView.contentOffset = CGPoint(x: 0, y: -self.tableView.contentInset.top)
         })
         self.searchController.searchBar.becomeFirstResponder()
-        
     }
     
     // MARK: -
@@ -142,16 +140,6 @@ class TableViewController: UITableViewController {
         tableView.tableHeaderView = searchController.searchBar
         tableView.tableFooterView = footerView
         
-        //
-//        print(audioStream.configuration.cacheDirectory)
-//        print(audioStream.configuration.cacheEnabled)
-//        audioStream.expungeCache()
-        do {
-            try print(NSFileManager.defaultManager().contentsOfDirectoryAtPath(audioStream.configuration.cacheDirectory))
-        } catch _ {
-            
-        }
-    
     }
     
     override func preferredStatusBarStyle() -> UIStatusBarStyle {

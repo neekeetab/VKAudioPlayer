@@ -9,6 +9,7 @@
 import UIKit
 import VK_ios_sdk
 import NAKPlaybackIndicatorView
+import AVFoundation
 import LNPopupController
 import FreeStreamer
 
@@ -33,9 +34,11 @@ extension TableViewController {
         tableView.deselectRowAtIndexPath(indexPath, animated: true)
         let cell = tableView.cellForRowAtIndexPath(indexPath) as! AudioCell
         cell.playing = true
-        audioStream.stop()
-        audioStream.playFromURL(audioItemForIndexPath(indexPath).url)
         
+        let playerItem = CachingPlayerItem(url: self.audioItemForIndexPath(indexPath).url)
+        player = AVPlayer(playerItem: playerItem)
+        self.player.play()
+    
         // ----------------------------
         
         let contentController = UIViewController()
