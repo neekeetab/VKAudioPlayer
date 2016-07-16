@@ -21,8 +21,9 @@ extension TableViewController: CachingPlayerItemDelegate {
     }
     
     func playerItem(playerItem: CachingPlayerItem, didDownloadBytesSoFar bytesDownloaded: Int, outOf bytesExpected: Int) {
-        print("\(Float(Double(bytesDownloaded)/Double(bytesExpected)) * 100)%")
-        audioPlayerViewController.popupItem.progress = Float(Double(bytesDownloaded)/Double(bytesExpected))
+        NSOperationQueue.mainQueue().addOperationWithBlock({
+            self.audioPlayerViewController.popupItem.progress = Float(Double(bytesDownloaded)/Double(bytesExpected))
+        })
     }
     
 }

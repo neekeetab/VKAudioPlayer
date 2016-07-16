@@ -39,11 +39,9 @@ extension TableViewController {
         let cell = tableView.cellForRowAtIndexPath(indexPath) as! AudioCell
         cell.playing = true
         
-        var playerItem: VKCachingPlayerItem!
-        
         cache.object(String(audioItemForIndexPath(indexPath).id), completion: { (data : NSData?) in
             
-            
+            var playerItem: VKCachingPlayerItem!
             if data == nil { // file isn't in cache
                 playerItem = VKCachingPlayerItem(url: self.audioItemForIndexPath(indexPath).url)
             } else { // file is in cache
@@ -61,8 +59,6 @@ extension TableViewController {
             }
             
         })
-        
-//        playerItem.delagate = self
         
         // ----------------------------
         
@@ -87,7 +83,7 @@ extension TableViewController {
         audioPlayerViewController.popupItem.title = audioItemForIndexPath(indexPath).title
         
 //        print(audioItemForIndexPath(indexPath).url)
-        
+    
     }
     
     override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
