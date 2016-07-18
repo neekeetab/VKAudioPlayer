@@ -82,6 +82,9 @@ extension TableViewController {
         audioPlayerViewController.popupItem.title = audioItemForIndexPath(indexPath).title
         
 //        print(audioItemForIndexPath(indexPath).url)
+        
+        let notification = NSNotification(name: "AudioItemIsBeingPlayed", object: audioItemForIndexPath(indexPath))
+        NSNotificationCenter.defaultCenter().postNotification(notification)
     
     }
     
@@ -127,6 +130,7 @@ extension TableViewController {
         cell.playing = false
         
         let audioItem = audioItemForIndexPath(indexPath)
+        cell.audioItem = audioItemForIndexPath(indexPath)
         cell.titleLabel.text = audioItem.title
         cell.artistLabel.text = audioItem.artist
         cell.downloaded = cache.objectIsCached(String(audioItem.id))

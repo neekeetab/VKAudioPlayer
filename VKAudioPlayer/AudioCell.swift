@@ -27,12 +27,14 @@ class AudioCell: UITableViewCell {
     var playbackIndicator: NAKPlaybackIndicatorView!
     var downloadedIndicator: UIImageView!
     var downloadButton: ACPDownloadView!
+    var audioItem: VKAudioItem?
     
     var delegate: AudioCellDelegate?
     
     private var _downloaded = false
     var downloaded: Bool {
         set {
+            _downloaded = newValue
             if newValue == true {
                 downloadedIndicator.hidden = false
                 downloadButton.hidden = true
@@ -49,6 +51,7 @@ class AudioCell: UITableViewCell {
     private var _ownedByUser = true
     var ownedByUser: Bool {
         set {
+            _ownedByUser = newValue
             if newValue == true {
                 addButton.hidden = true
                 titleTrailingConstraint.constant = 8
@@ -68,6 +71,7 @@ class AudioCell: UITableViewCell {
     private var _playing = false
     var playing: Bool {
         set {
+            _playing = newValue
             if newValue == true {
                 playbackIndicator.hidden = false
                 downloadedIndicator.hidden = true
@@ -127,6 +131,21 @@ class AudioCell: UITableViewCell {
 //        })
     }
     
+//    @objc func audioItemIsBeingPlayedNotificationHandler(audioItem: VKAudioItem) {
+////        if audioItem != nil {
+//            playing = self.audioItem!.id == audioItem.id
+////        }
+//    }
+    
+    @objc func audioItemIsBeingPlayedNotificationHandler(notification: NSNotification) {
+        
+        if let audioItemBeingPlayed = notification.object as? VKAudioItem {
+            playing = audioItemBeingPlayed.id == audioItem!.id
+        }
+        
+    }
+    
+    var i = 0
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
@@ -153,6 +172,10 @@ class AudioCell: UITableViewCell {
         playbackIndicator.backgroundColor = UIColor.whiteColor()
         playbackIndicator.hidden = true
     
+        //
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(audioItemIsBeingPlayedNotificationHandler), name: "AudioItemIsBeingPlayed", object: nil)
+        
+        
     }
     
     override func layoutSubviews() {

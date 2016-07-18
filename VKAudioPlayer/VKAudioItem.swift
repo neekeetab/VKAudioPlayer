@@ -10,7 +10,7 @@ import Foundation
 import VK_ios_sdk
 
 // representative for VK audio object
-class VKAudioItem {
+class VKAudioItem: NSObject {
     
     var id = 0
     var ownerId = 0
