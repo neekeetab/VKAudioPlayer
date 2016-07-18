@@ -1,5 +1,5 @@
 //
-//  DiskStorage+fileExistsAtPath.swift
+//  Storage.swift
 //  VKAudioPlayer
 //
 //  Created by Nikita Belousov on 7/18/16.
@@ -18,7 +18,7 @@ extension String {
 }
 
 
-extension DiskStorage {
+class Storage: DiskStorage {
     
     func fileName(key: String) -> String {
         return key.base64()
@@ -31,5 +31,7 @@ extension DiskStorage {
     func objectIsCached(key: String) -> Bool {
         return NSFileManager.defaultManager().fileExistsAtPath(self.filePath(key))
     }
+    
+    static let sharedStorage = Storage(name: "Storage")
     
 }

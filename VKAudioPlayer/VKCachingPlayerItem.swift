@@ -11,6 +11,6 @@ import Cache
 
 class VKCachingPlayerItem: CachingPlayerItem {
     
-    var audioItem: VKAudioItem?
+    var audioItem: AudioItem?
     
 }

@@ -11,11 +11,10 @@ import VK_ios_sdk
 import NAKPlaybackIndicatorView
 import AVFoundation
 import LNPopupController
-import Cache
 
 extension TableViewController {
     
-    func audioItemForIndexPath(indexPath: NSIndexPath) -> VKAudioItem {
+    func audioItemForIndexPath(indexPath: NSIndexPath) -> AudioItem {
         if context.audioRequestDescription is UsersAudioRequestDescription {
             return context.usersAudio[indexPath.row]
         }
@@ -27,7 +26,7 @@ extension TableViewController {
                 return context.globalAudio[indexPath.row]
             }
         }
-        return VKAudioItem()
+        return AudioItem()
     }
     
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
@@ -38,7 +37,7 @@ extension TableViewController {
         let cell = tableView.cellForRowAtIndexPath(indexPath) as! AudioCell
         cell.playing = true
         
-        cache.object(String(audioItemForIndexPath(indexPath).id), completion: { (data : NSData?) in
+        Storage.sharedStorage.object(String(audioItemForIndexPath(indexPath).id), completion: { (data : NSData?) in
             
             var playerItem: VKCachingPlayerItem!
             if data == nil { // file isn't in cache
@@ -133,7 +132,7 @@ extension TableViewController {
         cell.audioItem = audioItemForIndexPath(indexPath)
         cell.titleLabel.text = audioItem.title
         cell.artistLabel.text = audioItem.artist
-        cell.downloaded = cache.objectIsCached(String(audioItem.id))
+        cell.downloaded = Storage.sharedStorage.objectIsCached(String(audioItem.id))
 
         return cell
     }

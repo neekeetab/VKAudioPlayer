@@ -7,7 +7,6 @@
 //
 
 import Foundation
-import Cache
 import LNPopupController
 
 extension TableViewController: CachingPlayerItemDelegate {
@@ -15,7 +14,7 @@ extension TableViewController: CachingPlayerItemDelegate {
     func playerItem(playerItem: CachingPlayerItem, didFinishDownloadingData data: NSData) {
         if let unwrappedPlayerItem = playerItem as? VKCachingPlayerItem {
             if let audioItem = unwrappedPlayerItem.audioItem {
-                cache.add(String(audioItem.id), object: data)
+                Storage.sharedStorage.add(String(audioItem.id), object: data)
                 NSOperationQueue.mainQueue().addOperationWithBlock({
                     self.audioPlayerViewController.popupItem.progress = 0.0
                 })

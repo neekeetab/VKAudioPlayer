@@ -1,6 +1,6 @@
 //
-//  VKAudioItem.swift
-//  VKAudioPlayer
+//  AudioItem.swift
+//  AudioPlayer
 //
 //  Created by Nikita Belousov on 5/24/16.
 //  Copyright © 2016 Nikita Belousov. All rights reserved.
@@ -10,7 +10,7 @@ import Foundation
 import VK_ios_sdk
 
 // representative for VK audio object
-class VKAudioItem: NSObject {
+class AudioItem: NSObject {
     
     var id = 0
     var ownerId = 0
@@ -19,9 +19,9 @@ class VKAudioItem: NSObject {
     var url = NSURL()
     var duration = 0
     
-    static func audioItemFromVKResponseItem(responseItem: [String: AnyObject]) -> VKAudioItem {
+    static func audioItemFromVKResponseItem(responseItem: [String: AnyObject]) -> AudioItem {
         
-        let audioItem = VKAudioItem()
+        let audioItem = AudioItem()
         audioItem.id = responseItem["id"] as! Int
         audioItem.ownerId = responseItem["owner_id"] as! Int
         audioItem.artist = responseItem["artist"] as! String

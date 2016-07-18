@@ -9,20 +9,18 @@
 import Foundation
 import VK_ios_sdk
 
-// think of it as an abstract class
 class AudioContext {
     
     var audioRequestDescription: AudioRequestDescription?
-    var block: ((suc: Bool, usersAudio: [VKAudioItem], globalAudio: [VKAudioItem]) -> ())?
+    var block: ((suc: Bool, usersAudio: [AudioItem], globalAudio: [AudioItem]) -> ())?
     
-    var usersAudio = [VKAudioItem]()
-    var globalAudio = [VKAudioItem]()
+    var usersAudio = [AudioItem]()
+    var globalAudio = [AudioItem]()
     var numberOfLoadedPortions = 0
     var canceled = false
-    //    var fetchedAudioIDs = Set<Int>()
     
-    // Cancel requests. This is useful in case when some request is performing but at the same time we decide to switch context.
-    // Without calling cancel() we would end up with old block running on new context
+    // Cancel requests. This is useful in the case when some request is being performed but at the same time we decide to switch to new context.
+    // Without calling cancel() we would end up with old block running when new context already in use
     func cancel() {
         canceled = true
     }
@@ -69,7 +67,7 @@ class AudioContext {
         
     }
     
-    init(audioRequestDescription: AudioRequestDescription, completionBlock block: (suc: Bool, usersAudio: [VKAudioItem], globalAudio: [VKAudioItem]) -> ()) {
+    init(audioRequestDescription: AudioRequestDescription, completionBlock block: (suc: Bool, usersAudio: [AudioItem], globalAudio: [AudioItem]) -> ()) {
         self.audioRequestDescription = audioRequestDescription
         self.block = block
     }

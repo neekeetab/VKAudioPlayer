@@ -27,7 +27,7 @@ class AudioCell: UITableViewCell {
     var playbackIndicator: NAKPlaybackIndicatorView!
     var downloadedIndicator: UIImageView!
     var downloadButton: ACPDownloadView!
-    var audioItem: VKAudioItem?
+    var audioItem: AudioItem?
     
     var delegate: AudioCellDelegate?
     
@@ -131,7 +131,7 @@ class AudioCell: UITableViewCell {
 //        })
     }
     
-//    @objc func audioItemIsBeingPlayedNotificationHandler(audioItem: VKAudioItem) {
+//    @objc func audioItemIsBeingPlayedNotificationHandler(audioItem: AudioItem) {
 ////        if audioItem != nil {
 //            playing = self.audioItem!.id == audioItem.id
 ////        }
@@ -139,7 +139,7 @@ class AudioCell: UITableViewCell {
     
     @objc func audioItemIsBeingPlayedNotificationHandler(notification: NSNotification) {
         
-        if let audioItemBeingPlayed = notification.object as? VKAudioItem {
+        if let audioItemBeingPlayed = notification.object as? AudioItem {
             playing = audioItemBeingPlayed.id == audioItem!.id
         }
         

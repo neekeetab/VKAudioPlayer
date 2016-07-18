@@ -29,14 +29,14 @@ extension VKRequest {
             ])
     }
     
-    static func addAudioRequest(audioItem: VKAudioItem) -> VKRequest {
+    static func addAudioRequest(audioItem: AudioItem) -> VKRequest {
         return VKApi.requestWithMethod("audio.add", andParameters: [
             "audio_id": audioItem.id,
             "owner_id": audioItem.ownerId
             ])
     }
     
-    static func deleteAudioRequest(audioItem: VKAudioItem) -> VKRequest {
+    static func deleteAudioRequest(audioItem: AudioItem) -> VKRequest {
         return VKApi.requestWithMethod("audio.delete", andParameters: [
             "audio_id": audioItem.id,
             "owner_id": audioItem.ownerId
