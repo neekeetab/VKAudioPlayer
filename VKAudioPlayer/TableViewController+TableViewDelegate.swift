@@ -11,7 +11,6 @@ import VK_ios_sdk
 import NAKPlaybackIndicatorView
 import AVFoundation
 import LNPopupController
-import FreeStreamer
 import Cache
 
 extension TableViewController {
@@ -130,12 +129,8 @@ extension TableViewController {
         let audioItem = audioItemForIndexPath(indexPath)
         cell.titleLabel.text = audioItem.title
         cell.artistLabel.text = audioItem.artist
-        
-//        let audioStream1 = FSAudioStream(url: audioItem.url)
-//        
-//        print("\(audioItem.title) - \(audioStream1.cached)")
-//        cell.downloaded = audioStream1.cached
-        
+        cell.downloaded = cache.objectIsCached(String(audioItem.id))
+
         return cell
     }
     

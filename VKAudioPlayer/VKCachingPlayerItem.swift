@@ -12,10 +12,5 @@ import Cache
 class VKCachingPlayerItem: CachingPlayerItem {
     
     var audioItem: VKAudioItem?
-    var cache: HybridCache?
-    
-//    init(audioItem: VKAudioItem, cache: HybridCache) {
-//        super.init(url: NSURL())
-//    }
     
 }

@@ -27,7 +27,7 @@ class TableViewController: UITableViewController {
     
     // MARK: -
     var player = AVPlayer()
-    let cache = HybridCache(name: "VKAudioPlayerStorage")
+    let cache = DiskStorage(name: "VKAudioPlayerStorage")//HybridCache(name: "VKAudioPlayerStorage")
     let searchController = UISearchController(searchResultsController: nil)
     let audioPlayerViewController = AudioPlayerViewController()
     var indicatorView = UIActivityIndicatorView()

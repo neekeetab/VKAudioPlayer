@@ -16,6 +16,9 @@ extension TableViewController: CachingPlayerItemDelegate {
         if let unwrappedPlayerItem = playerItem as? VKCachingPlayerItem {
             if let audioItem = unwrappedPlayerItem.audioItem {
                 cache.add(String(audioItem.id), object: data)
+                NSOperationQueue.mainQueue().addOperationWithBlock({
+                    self.audioPlayerViewController.popupItem.progress = 0.0
+                })
             }
         }
     }
