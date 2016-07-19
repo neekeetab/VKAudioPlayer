@@ -10,7 +10,7 @@ import Foundation
 
 class Downloader: CachingPlayerItemDelegate {
     
-    let sharedDownloader = Downloader()
+    static let sharedDownloader = Downloader()
     var numberOfSimultaneousDownloads = 3
     
     private var audioItemsToLoad = Queue<AudioItem>()
@@ -86,7 +86,7 @@ class Downloader: CachingPlayerItemDelegate {
     }
     
     // returns playerItem that is being downloaded, else nil
-    func playerItemForAudioItem(audioItem: AudioItem) -> CachingPlayerItem? {
+    func playerItemForAudioItem(audioItem: AudioItem) -> AudioCachingPlayerItem? {
         return audioItemsBeingDownloaded[audioItem]
     }
     
