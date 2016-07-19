@@ -222,19 +222,19 @@ class CachingPlayerItem: AVPlayerItem {
         fatalError("not implemented")
     }
     
-    //MARK: KVO
+    // MARK: KVO
     
     override func observeValueForKeyPath(keyPath: String?, ofObject object: AnyObject?, change: [String : AnyObject]?, context: UnsafeMutablePointer<Void>) {
         delegate?.playerItemReadyToPlay?(self)
     }
     
-    //MARK: Notifications hanlers
+    // MARK: Notification hanlers
     
     func didStopHandler() {
         delegate?.playerItemDidStopPlayback?(self)
     }
     
-    //MARK: deinit
+    // MARK:
     deinit {
         NSNotificationCenter.defaultCenter().removeObserver(self)
         removeObserver(self, forKeyPath: "status")

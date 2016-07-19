@@ -35,10 +35,8 @@ extension TableViewController {
     
         tableView.deselectRowAtIndexPath(indexPath, animated: true)
         let cell = tableView.cellForRowAtIndexPath(indexPath) as! AudioCell
-        cell.playing = true
         
-        AudioController.sharedAudioController.audioContext = context
-        AudioController.sharedAudioController.playAudioItemAtIndex(indexPath.row)
+        AudioController.sharedAudioController.playAudioItemFromContext(context, atIndext: indexPath.row)
         
 //        Storage.sharedStorage.object(String(audioItemForIndexPath(indexPath).id), completion: { (data : NSData?) in
 //            

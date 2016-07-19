@@ -91,7 +91,9 @@ class AudioCell: UITableViewCell {
         addButton.alpha = 0.3
         delegate?.addButtonPressed(self)
     }
-        
+    
+    // MARK: Notification handlers
+    
     @objc func audioItemIsBeingPlayedNotificationHandler(notification: NSNotification) {
         
         if let audioItemBeingPlayed = notification.object as? AudioItem {
@@ -99,6 +101,8 @@ class AudioCell: UITableViewCell {
         }
         
     }
+    
+    // MARK:
     
     var i = 0
     override func awakeFromNib() {

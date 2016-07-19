@@ -1,5 +1,5 @@
 //
-//  UIViewController+.swift
+//  UIViewController+Messages.swift
 //  VKAudioPlayer
 //
 //  Created by Nikita Belousov on 5/29/16.

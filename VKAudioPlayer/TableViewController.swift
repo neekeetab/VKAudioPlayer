@@ -22,11 +22,21 @@ class TableViewController: UITableViewController {
         search()
     }
     
+    var flag = false
     @IBAction func settingsButtonPressed(sender: AnyObject) {
+        
+        // For testing only
+        if flag {
+            AudioController.sharedAudioController.pause()
+        } else {
+            AudioController.sharedAudioController.resume()
+        }
+        
+        flag = !flag
+        
     }
     
     // MARK: -
-    var player = AVPlayer()
     let searchController = UISearchController(searchResultsController: nil)
     let audioPlayerViewController = AudioPlayerViewController()
     var indicatorView = UIActivityIndicatorView()

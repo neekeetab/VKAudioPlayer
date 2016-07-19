@@ -32,6 +32,7 @@ class AudioController {
             return _audioContext
         }
         set {
+            player = nil
             _audioContext = newValue
         }
     }
@@ -46,23 +47,22 @@ class AudioController {
         }
     }
     
-    func playAudioItemAtIndex(index: Int) {
-        if let context = _audioContext {
-            let audioItem = context.userAudio[index]
-            PlayerItemFactory.sharedPlayerItemFactory.playerItemForAudioItem(audioItem, completionHandler: { playerItem, cached in
-                print("Cached: \(cached)")
-                self.player = AVPlayer(playerItem: playerItem)
-                self.player?.play()
-            })
-        }
+    func playAudioItemFromContext(audioContext: AudioContext, atIndext index: Int) {
+        self.audioContext = audioContext
+        
+        let audioItem = audioContext.userAudio[index]
+        PlayerItemFactory.sharedPlayerItemFactory.playerItemForAudioItem(audioItem, completionHandler: { playerItem, cached in
+            self.player = AVPlayer(playerItem: playerItem)
+            self.player?.play()
+        })
     }
     
     func resume() {
-        
+        player?.play()
     }
     
     func pause() {
-        
+        player?.pause()
     }
     
     // TODO:  next, prev
