@@ -1,5 +1,5 @@
 //
-//  VKCachingPlayerItem.swift
+//  AudioCachingPlayerItem.swift
 //  VKAudioPlayer
 //
 //  Created by Nikita Belousov on 7/15/16.
@@ -7,9 +7,8 @@
 //
 
 import Foundation
-import Cache
 
-class VKCachingPlayerItem: CachingPlayerItem {
+class AudioCachingPlayerItem: CachingPlayerItem {
     
     var audioItem: AudioItem?
     

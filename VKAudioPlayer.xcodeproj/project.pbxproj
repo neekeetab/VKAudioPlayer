@@ -16,7 +16,7 @@
 		11294E3E1CF3C94200E8EEA2 /* Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11294E3D1CF3C94200E8EEA2 /* Utils.swift */; };
 		11294E401CF3C96700E8EEA2 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 11294E3F1CF3C96700E8EEA2 /* Main.storyboard */; };
 		11294E421CF3C97A00E8EEA2 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 11294E411CF3C97A00E8EEA2 /* LaunchScreen.storyboard */; };
-		1160D3C31D3966330044DF02 /* VKCachingPlayerItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1160D3C21D3966330044DF02 /* VKCachingPlayerItem.swift */; };
+		1160D3C31D3966330044DF02 /* AudioCachingPlayerItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1160D3C21D3966330044DF02 /* AudioCachingPlayerItem.swift */; };
 		1160EF0D1CF65331007DB453 /* AudioRequestDescription.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1160EF0C1CF65331007DB453 /* AudioRequestDescription.swift */; };
 		1160EF0F1CF65480007DB453 /* UserAudioRequestDescription.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1160EF0E1CF65480007DB453 /* UserAudioRequestDescription.swift */; };
 		1160EF111CF65493007DB453 /* SearchAudioRequestDescription.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1160EF101CF65493007DB453 /* SearchAudioRequestDescription.swift */; };
@@ -25,6 +25,8 @@
 		11AE1C6D1D1F1F21003C8797 /* TableViewController+VKDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11AE1C6C1D1F1F21003C8797 /* TableViewController+VKDelegate.swift */; };
 		11AEDAA81CFA59E700E2BBDC /* UIViewController+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11AEDAA71CFA59E700E2BBDC /* UIViewController+.swift */; };
 		11BAEBED1D3CF2F500F45A7D /* Storage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11BAEBEC1D3CF2F500F45A7D /* Storage.swift */; };
+		11C8920D1D3E20C100FF5524 /* Downloader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11C8920C1D3E20C100FF5524 /* Downloader.swift */; };
+		11C8920F1D3E239E00FF5524 /* Queue.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11C8920E1D3E239E00FF5524 /* Queue.swift */; };
 		11CE34071D3DA7D60077071C /* TableViewController+AudioContextDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11CE34061D3DA7D60077071C /* TableViewController+AudioContextDelegate.swift */; };
 		11DD92C51CF49CAE00A8FC4A /* TableViewController+TableViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11DD92C41CF49CAE00A8FC4A /* TableViewController+TableViewDelegate.swift */; };
 		11DD92C71CF49D2A00A8FC4A /* TableViewController+SearchDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11DD92C61CF49D2A00A8FC4A /* TableViewController+SearchDelegate.swift */; };
@@ -53,7 +55,7 @@
 		11294E3D1CF3C94200E8EEA2 /* Utils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Utils.swift; sourceTree = "<group>"; };
 		11294E3F1CF3C96700E8EEA2 /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
 		11294E411CF3C97A00E8EEA2 /* LaunchScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = LaunchScreen.storyboard; sourceTree = "<group>"; };
-		1160D3C21D3966330044DF02 /* VKCachingPlayerItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VKCachingPlayerItem.swift; sourceTree = "<group>"; };
+		1160D3C21D3966330044DF02 /* AudioCachingPlayerItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AudioCachingPlayerItem.swift; sourceTree = "<group>"; };
 		1160EF0C1CF65331007DB453 /* AudioRequestDescription.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AudioRequestDescription.swift; sourceTree = "<group>"; };
 		1160EF0E1CF65480007DB453 /* UserAudioRequestDescription.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserAudioRequestDescription.swift; sourceTree = "<group>"; };
 		1160EF101CF65493007DB453 /* SearchAudioRequestDescription.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchAudioRequestDescription.swift; sourceTree = "<group>"; };
@@ -62,6 +64,8 @@
 		11AE1C6C1D1F1F21003C8797 /* TableViewController+VKDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "TableViewController+VKDelegate.swift"; sourceTree = "<group>"; };
 		11AEDAA71CFA59E700E2BBDC /* UIViewController+.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIViewController+.swift"; sourceTree = "<group>"; };
 		11BAEBEC1D3CF2F500F45A7D /* Storage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Storage.swift; sourceTree = "<group>"; };
+		11C8920C1D3E20C100FF5524 /* Downloader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Downloader.swift; sourceTree = "<group>"; };
+		11C8920E1D3E239E00FF5524 /* Queue.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Queue.swift; sourceTree = "<group>"; };
 		11CE34061D3DA7D60077071C /* TableViewController+AudioContextDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "TableViewController+AudioContextDelegate.swift"; sourceTree = "<group>"; };
 		11DD92C41CF49CAE00A8FC4A /* TableViewController+TableViewDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "TableViewController+TableViewDelegate.swift"; sourceTree = "<group>"; };
 		11DD92C61CF49D2A00A8FC4A /* TableViewController+SearchDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "TableViewController+SearchDelegate.swift"; sourceTree = "<group>"; };
@@ -170,10 +174,12 @@
 				1160EF0E1CF65480007DB453 /* UserAudioRequestDescription.swift */,
 				1160EF101CF65493007DB453 /* SearchAudioRequestDescription.swift */,
 				11DD92D01CF4A9FB00A8FC4A /* AudioItem.swift */,
-				1160D3C21D3966330044DF02 /* VKCachingPlayerItem.swift */,
+				1160D3C21D3966330044DF02 /* AudioCachingPlayerItem.swift */,
 				11DD92DC1CF4DC2B00A8FC4A /* VKAudioRequestExecutor.swift */,
 				11EF779C1D20626F00AEA610 /* Audio+CoreDataProperties.swift */,
 				11BAEBEC1D3CF2F500F45A7D /* Storage.swift */,
+				11C8920C1D3E20C100FF5524 /* Downloader.swift */,
+				11C8920E1D3E239E00FF5524 /* Queue.swift */,
 				1167622B1D39126700041BC1 /* CachingPlayerItem.swift */,
 				11EF779D1D20626F00AEA610 /* Audio.swift */,
 				11294E2F1CF3C7FF00E8EEA2 /* VKAudioPlayer.xcdatamodeld */,
@@ -354,13 +360,15 @@
 				11294E311CF3C7FF00E8EEA2 /* VKAudioPlayer.xcdatamodeld in Sources */,
 				11294E3E1CF3C94200E8EEA2 /* Utils.swift in Sources */,
 				11EF779E1D20626F00AEA610 /* Audio+CoreDataProperties.swift in Sources */,
+				11C8920D1D3E20C100FF5524 /* Downloader.swift in Sources */,
 				1167622E1D395F7D00041BC1 /* TableViewController+CachingPlayerItemDelegate.swift in Sources */,
 				1167622C1D39126700041BC1 /* CachingPlayerItem.swift in Sources */,
 				11F3B8981D1984A8005E3452 /* TableViewController+AudioCellDelegate.swift in Sources */,
 				11EF779F1D20626F00AEA610 /* Audio.swift in Sources */,
+				11C8920F1D3E239E00FF5524 /* Queue.swift in Sources */,
 				11AEDAA81CFA59E700E2BBDC /* UIViewController+.swift in Sources */,
 				11BAEBED1D3CF2F500F45A7D /* Storage.swift in Sources */,
-				1160D3C31D3966330044DF02 /* VKCachingPlayerItem.swift in Sources */,
+				1160D3C31D3966330044DF02 /* AudioCachingPlayerItem.swift in Sources */,
 				1160EF111CF65493007DB453 /* SearchAudioRequestDescription.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

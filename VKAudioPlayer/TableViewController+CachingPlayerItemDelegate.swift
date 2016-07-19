@@ -12,7 +12,7 @@ import LNPopupController
 extension TableViewController: CachingPlayerItemDelegate {
     
     func playerItem(playerItem: CachingPlayerItem, didFinishDownloadingData data: NSData) {
-        if let unwrappedPlayerItem = playerItem as? VKCachingPlayerItem {
+        if let unwrappedPlayerItem = playerItem as? AudioCachingPlayerItem {
             if let audioItem = unwrappedPlayerItem.audioItem {
                 Storage.sharedStorage.add(String(audioItem.id), object: data)
                 NSOperationQueue.mainQueue().addOperationWithBlock({

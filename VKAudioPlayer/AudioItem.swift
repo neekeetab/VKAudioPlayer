@@ -34,3 +34,7 @@ class AudioItem: NSObject {
     }
     
 }
+
+func ==(lhs: AudioItem, rhs: AudioItem) -> Bool {
+    return lhs.id == rhs.id
+}
