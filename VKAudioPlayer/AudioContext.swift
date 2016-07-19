@@ -82,7 +82,7 @@ class AudioContext {
     }
     
     func hasMoreToLoad() -> Bool {
-        return numberOfLoadedPortions * elementsPerRequest >= audioItemsExpected
+        return numberOfLoadedPortions * elementsPerRequest < audioItemsExpected
     }
     
     init(audioRequestDescription: AudioRequestDescription) {

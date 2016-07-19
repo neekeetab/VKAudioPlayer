@@ -55,7 +55,9 @@ class TableViewController: UITableViewController {
             let contentYoffset = scrollView.contentOffset.y
             let distanceFromBottom = scrollView.contentSize.height - contentYoffset
             if distanceFromBottom - height < distanceFromBottomToPreload && context.busy() == false && allowedToFetchNewData {
-//                tableView.tableFooterView = footerView
+                if context.hasMoreToLoad() {
+                    tableView.tableFooterView = footerView
+                }
                 context.loadNextPortion()
                 allowedToFetchNewData = false
             }
@@ -69,8 +71,6 @@ class TableViewController: UITableViewController {
         context = AudioContext(audioRequestDescription: audioRequestDescription)
         context.delegate = self
         context.loadNextPortion()
-        
-        // TODO: проверить удалить следующую строку
         tableView.reloadData()
     }
     
