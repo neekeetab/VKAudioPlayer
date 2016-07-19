@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import AVFoundation
 
 enum AudioControllerRepeatMode {
     case Dont
@@ -17,6 +18,8 @@ enum AudioControllerRepeatMode {
 class AudioController {
     
     static let sharedAudioController = AudioController()
+    
+    private var player: AVPlayer?
     
     private var _currentAudioItem: AudioItem?
     var currentAudioItem: AudioItem? {
@@ -43,8 +46,15 @@ class AudioController {
         }
     }
     
-    func playAudioItem(audioItem: AudioItem) {
-        
+    func playAudioItemAtIndex(index: Int) {
+        if let context = _audioContext {
+            let audioItem = context.userAudio[index]
+            PlayerItemFactory.sharedPlayerItemFactory.playerItemForAudioItem(audioItem, completionHandler: { playerItem, cached in
+                print("Cached: \(cached)")
+                self.player = AVPlayer(playerItem: playerItem)
+                self.player?.play()
+            })
+        }
     }
     
     func resume() {

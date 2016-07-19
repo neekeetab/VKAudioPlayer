@@ -37,26 +37,29 @@ extension TableViewController {
         let cell = tableView.cellForRowAtIndexPath(indexPath) as! AudioCell
         cell.playing = true
         
-        Storage.sharedStorage.object(String(audioItemForIndexPath(indexPath).id), completion: { (data : NSData?) in
-            
-            var playerItem: AudioCachingPlayerItem!
-            if data == nil { // file isn't in cache
-                playerItem = AudioCachingPlayerItem(url: self.audioItemForIndexPath(indexPath).url)
-            } else { // file is in cache
-                playerItem = AudioCachingPlayerItem(data: data!, mimeType: "audio/mpeg", fileExtension: "mp3")
-            }
-            playerItem.audioItem = self.audioItemForIndexPath(indexPath)
-            playerItem.delegate = self
-            self.player = AVPlayer(playerItem: playerItem)
-            self.player.play()
-
-            if data == nil {
-                print("file isn't in cache")
-            } else {
-                print("file is in cache")
-            }
-            
-        })
+        AudioController.sharedAudioController.audioContext = context
+        AudioController.sharedAudioController.playAudioItemAtIndex(indexPath.row)
+        
+//        Storage.sharedStorage.object(String(audioItemForIndexPath(indexPath).id), completion: { (data : NSData?) in
+//            
+//            var playerItem: AudioCachingPlayerItem!
+//            if data == nil { // file isn't in cache
+//                playerItem = AudioCachingPlayerItem(url: self.audioItemForIndexPath(indexPath).url)
+//            } else { // file is in cache
+//                playerItem = AudioCachingPlayerItem(data: data!, mimeType: "audio/mpeg", fileExtension: "mp3")
+//            }
+//            playerItem.audioItem = self.audioItemForIndexPath(indexPath)
+//            playerItem.delegate = self
+//            self.player = AVPlayer(playerItem: playerItem)
+//            self.player.play()
+//
+//            if data == nil {
+//                print("file isn't in cache")
+//            } else {
+//                print("file is in cache")
+//            }
+//            
+//        })
         
         // ----------------------------
         

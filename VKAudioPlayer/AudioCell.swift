@@ -90,53 +90,8 @@ class AudioCell: UITableViewCell {
     @IBAction func addButtonPressed() {
         addButton.alpha = 0.3
         delegate?.addButtonPressed(self)
-//        delay(1.5, closure: {
-//            
-//            sender.alpha = 1
-//            sender.added = true
-//            delay(1, closure: {
-//                UIView.animateWithDuration(0.3, animations: {
-////                    sender.hidden = true
-//                    self.ownedByUser = true
-////                    self.addButton?.hidden = true
-////                    NSLayoutConstraint.deactivateConstraints([self.addButtonLeading])
-////                    NSLayoutConstraint.activateConstraints([self.titleTrailingSpace])
-//                    
-//                })
-//                
-//            })
-//            
-////            let playbackIndicator = NAKPlaybackIndicatorView(frame: CGRect(x: 0, y: 0, width: 21, height: 21))
-////            self.statusView.addSubview(playbackIndicator)
-////            playbackIndicator.state = .Playing
-//            
-//            let downloadButton = ACPDownloadView(frame: CGRect(x: 0, y: 0, width: 35, height: 35))
-//            downloadButton.backgroundColor = UIColor.clearColor()
-//            self.statusView.addSubview(downloadButton)
-//            
-//            delay(1, closure: {
-//                downloadButton.setIndicatorStatus(.Running)
-//                downloadButton.setProgress(1, animated: true)
-//            })
-//            
-//            
-//            delay(3, closure: {
-//                downloadButton.removeFromSuperview()
-//                let greenDot = UIImageView(frame: CGRect(x: 0, y: 0, width: 35, height: 35))
-//                greenDot.image = UIImage(named: "GreenDot")
-//                self.statusView.addSubview(greenDot)
-//            })
-//            
-//            
-//        })
     }
-    
-//    @objc func audioItemIsBeingPlayedNotificationHandler(audioItem: AudioItem) {
-////        if audioItem != nil {
-//            playing = self.audioItem!.id == audioItem.id
-////        }
-//    }
-    
+        
     @objc func audioItemIsBeingPlayedNotificationHandler(notification: NSNotification) {
         
         if let audioItemBeingPlayed = notification.object as? AudioItem {
