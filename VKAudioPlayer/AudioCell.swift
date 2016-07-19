@@ -11,7 +11,7 @@ import NAKPlaybackIndicatorView
 import AddButton
 import ACPDownload
 
-protocol AudioCellDelegate {
+protocol AudioCellDelegate: class {
     func addButtonPressed(sender: AudioCell)
     func downloadButtonPressed(sender: AudioCell)
 }
@@ -29,7 +29,7 @@ class AudioCell: UITableViewCell {
     var downloadButton: ACPDownloadView!
     var audioItem: AudioItem?
     
-    var delegate: AudioCellDelegate?
+    weak var delegate: AudioCellDelegate?
     
     private var _downloaded = false
     var downloaded: Bool {

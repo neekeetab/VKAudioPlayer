@@ -170,7 +170,7 @@ class CachingPlayerItem: AVPlayerItem {
     private var scheme: String?
     private var url: NSURL!
     
-    var delegate: CachingPlayerItemDelegate?
+    weak var delegate: CachingPlayerItemDelegate?
     
     // use this initializer to play remote files
     init(url: NSURL) {

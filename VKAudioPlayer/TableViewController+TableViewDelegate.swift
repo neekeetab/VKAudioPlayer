@@ -125,7 +125,7 @@ extension TableViewController {
             cell.ownedByUser = false
         }
         
-        cell.downloaded = false
+        //
         cell.playing = false
         
         let audioItem = audioItemForIndexPath(indexPath)
