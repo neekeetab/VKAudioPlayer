@@ -14,7 +14,8 @@ class Downloader: CachingPlayerItemDelegate {
     var numberOfSimultaneousDownloads = 3
     
     private var audioItemsToLoad = Queue<AudioItem>()
-    private var audioItemsBeingDownloaded = [AudioItem: CachingPlayerItem]()
+    private var audioItemsBeingDownloaded = [AudioItem: AudioCachingPlayerItem]()
+    private var audioItemsToBeCanceld = Set<AudioItem>()
     
     // MARK: CachingPlayerItem Delegate
     
@@ -25,7 +26,6 @@ class Downloader: CachingPlayerItemDelegate {
             "bytesExpected": bytesExpected
             ])
         NSNotificationCenter.defaultCenter().postNotification(notification)
-        // Notification
     }
     
     @objc func playerItem(playerItem: CachingPlayerItem, didFinishDownloadingData data: NSData) {
@@ -47,8 +47,15 @@ class Downloader: CachingPlayerItemDelegate {
                     return
                 }
                 
-                let playerItem = CachingPlayerItem(url: audioItem.url)
+                // if downloading was canceld
+                if audioItemsToBeCanceld.contains(audioItem) {
+                    audioItemsToBeCanceld.remove(audioItem)
+                    return
+                }
+                
+                let playerItem = AudioCachingPlayerItem(url: audioItem.url)
                 playerItem.delegate = self
+                playerItem.audioItem = audioItem
             
                 audioItemsBeingDownloaded[audioItem] = playerItem
                 playerItem.download()
@@ -60,15 +67,25 @@ class Downloader: CachingPlayerItemDelegate {
     // adds audioItem to download queue
     func downloadAudioItem(audioItem: AudioItem) {
         audioItemsToLoad.enqueue(audioItem)
+        audioItemsToBeCanceld.remove(audioItem)
         if audioItemsBeingDownloaded.count < numberOfSimultaneousDownloads {
             downloadNextAudioItem()
         }
     }
     
     func cancelDownloadAudioItem(audioItem: AudioItem) {
-        //
+        if let _ = audioItemsBeingDownloaded[audioItem] {
+            audioItemsBeingDownloaded.removeValueForKey(audioItem)
+        } else {
+            audioItemsToBeCanceld.insert(audioItem)
+        }
+        let notification = NSNotification(name: "AudioItemCanceledNotification", object: nil, userInfo: [
+            "audioItem": audioItem
+            ])
+        NSNotificationCenter.defaultCenter().postNotification(notification)
     }
     
+    // returns playerItem that is being downloaded, else nil
     func playerItemForAudioItem(audioItem: AudioItem) -> CachingPlayerItem? {
         return audioItemsBeingDownloaded[audioItem]
     }

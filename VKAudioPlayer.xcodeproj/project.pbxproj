@@ -27,6 +27,7 @@
 		11BAEBED1D3CF2F500F45A7D /* Storage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11BAEBEC1D3CF2F500F45A7D /* Storage.swift */; };
 		11C8920D1D3E20C100FF5524 /* Downloader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11C8920C1D3E20C100FF5524 /* Downloader.swift */; };
 		11C8920F1D3E239E00FF5524 /* Queue.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11C8920E1D3E239E00FF5524 /* Queue.swift */; };
+		11C892111D3E344D00FF5524 /* PlayerItemFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11C892101D3E344D00FF5524 /* PlayerItemFactory.swift */; };
 		11CE34071D3DA7D60077071C /* TableViewController+AudioContextDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11CE34061D3DA7D60077071C /* TableViewController+AudioContextDelegate.swift */; };
 		11DD92C51CF49CAE00A8FC4A /* TableViewController+TableViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11DD92C41CF49CAE00A8FC4A /* TableViewController+TableViewDelegate.swift */; };
 		11DD92C71CF49D2A00A8FC4A /* TableViewController+SearchDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11DD92C61CF49D2A00A8FC4A /* TableViewController+SearchDelegate.swift */; };
@@ -39,7 +40,6 @@
 		11EF779E1D20626F00AEA610 /* Audio+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11EF779C1D20626F00AEA610 /* Audio+CoreDataProperties.swift */; };
 		11EF779F1D20626F00AEA610 /* Audio.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11EF779D1D20626F00AEA610 /* Audio.swift */; };
 		11F3B8981D1984A8005E3452 /* TableViewController+AudioCellDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11F3B8971D1984A8005E3452 /* TableViewController+AudioCellDelegate.swift */; };
-		11F3B89B1D198F8C005E3452 /* AudioController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11F3B89A1D198F8C005E3452 /* AudioController.swift */; };
 		A63ABB63716FB4483771D047 /* Pods_VKAudioPlayer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 26B8640E32B8892D3EAE8165 /* Pods_VKAudioPlayer.framework */; };
 /* End PBXBuildFile section */
 
@@ -66,6 +66,7 @@
 		11BAEBEC1D3CF2F500F45A7D /* Storage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Storage.swift; sourceTree = "<group>"; };
 		11C8920C1D3E20C100FF5524 /* Downloader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Downloader.swift; sourceTree = "<group>"; };
 		11C8920E1D3E239E00FF5524 /* Queue.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Queue.swift; sourceTree = "<group>"; };
+		11C892101D3E344D00FF5524 /* PlayerItemFactory.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlayerItemFactory.swift; sourceTree = "<group>"; };
 		11CE34061D3DA7D60077071C /* TableViewController+AudioContextDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "TableViewController+AudioContextDelegate.swift"; sourceTree = "<group>"; };
 		11DD92C41CF49CAE00A8FC4A /* TableViewController+TableViewDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "TableViewController+TableViewDelegate.swift"; sourceTree = "<group>"; };
 		11DD92C61CF49D2A00A8FC4A /* TableViewController+SearchDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "TableViewController+SearchDelegate.swift"; sourceTree = "<group>"; };
@@ -78,7 +79,6 @@
 		11EF779C1D20626F00AEA610 /* Audio+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Audio+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		11EF779D1D20626F00AEA610 /* Audio.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Audio.swift; sourceTree = "<group>"; };
 		11F3B8971D1984A8005E3452 /* TableViewController+AudioCellDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "TableViewController+AudioCellDelegate.swift"; sourceTree = "<group>"; };
-		11F3B89A1D198F8C005E3452 /* AudioController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AudioController.swift; sourceTree = "<group>"; };
 		26B8640E32B8892D3EAE8165 /* Pods_VKAudioPlayer.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_VKAudioPlayer.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		A1F041E64002C0CA25E1A736 /* Pods-VKAudioPlayer.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-VKAudioPlayer.release.xcconfig"; path = "Pods/Target Support Files/Pods-VKAudioPlayer/Pods-VKAudioPlayer.release.xcconfig"; sourceTree = "<group>"; };
 		FF23D35E03F977759073C427 /* Pods-VKAudioPlayer.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-VKAudioPlayer.debug.xcconfig"; path = "Pods/Target Support Files/Pods-VKAudioPlayer/Pods-VKAudioPlayer.debug.xcconfig"; sourceTree = "<group>"; };
@@ -151,6 +151,15 @@
 			path = VKAudioPlayer;
 			sourceTree = "<group>";
 		};
+		11C892121D3E3E4F00FF5524 /* Helpers */ = {
+			isa = PBXGroup;
+			children = (
+				11C8920E1D3E239E00FF5524 /* Queue.swift */,
+				1167622B1D39126700041BC1 /* CachingPlayerItem.swift */,
+			);
+			name = Helpers;
+			sourceTree = "<group>";
+		};
 		11DD92D41CF4DAAB00A8FC4A /* TableViewController */ = {
 			isa = PBXGroup;
 			children = (
@@ -176,12 +185,12 @@
 				11DD92D01CF4A9FB00A8FC4A /* AudioItem.swift */,
 				1160D3C21D3966330044DF02 /* AudioCachingPlayerItem.swift */,
 				11DD92DC1CF4DC2B00A8FC4A /* VKAudioRequestExecutor.swift */,
-				11EF779C1D20626F00AEA610 /* Audio+CoreDataProperties.swift */,
 				11BAEBEC1D3CF2F500F45A7D /* Storage.swift */,
 				11C8920C1D3E20C100FF5524 /* Downloader.swift */,
-				11C8920E1D3E239E00FF5524 /* Queue.swift */,
-				1167622B1D39126700041BC1 /* CachingPlayerItem.swift */,
+				11C892101D3E344D00FF5524 /* PlayerItemFactory.swift */,
+				11C892121D3E3E4F00FF5524 /* Helpers */,
 				11EF779D1D20626F00AEA610 /* Audio.swift */,
+				11EF779C1D20626F00AEA610 /* Audio+CoreDataProperties.swift */,
 				11294E2F1CF3C7FF00E8EEA2 /* VKAudioPlayer.xcdatamodeld */,
 			);
 			name = Model;
@@ -190,7 +199,6 @@
 		11F3B8991D198F56005E3452 /* AudioController */ = {
 			isa = PBXGroup;
 			children = (
-				11F3B89A1D198F8C005E3452 /* AudioController.swift */,
 			);
 			name = AudioController;
 			sourceTree = "<group>";
@@ -344,7 +352,6 @@
 				111DE6671CFA47B3006CBCDB /* AudioCell.swift in Sources */,
 				11DD92DB1CF4DB5600A8FC4A /* AudioContext.swift in Sources */,
 				11294E2B1CF3C7FF00E8EEA2 /* TableViewController.swift in Sources */,
-				11F3B89B1D198F8C005E3452 /* AudioController.swift in Sources */,
 				11AE1C6D1D1F1F21003C8797 /* TableViewController+VKDelegate.swift in Sources */,
 				11DD92DD1CF4DC2B00A8FC4A /* VKAudioRequestExecutor.swift in Sources */,
 				11DD92CB1CF4A4EF00A8FC4A /* VKResponse+.swift in Sources */,
@@ -353,6 +360,7 @@
 				1160EF0F1CF65480007DB453 /* UserAudioRequestDescription.swift in Sources */,
 				111DE6641CF9F481006CBCDB /* AudioPlayerViewController.swift in Sources */,
 				11DD92D11CF4A9FB00A8FC4A /* AudioItem.swift in Sources */,
+				11C892111D3E344D00FF5524 /* PlayerItemFactory.swift in Sources */,
 				11DD92D31CF4B58B00A8FC4A /* Constants.swift in Sources */,
 				11294E291CF3C7FF00E8EEA2 /* AppDelegate.swift in Sources */,
 				11DD92C51CF49CAE00A8FC4A /* TableViewController+TableViewDelegate.swift in Sources */,
