@@ -49,9 +49,8 @@ class AudioController {
     
     func playAudioItemFromContext(audioContext: AudioContext, atIndext index: Int) {
         self.audioContext = audioContext
-        
-        let audioItem = audioContext.userAudio[index]
-        PlayerItemFactory.sharedPlayerItemFactory.playerItemForAudioItem(audioItem, completionHandler: { playerItem, cached in
+        _currentAudioItem = audioContext.userAudio[index]
+        PlayerItemFactory.sharedPlayerItemFactory.playerItemForAudioItem(_currentAudioItem!, completionHandler: { playerItem, cached in
             self.player = AVPlayer(playerItem: playerItem)
             self.player?.play()
         })
