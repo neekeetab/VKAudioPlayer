@@ -21,7 +21,7 @@ extension VKRequest {
             ])
     }
     
-    static func usersAudioRequest(offset: Int) -> VKRequest {
+    static func userAudioRequest(offset: Int) -> VKRequest {
         return VKApi.requestWithMethod("audio.get", andParameters: [
             "count": elementsPerRequest,
             "offset": offset,

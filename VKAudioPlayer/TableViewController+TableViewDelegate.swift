@@ -15,12 +15,12 @@ import LNPopupController
 extension TableViewController {
     
     func audioItemForIndexPath(indexPath: NSIndexPath) -> AudioItem {
-        if context.audioRequestDescription is UsersAudioRequestDescription {
-            return context.usersAudio[indexPath.row]
+        if context.audioRequestDescription is UserAudioRequestDescription {
+            return context.userAudio[indexPath.row]
         }
         if context.audioRequestDescription is SearchAudioRequestDescription {
             if indexPath.section == 0 {
-                return context.usersAudio[indexPath.row]
+                return context.userAudio[indexPath.row]
             }
             if indexPath.section == 1 {
                 return context.globalAudio[indexPath.row]
@@ -88,7 +88,7 @@ extension TableViewController {
     }
     
     override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
-        if context.audioRequestDescription is UsersAudioRequestDescription {
+        if context.audioRequestDescription is UserAudioRequestDescription {
             return 1
         }
         if context.audioRequestDescription is SearchAudioRequestDescription {
@@ -98,12 +98,12 @@ extension TableViewController {
     }
     
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        if context.audioRequestDescription is UsersAudioRequestDescription {
-            return context.usersAudio.count
+        if context.audioRequestDescription is UserAudioRequestDescription {
+            return context.userAudio.count
         }
         if context.audioRequestDescription is SearchAudioRequestDescription {
             if section == 0 {
-                return context.usersAudio.count
+                return context.userAudio.count
             }
             if section == 1 {
                 return context.globalAudio.count
@@ -139,15 +139,15 @@ extension TableViewController {
     
     
     override func tableView(tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-        if context.audioRequestDescription is UsersAudioRequestDescription {
-            return "My audios"
+        if context.audioRequestDescription is UserAudioRequestDescription {
+            return "My audio"
         }
         if context.audioRequestDescription is SearchAudioRequestDescription {
             if section == 0 {
-                return "My audios"
+                return "My audio"
             }
             if section == 1 {
-                return "Global audios"
+                return "Global audio"
             }
         }
         return ""
@@ -171,7 +171,7 @@ extension TableViewController {
                     } else {
                         self.showError("unknown")
                     }
-                    self.context.usersAudio.removeAtIndex(indexPath.row)
+                    self.context.userAudio.removeAtIndex(indexPath.row)
                     self.tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: .Automatic)
                     }, errorBlock: { error in
                         self.showError(error.description)

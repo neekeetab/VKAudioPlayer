@@ -1,5 +1,5 @@
 //
-//  UsersAudioRequestDescription.swift
+//  UserAudioRequestDescription.swift
 //  VKAudioPlayer
 //
 //  Created by Nikita Belousov on 5/26/16.
@@ -9,10 +9,10 @@
 import Foundation
 import VK_ios_sdk
 
-class UsersAudioRequestDescription: AudioRequestDescription {
+class UserAudioRequestDescription: AudioRequestDescription {
 
     override func request(offset: Int) -> VKRequest {
-        return VKRequest.usersAudioRequest(offset)
+        return VKRequest.userAudioRequest(offset)
     }
     
 }

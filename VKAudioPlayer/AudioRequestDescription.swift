@@ -12,8 +12,8 @@ import VK_ios_sdk
 // abstract
 class AudioRequestDescription {
     
-    static func usersAudioRequestDescription() -> UsersAudioRequestDescription {
-        return UsersAudioRequestDescription()
+    static func userAudioRequestDescription() -> UserAudioRequestDescription {
+        return UserAudioRequestDescription()
     }
     
     static func searchAudioRequestDescription(searchString: String) -> SearchAudioRequestDescription {

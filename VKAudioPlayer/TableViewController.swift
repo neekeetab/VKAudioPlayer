@@ -44,14 +44,13 @@ class TableViewController: UITableViewController {
     func refresh(sender: AnyObject) {
         tableView.userInteractionEnabled = false
         searchButton.enabled = false
-        context.cancel()
-        initializeContext(AudioRequestDescription.usersAudioRequestDescription())
+        initializeContext(AudioRequestDescription.userAudioRequestDescription())
     }
     
     // MARK: -
     var allowedToFetchNewData = true
     override func scrollViewDidScroll(scrollView: UIScrollView) {
-        if context.usersAudio.count != 0 || context.globalAudio.count != 0 {
+        if context.userAudio.count != 0 || context.globalAudio.count != 0 {
             let height = scrollView.frame.size.height
             let contentYoffset = scrollView.contentOffset.y
             let distanceFromBottom = scrollView.contentSize.height - contentYoffset
@@ -67,33 +66,12 @@ class TableViewController: UITableViewController {
     func initializeContext(audioRequestDescription: AudioRequestDescription) {
         tableView.tableFooterView = footerView
         context.cancel()
-        context = AudioContext(audioRequestDescription: audioRequestDescription, completionBlock: { suc, usersAudio, globalAudio in
-            
-            self.refreshControl?.endRefreshing()
-            
-            if suc {
-                if usersAudio.count + globalAudio.count > 0 {
-                        self.tableView.reloadData()
-                } else { // means the end of data
-                    UIView.animateWithDuration(0.3, animations: {
-                        self.tableView.tableFooterView = nil
-                    })
-                }
-            } else {
-                self.showMessage("You're now switched to cache-only mode. Pull down to retry.", title: "Network is unreachable")
-                // TODO: swifch to cache-only mode
-            }
-            
-            self.tableView.userInteractionEnabled = true
-            self.searchButton.enabled = true
-            
-            delay(1, closure: {
-                self.allowedToFetchNewData = true
-            })
-            
-        })
-        tableView.reloadData()
+        context = AudioContext(audioRequestDescription: audioRequestDescription)
+        context.delegate = self
         context.loadNextPortion()
+        
+        // TODO: проверить удалить следующую строку
+        tableView.reloadData()
     }
     
     // MARK: - View controller customization
@@ -118,7 +96,7 @@ class TableViewController: UITableViewController {
             self.indicatorView.stopAnimating()
             if state == VKAuthorizationState.Authorized {
                 // ready to go
-                let audioRequestDescription = AudioRequestDescription.usersAudioRequestDescription()
+                let audioRequestDescription = AudioRequestDescription.userAudioRequestDescription()
                 self.initializeContext(audioRequestDescription)
             } else if state == VKAuthorizationState.Initialized {
                 // auth needed

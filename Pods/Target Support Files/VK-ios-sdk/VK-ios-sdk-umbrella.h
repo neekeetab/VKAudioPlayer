@@ -8,7 +8,7 @@
 #import "VKApiGroups.h"
 #import "VKApiModels.h"
 #import "VKApiPhotos.h"
-#import "VKApiUsers.h"
+#import "VKApiusers.h"
 #import "VKApiWall.h"
 #import "VKApiObject.h"
 #import "VKApiObjectArray.h"

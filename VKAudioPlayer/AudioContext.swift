@@ -9,12 +9,21 @@
 import Foundation
 import VK_ios_sdk
 
+protocol AudioContextDelegate: class {
+    
+    func audioContextDidLoadNewPortionOfData(audioContext: AudioContext)
+    func audioContextDidFailToLoadNewPortionOfData(audioContext: AudioContext)
+    
+}
+
 class AudioContext {
     
-    var audioRequestDescription: AudioRequestDescription?
-    var block: ((suc: Bool, usersAudio: [AudioItem], globalAudio: [AudioItem]) -> ())?
+    var audioRequestDescription: AudioRequestDescription!
+    weak var delegate: AudioContextDelegate?
     
-    var usersAudio = [AudioItem]()
+    var audioItemsExpected: Int?
+    
+    var userAudio = [AudioItem]()
     var globalAudio = [AudioItem]()
     var numberOfLoadedPortions = 0
     var canceled = false
@@ -31,34 +40,39 @@ class AudioContext {
     }
     
     func loadNextPortion() {
+        loadNextPortion(nil)
+    }
+    
+    func loadNextPortion(completionHandler: ((suc: Bool) -> ())?) {
         
         canceled = false
-        if block == nil {
-            fatalError("Completion block hasn't been provided")
-        }
-        if audioRequestDescription == nil {
-            fatalError("Audio request description hasn't been provided")
-        }
         
         let audioRequest = audioRequestDescription!.request(numberOfLoadedPortions * elementsPerRequest)
         audioRequest.completeBlock = { response in
             if !self.canceled {
+                
+                self.audioItemsExpected = response.count()
             
-                let usersAudio = response.usersAudio()
+                let userAudio = response.userAudio()
                 let globalAudio = response.globalAudio()
             
-                self.usersAudio += usersAudio
+                self.userAudio += userAudio
                 self.globalAudio += globalAudio
             
-                if usersAudio.count + globalAudio.count > 0 {
+                if userAudio.count + globalAudio.count > 0 {
                     self.numberOfLoadedPortions += 1
                 }
-                self.block!(suc: true, usersAudio: usersAudio, globalAudio: globalAudio)
+                
+                self.delegate?.audioContextDidLoadNewPortionOfData(self)
+                completionHandler?(suc: true)
+                
             }
         }
         audioRequest.errorBlock = { error in
             print(error)
-            self.block!(suc: false, usersAudio: [], globalAudio: [])
+            self.delegate?.audioContextDidFailToLoadNewPortionOfData(self)
+            completionHandler?(suc: false)
+
         }
         audioRequest.requestTimeout = 3
         audioRequest.attempts = 3
@@ -67,9 +81,12 @@ class AudioContext {
         
     }
     
-    init(audioRequestDescription: AudioRequestDescription, completionBlock block: (suc: Bool, usersAudio: [AudioItem], globalAudio: [AudioItem]) -> ()) {
+    func hasMoreToLoad() -> Bool {
+        return numberOfLoadedPortions * elementsPerRequest >= audioItemsExpected
+    }
+    
+    init(audioRequestDescription: AudioRequestDescription) {
         self.audioRequestDescription = audioRequestDescription
-        self.block = block
     }
     
     init() {}

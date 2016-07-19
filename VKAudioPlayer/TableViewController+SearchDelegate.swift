@@ -24,7 +24,7 @@ extension TableViewController: UISearchResultsUpdating, UISearchBarDelegate {
         context.cancel()
         refreshControl = UIRefreshControl()
         refreshControl!.addTarget(self, action: #selector(refresh(_:)), forControlEvents: UIControlEvents.ValueChanged)
-        let audioRequestDescription = AudioRequestDescription.usersAudioRequestDescription()
+        let audioRequestDescription = AudioRequestDescription.userAudioRequestDescription()
         self.initializeContext(audioRequestDescription)
         
         delay(0.5, closure: {

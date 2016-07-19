@@ -1,6 +1,6 @@
 //
 //  CachingPlayerItem.swift
-//  AudioStreamer
+//  audiotreamer
 //
 //  Created by Nikita Belousov on 7/9/16.
 //  Copyright © 2016 Nikita Belousov. All rights reserved.

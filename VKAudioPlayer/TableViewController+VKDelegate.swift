@@ -17,7 +17,7 @@ extension TableViewController: VKSdkDelegate, VKSdkUIDelegate {
     }
     
     func vkSdkAccessAuthorizationFinishedWithResult(result: VKAuthorizationResult!) {
-        let audioRequestDescription = AudioRequestDescription.usersAudioRequestDescription()
+        let audioRequestDescription = AudioRequestDescription.userAudioRequestDescription()
         initializeContext(audioRequestDescription)
     }
     
