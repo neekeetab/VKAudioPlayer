@@ -10,6 +10,16 @@ import Foundation
 
 class AudioCachingPlayerItem: CachingPlayerItem {
     
-    var audioItem: AudioItem?
+    var audioItem: AudioItem
+    
+    init(audioItem: AudioItem) {
+        self.audioItem = audioItem
+        super.init(url: audioItem.url)
+    }
+    
+    init(data: NSData, audioItem: AudioItem) {
+        self.audioItem = audioItem
+        super.init(data: data, mimeType:"audio/mpeg", fileExtension: "mp3")
+    }
     
 }
