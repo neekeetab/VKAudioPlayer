@@ -32,9 +32,7 @@ extension TableViewController {
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         
         audioPlayerViewController.popupItem.progress = 0.0
-    
         tableView.deselectRowAtIndexPath(indexPath, animated: true)
-        let cell = tableView.cellForRowAtIndexPath(indexPath) as! AudioCell
         
         AudioController.sharedAudioController.playAudioItemFromContext(context, atIndext: indexPath.row)
         
@@ -85,7 +83,7 @@ extension TableViewController {
         
         let notification = NSNotification(name: "AudioItemIsBeingPlayed", object: audioItemForIndexPath(indexPath))
         NSNotificationCenter.defaultCenter().postNotification(notification)
-    
+        
     }
     
     override func numberOfSectionsInTableView(tableView: UITableView) -> Int {

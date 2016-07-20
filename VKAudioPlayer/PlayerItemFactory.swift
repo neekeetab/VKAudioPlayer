@@ -25,7 +25,7 @@ class PlayerItemFactory {
         } else {
             
             // if item is being downloaded
-            if let playerItem = Downloader.sharedDownloader.playerItemForAudioItem(audioItem) {
+            if let playerItem = DownloadsController.sharedDownloader.playerItemForAudioItem(audioItem) {
                 completionHandler(playerItem: playerItem, cached: false)
             } else {
                 let playerItem = AudioCachingPlayerItem(url: audioItem.url)

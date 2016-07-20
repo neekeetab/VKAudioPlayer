@@ -1,5 +1,5 @@
 //
-//  Downloader.swift
+//  DownloadsController.swift
 //  VKAudioPlayer
 //
 //  Created by Nikita Belousov on 7/19/16.
@@ -8,14 +8,14 @@
 
 import Foundation
 
-class Downloader: CachingPlayerItemDelegate {
+class DownloadsController: CachingPlayerItemDelegate {
     
-    static let sharedDownloader = Downloader()
+    static let sharedDownloader = DownloadsController()
     var numberOfSimultaneousDownloads = 3
     
     private var audioItemsToLoad = Queue<AudioItem>()
     private var audioItemsBeingDownloaded = [AudioItem: AudioCachingPlayerItem]()
-    private var audioItemsToBeCanceld = Set<AudioItem>()
+    private var audioItemsToBeCanceled = Set<AudioItem>()
     
     // MARK: CachingPlayerItem Delegate
     
@@ -48,8 +48,8 @@ class Downloader: CachingPlayerItemDelegate {
                 }
                 
                 // if downloading was canceld
-                if audioItemsToBeCanceld.contains(audioItem) {
-                    audioItemsToBeCanceld.remove(audioItem)
+                if audioItemsToBeCanceled.contains(audioItem) {
+                    audioItemsToBeCanceled.remove(audioItem)
                     return
                 }
                 
@@ -67,7 +67,7 @@ class Downloader: CachingPlayerItemDelegate {
     // adds audioItem to download queue
     func downloadAudioItem(audioItem: AudioItem) {
         audioItemsToLoad.enqueue(audioItem)
-        audioItemsToBeCanceld.remove(audioItem)
+        audioItemsToBeCanceled.remove(audioItem)
         if audioItemsBeingDownloaded.count < numberOfSimultaneousDownloads {
             downloadNextAudioItem()
         }
@@ -77,7 +77,7 @@ class Downloader: CachingPlayerItemDelegate {
         if let _ = audioItemsBeingDownloaded[audioItem] {
             audioItemsBeingDownloaded.removeValueForKey(audioItem)
         } else {
-            audioItemsToBeCanceld.insert(audioItem)
+            audioItemsToBeCanceled.insert(audioItem)
         }
         let notification = NSNotification(name: "AudioItemCanceledNotification", object: nil, userInfo: [
             "audioItem": audioItem
