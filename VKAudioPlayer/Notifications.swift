@@ -11,8 +11,8 @@ let AudioControllerDidStartPlayingAudioItemNotification = "AudioControllerDidSta
 let AudioControllerDidPauseAudioItemNotification = "AudioControllerDidPauseAudioItemNotification"
 let AudioControllerDidResumeAudioItemNotification = "AudioControllerDidResumeAudioItemNotification"
 
-// AudioItem
-let AudioItemDidUpdateDownloadingProgress = "AudioItemDidUpdateDownloadingProgress"
-let AudioItemIsCachedNotification = "AudioItemIsCachedNotification"
-let AudioItemIsUncachedNotification = "AudioItemIsUncachedNotification"
-let AudioItemIsCanceledCachingNotification = "AudioItemIsCanceledCachingNotification"
+
+// CacheController
+let CacheControllerDidUpdateDownloadingProgressOfAudioItemNotification = "CacheControllerDidUpdateDownloadingProgressOfAudioItemNotification"
+let CacheControllerDidCacheAudioItemNotification = "CacheControllerDidCacheAudioItemNotification"
+let CacheControllerDidCancelDownloadingAudioItemNotification = "CacheControllerDidCancelDownloadingAudioItemNotification"

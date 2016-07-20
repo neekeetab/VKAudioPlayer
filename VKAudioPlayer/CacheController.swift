@@ -25,14 +25,14 @@ class CacheController: CachingPlayerItemDelegate {
     
     private var audioItemsToLoad = Queue<AudioItem>()
     private var audioItemsBeingDownloaded = [AudioItem: AudioCachingPlayerItem]()
-    private var audioItemsToBeCanceled = Set<AudioItem>()
+    private var audioItemsToCancel = Set<AudioItem>()
     
     // MARK: CachingPlayerItem Delegate
     
     @objc func playerItem(playerItem: CachingPlayerItem, didDownloadBytesSoFar bytesDownloaded: Int, outOf bytesExpected: Int) {
         
         let audioItem = (playerItem as! AudioCachingPlayerItem).audioItem
-        let notification = NSNotification(name: "AudioItemProgressNotification", object: nil, userInfo: [
+        let notification = NSNotification(name: CacheControllerDidUpdateDownloadingProgressOfAudioItemNotification, object: nil, userInfo: [
             "audioItem": audioItem,
             "bytesDownloaded": bytesDownloaded,
             "bytesExpected": bytesExpected
@@ -48,9 +48,8 @@ class CacheController: CachingPlayerItemDelegate {
         
         Storage.sharedStorage.add(String(audioItem.id), object: data)
         
-        let notification = NSNotification(name: "AudioItemDownloadedNotification", object: nil, userInfo: [
+        let notification = NSNotification(name: CacheControllerDidCacheAudioItemNotification, object: nil, userInfo: [
             "audioItem": audioItem,
-            "data": data
             ])
         NSNotificationCenter.defaultCenter().postNotification(notification)
     }
@@ -60,16 +59,14 @@ class CacheController: CachingPlayerItemDelegate {
     private func downloadNextAudioItem() {
         if audioItemsBeingDownloaded.count < numberOfSimultaneousDownloads {
             if let audioItem = audioItemsToLoad.dequeue() {
-                
-                // if audioItem is already downloaded
-                if Storage.sharedStorage.objectIsCached(String(audioItem.id)) {
+            
+                if audioItem.cached {
                     downloadNextAudioItem()
                     return
                 }
                 
-                // if downloading was canceled
-                if audioItemsToBeCanceled.contains(audioItem) {
-                    audioItemsToBeCanceled.remove(audioItem)
+                if audioItemsToCancel.contains(audioItem) {
+                    audioItemsToCancel.remove(audioItem)
                     downloadNextAudioItem()
                     return
                 }
@@ -87,7 +84,7 @@ class CacheController: CachingPlayerItemDelegate {
     // adds audioItem to download queue
     func downloadAudioItem(audioItem: AudioItem) {
         audioItemsToLoad.enqueue(audioItem)
-        audioItemsToBeCanceled.remove(audioItem)
+        audioItemsToCancel.remove(audioItem)
         if audioItemsBeingDownloaded.count < numberOfSimultaneousDownloads {
             downloadNextAudioItem()
         }
@@ -97,17 +94,17 @@ class CacheController: CachingPlayerItemDelegate {
         if let _ = audioItemsBeingDownloaded[audioItem] {
             audioItemsBeingDownloaded.removeValueForKey(audioItem)
         } else {
-            audioItemsToBeCanceled.insert(audioItem)
+            audioItemsToCancel.insert(audioItem)
         }
-        let notification = NSNotification(name: AudioItemIsCanceledCachingNotification, object: nil, userInfo: [
+        let notification = NSNotification(name: CacheControllerDidCancelDownloadingAudioItemNotification, object: nil, userInfo: [
             "audioItem": audioItem
             ])
         NSNotificationCenter.defaultCenter().postNotification(notification)
     }
     
     func playerItemForAudioItem(audioItem: AudioItem, completionHandler: (playerItem: AudioCachingPlayerItem, cached: Bool)->()){
-        // if audioItem is cached
-        if Storage.sharedStorage.objectIsCached(String(audioItem.id)) {
+        
+        if audioItem.cached {
             
             Storage.sharedStorage.object(String(audioItem.id), completion: { (data: NSData?) in
                 let playerItem = AudioCachingPlayerItem(data: data!, audioItem: audioItem)
@@ -127,6 +124,10 @@ class CacheController: CachingPlayerItemDelegate {
             completionHandler(playerItem: playerItem, cached: false)
             
         }
+    }
+    
+    func uncacheAudioItem(audioItem: AudioItem) {
+        Storage.sharedStorage.remove(String(audioItem.id))
     }
     
     // MARK:
