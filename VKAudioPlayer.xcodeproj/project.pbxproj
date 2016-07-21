@@ -19,6 +19,7 @@
 		112F3A0E1D3E49C100E7648B /* AudioControlelr.swift in Sources */ = {isa = PBXBuildFile; fileRef = 112F3A0D1D3E49C100E7648B /* AudioControlelr.swift */; };
 		112F3A101D3E49F300E7648B /* AudioContext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 112F3A0F1D3E49F300E7648B /* AudioContext.swift */; };
 		112F3A131D3E93DB00E7648B /* Notifications.swift in Sources */ = {isa = PBXBuildFile; fileRef = 112F3A121D3E93DB00E7648B /* Notifications.swift */; };
+		112F3A151D415A1500E7648B /* ACPCustomStaticImages.swift in Sources */ = {isa = PBXBuildFile; fileRef = 112F3A141D415A1500E7648B /* ACPCustomStaticImages.swift */; };
 		1160D3C31D3966330044DF02 /* AudioCachingPlayerItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1160D3C21D3966330044DF02 /* AudioCachingPlayerItem.swift */; };
 		1160EF0D1CF65331007DB453 /* AudioRequestDescription.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1160EF0C1CF65331007DB453 /* AudioRequestDescription.swift */; };
 		1160EF0F1CF65480007DB453 /* UserAudioRequestDescription.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1160EF0E1CF65480007DB453 /* UserAudioRequestDescription.swift */; };
@@ -47,7 +48,7 @@
 		111DE6631CF9F481006CBCDB /* AudioPlayerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AudioPlayerViewController.swift; sourceTree = "<group>"; };
 		111DE6661CFA47B3006CBCDB /* AudioCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AudioCell.swift; sourceTree = "<group>"; };
 		11294E251CF3C7FF00E8EEA2 /* VKAudioPlayer.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = VKAudioPlayer.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		11294E281CF3C7FF00E8EEA2 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		11294E281CF3C7FF00E8EEA2 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = AppDelegate.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		11294E2A1CF3C7FF00E8EEA2 /* TableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableViewController.swift; sourceTree = "<group>"; };
 		11294E301CF3C7FF00E8EEA2 /* VKAudioPlayer.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = VKAudioPlayer.xcdatamodel; sourceTree = "<group>"; };
 		11294E321CF3C7FF00E8EEA2 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -56,18 +57,19 @@
 		11294E3F1CF3C96700E8EEA2 /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
 		11294E411CF3C97A00E8EEA2 /* LaunchScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = LaunchScreen.storyboard; sourceTree = "<group>"; };
 		112F3A0D1D3E49C100E7648B /* AudioControlelr.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AudioControlelr.swift; sourceTree = "<group>"; };
-		112F3A0F1D3E49F300E7648B /* AudioContext.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AudioContext.swift; sourceTree = "<group>"; };
+		112F3A0F1D3E49F300E7648B /* AudioContext.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = AudioContext.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		112F3A121D3E93DB00E7648B /* Notifications.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Notifications.swift; sourceTree = "<group>"; };
+		112F3A141D415A1500E7648B /* ACPCustomStaticImages.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ACPCustomStaticImages.swift; sourceTree = "<group>"; };
 		1160D3C21D3966330044DF02 /* AudioCachingPlayerItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AudioCachingPlayerItem.swift; sourceTree = "<group>"; };
 		1160EF0C1CF65331007DB453 /* AudioRequestDescription.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AudioRequestDescription.swift; sourceTree = "<group>"; };
 		1160EF0E1CF65480007DB453 /* UserAudioRequestDescription.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserAudioRequestDescription.swift; sourceTree = "<group>"; };
 		1160EF101CF65493007DB453 /* SearchAudioRequestDescription.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchAudioRequestDescription.swift; sourceTree = "<group>"; };
-		1167622B1D39126700041BC1 /* CachingPlayerItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CachingPlayerItem.swift; sourceTree = "<group>"; };
+		1167622B1D39126700041BC1 /* CachingPlayerItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = CachingPlayerItem.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		11AE1C6C1D1F1F21003C8797 /* TableViewController+VKDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "TableViewController+VKDelegate.swift"; sourceTree = "<group>"; };
 		11AEDAA71CFA59E700E2BBDC /* UIViewController+Messages.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIViewController+Messages.swift"; sourceTree = "<group>"; };
 		11BAEBEC1D3CF2F500F45A7D /* Storage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Storage.swift; sourceTree = "<group>"; };
-		11C8920C1D3E20C100FF5524 /* CacheController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CacheController.swift; sourceTree = "<group>"; };
-		11C8920E1D3E239E00FF5524 /* Queue.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Queue.swift; sourceTree = "<group>"; };
+		11C8920C1D3E20C100FF5524 /* CacheController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = CacheController.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
+		11C8920E1D3E239E00FF5524 /* Queue.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = Queue.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		11CE34061D3DA7D60077071C /* TableViewController+AudioContextDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "TableViewController+AudioContextDelegate.swift"; sourceTree = "<group>"; };
 		11DD92C41CF49CAE00A8FC4A /* TableViewController+TableViewDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "TableViewController+TableViewDelegate.swift"; sourceTree = "<group>"; };
 		11DD92C61CF49D2A00A8FC4A /* TableViewController+SearchDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "TableViewController+SearchDelegate.swift"; sourceTree = "<group>"; };
@@ -161,6 +163,7 @@
 		11C892121D3E3E4F00FF5524 /* Helpers */ = {
 			isa = PBXGroup;
 			children = (
+				112F3A141D415A1500E7648B /* ACPCustomStaticImages.swift */,
 				11C8920E1D3E239E00FF5524 /* Queue.swift */,
 				1167622B1D39126700041BC1 /* CachingPlayerItem.swift */,
 				11294E3D1CF3C94200E8EEA2 /* Utils.swift */,
@@ -374,6 +377,7 @@
 				11294E311CF3C7FF00E8EEA2 /* VKAudioPlayer.xcdatamodeld in Sources */,
 				11294E3E1CF3C94200E8EEA2 /* Utils.swift in Sources */,
 				11EF779E1D20626F00AEA610 /* Audio+CoreDataProperties.swift in Sources */,
+				112F3A151D415A1500E7648B /* ACPCustomStaticImages.swift in Sources */,
 				11C8920D1D3E20C100FF5524 /* CacheController.swift in Sources */,
 				1167622C1D39126700041BC1 /* CachingPlayerItem.swift in Sources */,
 				11F3B8981D1984A8005E3452 /* TableViewController+AudioCellDelegate.swift in Sources */,

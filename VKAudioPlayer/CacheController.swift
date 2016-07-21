@@ -125,7 +125,18 @@ class CacheController: CachingPlayerItemDelegate {
         Storage.sharedStorage.add(String(audioItem.id), object: data)
         
         let notification = NSNotification(name: CacheControllerDidCacheAudioItemNotification, object: nil, userInfo: [
-            "audioItem": audioItem,
+            "audioItem": audioItem
+            ])
+        NSNotificationCenter.defaultCenter().postNotification(notification)
+    }
+
+    @objc func playerItemDidStopPlayback(playerItem: CachingPlayerItem) {
+        
+        let audioItem = (playerItem as! AudioCachingPlayerItem).audioItem
+        downloadNextAudioItem()
+        
+        let notification = NSNotification(name: AudioControllerDidPauseAudioItemNotification, object: nil, userInfo: [
+            "audioItem": audioItem
             ])
         NSNotificationCenter.defaultCenter().postNotification(notification)
     }

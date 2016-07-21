@@ -25,7 +25,11 @@ extension TableViewController: AudioCellDelegate {
     }
     
     func downloadButtonPressed(sender: AudioCell) {
-        
+        CacheController.sharedCacheController.downloadAudioItem(sender.audioItem!)
+    }
+    
+    func cancelButtonPressed(sender: AudioCell) {
+        CacheController.sharedCacheController.cancelDownloadingAudioItem(sender.audioItem!)
     }
     
 }

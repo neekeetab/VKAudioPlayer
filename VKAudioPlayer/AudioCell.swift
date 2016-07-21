@@ -14,34 +14,60 @@ import ACPDownload
 protocol AudioCellDelegate: class {
     func addButtonPressed(sender: AudioCell)
     func downloadButtonPressed(sender: AudioCell)
+    func cancelButtonPressed(sender: AudioCell)
 }
 
 class AudioCell: UITableViewCell {
 
-    @IBOutlet weak var statusView: UIView!
-    @IBOutlet weak var addButton: AddButton!
-    @IBOutlet weak var artistLabel: UILabel!
-    @IBOutlet weak var titleLabel: UILabel!
-    @IBOutlet weak var titleTrailingConstraint: NSLayoutConstraint!
+    @IBOutlet private weak var statusView: UIView!
+    @IBOutlet private weak var addButton: AddButton!
+    @IBOutlet private weak var titleTrailingConstraint: NSLayoutConstraint!
+    @IBOutlet private weak var artistLabel: UILabel!
+    @IBOutlet private weak var titleLabel: UILabel!
     
-    var playbackIndicator: NAKPlaybackIndicatorView!
-    var downloadedIndicator: UIImageView!
-    var downloadButton: ACPDownloadView!
+    private var playbackIndicator: NAKPlaybackIndicatorView!
+    private var downloadView: ACPDownloadView!
+    
     var audioItem: AudioItem?
-    
     weak var delegate: AudioCellDelegate?
+    
+    // MARK: Helpers
+    
+    private func showPlaybackIndicator() {
+        playbackIndicator.hidden = false
+        downloadView.hidden = true
+    }
+    
+    private func showDownloadView() {
+        downloadView.hidden = false
+        playbackIndicator.hidden = true
+    }
+    
+    private func showAddButton() {
+        addButton.alpha = 1
+        addButton.hidden = false
+        titleTrailingConstraint.constant = addButton.frame.size.width - 8
+        setNeedsUpdateConstraints()
+    }
+    
+    private func hideAddButton() {
+        addButton.hidden = true
+        titleTrailingConstraint.constant = 8
+        setNeedsUpdateConstraints()
+    }
+    
+    // MARK:
     
     private var _downloaded = false
     var downloaded: Bool {
         set {
             _downloaded = newValue
             if newValue == true {
-                downloadedIndicator.hidden = false
-                downloadButton.hidden = true
+                downloadView.setIndicatorStatus(.Completed)
             } else {
-                downloadedIndicator.hidden = true
-                downloadButton.hidden = false
+                downloadView.setIndicatorStatus(.None)
             }
+            
         }
         get {
             return _downloaded
@@ -53,14 +79,9 @@ class AudioCell: UITableViewCell {
         set {
             _ownedByUser = newValue
             if newValue == true {
-                addButton.hidden = true
-                titleTrailingConstraint.constant = 8
-                setNeedsUpdateConstraints()
+                hideAddButton()
             } else {
-                addButton.alpha = 1
-                addButton.hidden = false
-                titleTrailingConstraint.constant = addButton.frame.size.width - 8
-                setNeedsUpdateConstraints()
+                showAddButton()
             }
         }
         get {
@@ -73,19 +94,50 @@ class AudioCell: UITableViewCell {
         set {
             _playing = newValue
             if newValue == true {
-                playbackIndicator.hidden = false
-                downloadedIndicator.hidden = true
-                downloadButton.hidden = true
+                showPlaybackIndicator()
             } else {
-                playbackIndicator.hidden = true
-                downloadButton.hidden = _downloaded
-                downloadedIndicator.hidden = !_downloaded
+                showDownloadView()
             }
         }
         get {
             return _playing
         }
     }
+    
+    private var _paused = false
+    var paused: Bool {
+        set {
+            _paused = newValue
+            if newValue == true {
+                playbackIndicator.state = .Paused
+            } else {
+                playbackIndicator.state = .Playing
+            }
+        }
+        get {
+            return _paused
+        }
+    }
+    
+    var artist: String? {
+        set {
+            artistLabel.text = newValue
+        }
+        get {
+            return artistLabel.text
+        }
+    }
+    
+    var title: String? {
+        set {
+            titleLabel.text = newValue
+        }
+        get {
+            return titleLabel.text
+        }
+    }
+    
+    // MARK:
     
     @IBAction func addButtonPressed() {
         addButton.alpha = 0.3
@@ -94,17 +146,72 @@ class AudioCell: UITableViewCell {
     
     // MARK: Notification handlers
     
-    @objc func audioItemIsBeingPlayedNotificationHandler(notification: NSNotification) {
-        
-        if let audioItemBeingPlayed = notification.object as? AudioItem {
-            playing = audioItemBeingPlayed.id == audioItem!.id
+    @objc private func audioControllerDidStartPlayingAudioItemNotificationHandler(notification: NSNotification) {
+        if let audioItemBeingPlayed = notification.userInfo?["audioItem"] as? AudioItem {
+            dispatch_async(dispatch_get_main_queue(), {
+                self.playing = audioItemBeingPlayed.id == self.audioItem!.id
+                if self.downloadView.currentStatus != .Indeterminate {
+                    self.downloaded = self._downloaded
+                }
+            })
         }
-        
+    }
+    
+    @objc private func audioControllerDidPauseAudioItemNotificationHandler(notification: NSNotification) {
+        if let pausedAudioItem = notification.userInfo?["audioItem"] as? AudioItem {
+            if pausedAudioItem == audioItem {
+                dispatch_async(dispatch_get_main_queue(), {
+                    self.paused = true
+                })
+            }
+        }
+    }
+    
+    @objc private func audioControllerDidResumeAudioItemNotificationHandler(notification: NSNotification) {
+        if let resumedAudioItem = notification.userInfo?["audioItem"] as? AudioItem {
+            if resumedAudioItem == audioItem {
+                dispatch_async(dispatch_get_main_queue(), {
+                    self.paused = false
+                })
+            }
+        }
+    }
+    
+    @objc private func cacheControllerDidCacheAudioItemNotificationHandler(notification: NSNotification) {
+        if let cachedAudioItem = notification.userInfo?["audioItem"] as? AudioItem {
+            if cachedAudioItem == audioItem {
+                dispatch_async(dispatch_get_main_queue(), {
+                    self.downloaded = true
+                })
+            }
+        }
+    }
+    
+    @objc private func cacheControllerDidCancelDownloadingAudioItemNotificationHandler(notification: NSNotification) {
+        if let canceledAudioItem = notification.userInfo?["audioItem"] as? AudioItem {
+            if canceledAudioItem == audioItem {
+                dispatch_async(dispatch_get_main_queue(), {
+                    self.downloaded = false
+                })
+            }
+        }
+    }
+    
+    @objc private func cacheControllerDidUpdateDownloadingProgressOfAudioItemNotificationHandler(notification: NSNotification) {
+        if let downloadingAudioItem = notification.userInfo?["audioItem"] as? AudioItem {
+            if downloadingAudioItem == audioItem {
+                let bytesDownloaded = notification.userInfo?["bytesDownloaded"] as? Int
+                let bytesExpected = notification.userInfo?["bytesExpected"] as? Int
+                dispatch_async(dispatch_get_main_queue(), {
+                    self.downloadView.setIndicatorStatus(.Running)
+                    self.downloadView.setProgress(Float(Double(bytesDownloaded!)/Double(bytesExpected!)), animated: true)
+                })
+            }
+        }
     }
     
     // MARK:
     
-    var i = 0
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
@@ -112,28 +219,51 @@ class AudioCell: UITableViewCell {
         titleTrailingConstraint.constant = 8
         addButton.hidden = true
         
-        // download button
-        downloadButton = ACPDownloadView(frame: CGRect(x: 0, y: 0, width: 35, height: 35))
-        downloadButton.backgroundColor = UIColor.clearColor()
-        self.statusView.addSubview(downloadButton)
-        downloadButton.hidden = true
+        // Download View
         
-        // downloaded indicator
-        downloadedIndicator = UIImageView(frame: CGRect(x: 0, y: 0, width: 35, height: 35))
-        downloadedIndicator.image = UIImage(named: "GreenDot")
-        self.statusView.addSubview(downloadedIndicator)
-        downloadedIndicator.hidden = true
+        downloadView = ACPDownloadView(frame: CGRect(x: 0, y: 0, width: 30, height: 30))
+        statusView.addSubview(downloadView)
+        downloadView.center = CGPoint(x: statusView.frame.size.width/2, y: statusView.frame.size.height/2)
+        downloadView.backgroundColor = UIColor.clearColor()
+        downloadView.hidden = false
         
-        //playbackIndicator
+        let layer = ACPIndeterminateGoogleLayer()
+        downloadView.setIndeterminateLayer(layer)
+        
+        let staticImages = ACPCustomStaticImages()
+        staticImages.updateColor(tintColor)
+        downloadView.setImages(staticImages)
+            
+        downloadView.setActionForTap({ downloadView, downloadStatus in
+            self.delegate?.downloadButtonPressed(self)
+            if downloadView.currentStatus == .None {
+                downloadView.setIndicatorStatus(.Indeterminate)
+            } else if downloadView.currentStatus == .Indeterminate || downloadView.currentStatus == .Running {
+                self.delegate?.cancelButtonPressed(self)
+            }
+        })
+        
+        // Playback Indicator
+        
         playbackIndicator = NAKPlaybackIndicatorView(frame: CGRect(x: 0, y: 0, width: 35, height: 35))
         statusView.addSubview(playbackIndicator)
         playbackIndicator.state = .Playing
         playbackIndicator.backgroundColor = UIColor.whiteColor()
         playbackIndicator.hidden = true
     
-        //
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(audioItemIsBeingPlayedNotificationHandler), name: "AudioItemIsBeingPlayed", object: nil)
+        // Notifications
         
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(audioControllerDidStartPlayingAudioItemNotificationHandler), name: AudioControllerDidStartPlayingAudioItemNotification, object: nil)
+        
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(audioControllerDidPauseAudioItemNotificationHandler), name: AudioControllerDidPauseAudioItemNotification, object: nil)
+        
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(audioControllerDidResumeAudioItemNotificationHandler), name: AudioControllerDidResumeAudioItemNotification, object: nil)
+        
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(cacheControllerDidCacheAudioItemNotificationHandler), name: CacheControllerDidCacheAudioItemNotification, object: nil)
+        
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(cacheControllerDidCancelDownloadingAudioItemNotificationHandler), name: CacheControllerDidCancelDownloadingAudioItemNotification, object: nil)
+        
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(cacheControllerDidUpdateDownloadingProgressOfAudioItemNotificationHandler), name: CacheControllerDidUpdateDownloadingProgressOfAudioItemNotification, object: nil)
         
     }
     
@@ -146,6 +276,10 @@ class AudioCell: UITableViewCell {
         super.setSelected(selected, animated: animated)
         
         // Configure the view for the selected state
+    }
+    
+    deinit {
+        // TODO: Unregister from Notification Center?
     }
 
 }

@@ -11,7 +11,6 @@ let AudioControllerDidStartPlayingAudioItemNotification = "AudioControllerDidSta
 let AudioControllerDidPauseAudioItemNotification = "AudioControllerDidPauseAudioItemNotification"
 let AudioControllerDidResumeAudioItemNotification = "AudioControllerDidResumeAudioItemNotification"
 
-
 // CacheController
 let CacheControllerDidUpdateDownloadingProgressOfAudioItemNotification = "CacheControllerDidUpdateDownloadingProgressOfAudioItemNotification"
 let CacheControllerDidCacheAudioItemNotification = "CacheControllerDidCacheAudioItemNotification"
