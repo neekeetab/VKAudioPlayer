@@ -34,29 +34,16 @@ extension TableViewController {
         audioPlayerViewController.popupItem.progress = 0.0
         tableView.deselectRowAtIndexPath(indexPath, animated: true)
         
-        AudioController.sharedAudioController.playAudioItemFromContext(context, atIndext: indexPath.row)
         
-//        Storage.sharedStorage.object(String(audioItemForIndexPath(indexPath).id), completion: { (data : NSData?) in
-//            
-//            var playerItem: AudioCachingPlayerItem!
-//            if data == nil { // file isn't in cache
-//                playerItem = AudioCachingPlayerItem(url: self.audioItemForIndexPath(indexPath).url)
-//            } else { // file is in cache
-//                playerItem = AudioCachingPlayerItem(data: data!, mimeType: "audio/mpeg", fileExtension: "mp3")
-//            }
-//            playerItem.audioItem = self.audioItemForIndexPath(indexPath)
-//            playerItem.delegate = self
-//            self.player = AVPlayer(playerItem: playerItem)
-//            self.player.play()
-//
-//            if data == nil {
-//                print("file isn't in cache")
-//            } else {
-//                print("file is in cache")
-//            }
-//            
-//        })
+        var audioContextSection: AudioContextSection!
+        if indexPath.section == 0 {
+            audioContextSection = .UserAudio
+        } else {
+            audioContextSection = .GlobalAudio
+        }
         
+        AudioController.sharedAudioController.playAudioItemFromContext(context, audioContextSection: audioContextSection, index: indexPath.row)
+                
         // ----------------------------
         
         navigationController!.presentPopupBarWithContentViewController(audioPlayerViewController, animated: true, completion: {})

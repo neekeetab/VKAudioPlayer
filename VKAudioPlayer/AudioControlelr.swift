@@ -15,26 +15,22 @@ enum AudioControllerRepeatMode {
     case All
 }
 
+enum AudioContextSection {
+    case UserAudio
+    case GlobalAudio
+}
+
 class AudioController {
     
     static let sharedAudioController = AudioController()
     
-    private var player: AVPlayer?
+    private(set) var player: AVPlayer?
+    private(set) var indexOfcurrentAudioItem: Int?
+    private(set) var audioContext: AudioContext?
+    private(set) var audioContextSection: AudioContextSection?
     
-    private var _currentAudioItem: AudioItem?
     var currentAudioItem: AudioItem? {
-        return _currentAudioItem
-    }
-    
-    private var _audioContext: AudioContext?
-    var audioContext: AudioContext? {
-        get {
-            return _audioContext
-        }
-        set {
-            player = nil
-            _audioContext = newValue
-        }
+        return audioItemForAudioContextSection(audioContextSection, index: indexOfcurrentAudioItem)
     }
     
     var _repeatMode: AudioControllerRepeatMode = .Dont
@@ -47,21 +43,52 @@ class AudioController {
         }
     }
     
-    func playAudioItemFromContext(audioContext: AudioContext, atIndext index: Int) {
+    func audioItemForAudioContextSection(audioContextSection: AudioContextSection?, index: Int?) -> AudioItem? {
+        if index == nil {
+            return nil
+        }
+        if audioContextSection == .GlobalAudio {
+            return audioContext?.globalAudio[index!]
+        } else if audioContextSection == .UserAudio {
+            return audioContext?.userAudio[index!]
+        }
+        return nil
+    }
+    
+    func playAudioItemFromContext(audioContext: AudioContext, audioContextSection: AudioContextSection, index: Int) {
         self.audioContext = audioContext
-        _currentAudioItem = audioContext.userAudio[index]
-        CacheController.sharedCacheController.playerItemForAudioItem(_currentAudioItem!, completionHandler: { playerItem, cached in
+        self.audioContextSection = audioContextSection
+        self.indexOfcurrentAudioItem = index
+        
+        let audioItem = audioItemForAudioContextSection(audioContextSection, index: index)!
+        CacheController.sharedCacheController.playerItemForAudioItem(audioItem, completionHandler: { playerItem, cached in
             self.player = AVPlayer(playerItem: playerItem)
             self.player?.play()
+            let notification = NSNotification(name: AudioControllerDidStartPlayingAudioItemNotification, object: nil, userInfo: [
+                "audioItem": playerItem.audioItem
+                ])
+            NSNotificationCenter.defaultCenter().postNotification(notification)
         })
     }
     
     func resume() {
         player?.play()
+        if let audioItem = currentAudioItem {
+            let notification = NSNotification(name: AudioControllerDidResumeAudioItemNotification, object: nil, userInfo: [
+                "audioItem": audioItem
+                ])
+            NSNotificationCenter.defaultCenter().postNotification(notification)
+        }
     }
-    
+
     func pause() {
         player?.pause()
+        if let audioItem = currentAudioItem {
+            let notification = NSNotification(name: AudioControllerDidPauseAudioItemNotification, object: nil, userInfo: [
+                "audioItem": audioItem
+                ])
+            NSNotificationCenter.defaultCenter().postNotification(notification)
+        }
     }
     
     // TODO:  next, prev

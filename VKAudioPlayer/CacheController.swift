@@ -27,33 +27,6 @@ class CacheController: CachingPlayerItemDelegate {
     private var audioItemsBeingDownloaded = [AudioItem: AudioCachingPlayerItem]()
     private var audioItemsToCancel = Set<AudioItem>()
     
-    // MARK: CachingPlayerItem Delegate
-    
-    @objc func playerItem(playerItem: CachingPlayerItem, didDownloadBytesSoFar bytesDownloaded: Int, outOf bytesExpected: Int) {
-        
-        let audioItem = (playerItem as! AudioCachingPlayerItem).audioItem
-        let notification = NSNotification(name: CacheControllerDidUpdateDownloadingProgressOfAudioItemNotification, object: nil, userInfo: [
-            "audioItem": audioItem,
-            "bytesDownloaded": bytesDownloaded,
-            "bytesExpected": bytesExpected
-            ])
-        NSNotificationCenter.defaultCenter().postNotification(notification)
-    }
-    
-    @objc func playerItem(playerItem: CachingPlayerItem, didFinishDownloadingData data: NSData) {
-        
-        let audioItem = (playerItem as! AudioCachingPlayerItem).audioItem
-        audioItemsBeingDownloaded.removeValueForKey(audioItem)
-        downloadNextAudioItem()
-        
-        Storage.sharedStorage.add(String(audioItem.id), object: data)
-        
-        let notification = NSNotification(name: CacheControllerDidCacheAudioItemNotification, object: nil, userInfo: [
-            "audioItem": audioItem,
-            ])
-        NSNotificationCenter.defaultCenter().postNotification(notification)
-    }
-    
     // MARK:
     
     private func downloadNextAudioItem() {
@@ -128,6 +101,33 @@ class CacheController: CachingPlayerItemDelegate {
     
     func uncacheAudioItem(audioItem: AudioItem) {
         Storage.sharedStorage.remove(String(audioItem.id))
+    }
+    
+    // MARK: CachingPlayerItem Delegate
+    
+    @objc func playerItem(playerItem: CachingPlayerItem, didDownloadBytesSoFar bytesDownloaded: Int, outOf bytesExpected: Int) {
+        
+        let audioItem = (playerItem as! AudioCachingPlayerItem).audioItem
+        let notification = NSNotification(name: CacheControllerDidUpdateDownloadingProgressOfAudioItemNotification, object: nil, userInfo: [
+            "audioItem": audioItem,
+            "bytesDownloaded": bytesDownloaded,
+            "bytesExpected": bytesExpected
+            ])
+        NSNotificationCenter.defaultCenter().postNotification(notification)
+    }
+    
+    @objc func playerItem(playerItem: CachingPlayerItem, didFinishDownloadingData data: NSData) {
+        
+        let audioItem = (playerItem as! AudioCachingPlayerItem).audioItem
+        audioItemsBeingDownloaded.removeValueForKey(audioItem)
+        downloadNextAudioItem()
+        
+        Storage.sharedStorage.add(String(audioItem.id), object: data)
+        
+        let notification = NSNotification(name: CacheControllerDidCacheAudioItemNotification, object: nil, userInfo: [
+            "audioItem": audioItem,
+            ])
+        NSNotificationCenter.defaultCenter().postNotification(notification)
     }
     
     // MARK:

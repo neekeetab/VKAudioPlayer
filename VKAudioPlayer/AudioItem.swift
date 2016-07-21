@@ -36,8 +36,6 @@ class AudioItem: NSObject {
     var cached: Bool {
         return Storage.sharedStorage.objectIsCached(String(self.id))
     }
-        
-    
     
 }
 
