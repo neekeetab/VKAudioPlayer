@@ -24,7 +24,7 @@ class AudioController {
     
     static let sharedAudioController = AudioController()
     
-    private(set) var player: AVPlayer?
+    private(set) var player = AVPlayer()
     private(set) var indexOfcurrentAudioItem: Int?
     private(set) var audioContext: AudioContext?
     private(set) var audioContextSection: AudioContextSection?
@@ -59,11 +59,11 @@ class AudioController {
         self.audioContext = audioContext
         self.audioContextSection = audioContextSection
         self.indexOfcurrentAudioItem = index
-        
+    
         let audioItem = audioItemForAudioContextSection(audioContextSection, index: index)!
         CacheController.sharedCacheController.playerItemForAudioItem(audioItem, completionHandler: { playerItem, cached in
-            self.player = AVPlayer(playerItem: playerItem)
-            self.player?.play()
+            self.player.replaceCurrentItemWithPlayerItem(playerItem)
+            self.player.play()
             let notification = NSNotification(name: AudioControllerDidStartPlayingAudioItemNotification, object: nil, userInfo: [
                 "audioItem": playerItem.audioItem
                 ])
@@ -72,7 +72,7 @@ class AudioController {
     }
     
     func resume() {
-        player?.play()
+        player.play()
         if let audioItem = currentAudioItem {
             let notification = NSNotification(name: AudioControllerDidResumeAudioItemNotification, object: nil, userInfo: [
                 "audioItem": audioItem
@@ -82,7 +82,7 @@ class AudioController {
     }
 
     func pause() {
-        player?.pause()
+        player.pause()
         if let audioItem = currentAudioItem {
             let notification = NSNotification(name: AudioControllerDidPauseAudioItemNotification, object: nil, userInfo: [
                 "audioItem": audioItem
