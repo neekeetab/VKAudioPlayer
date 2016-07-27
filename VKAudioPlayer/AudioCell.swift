@@ -28,7 +28,7 @@ class AudioCell: UITableViewCell {
     private var playbackIndicator: NAKPlaybackIndicatorView!
     private var downloadView: ACPDownloadView!
     
-    var audioItem: AudioItem?
+    var audioItem: AudioItem? 
     weak var delegate: AudioCellDelegate?
     
     // MARK: Helpers
@@ -57,22 +57,22 @@ class AudioCell: UITableViewCell {
     }
     
     // MARK:
-    
-    private var _downloaded = false
-    var downloaded: Bool {
-        set {
-            _downloaded = newValue
-            if newValue == true {
-                downloadView.setIndicatorStatus(.Completed)
-            } else {
-                downloadView.setIndicatorStatus(.None)
-            }
-            
-        }
-        get {
-            return _downloaded
-        }
-    }
+//    
+//    private var _downloaded = false
+//    var downloaded: Bool {
+//        set {
+//            _downloaded = newValue
+//            if newValue == true {
+//                downloadView.setIndicatorStatus(.Completed)
+//            } else {
+//                downloadView.setIndicatorStatus(.None)
+//            }
+//            
+//        }
+//        get {
+//            return _downloaded
+//        }
+//    }
     
     private var _ownedByUser = true
     var ownedByUser: Bool {
@@ -137,6 +137,31 @@ class AudioCell: UITableViewCell {
         }
     }
     
+    var downloadStatus: Float? {
+        set {
+            if newValue != nil {
+                if newValue! == AudioItemDownloadStatusCached {
+                    downloadView.setIndicatorStatus(.Completed)
+                    return
+                }
+                if newValue! == AudioItemDownloadStatusNotCached {
+                    downloadView.setIndicatorStatus(.None)
+                    return
+                }
+                if newValue! == 0.0 {
+                    downloadView.setIndicatorStatus(.Indeterminate)
+                    downloadView.setProgress(0, animated: false)
+                    return
+                }
+                downloadView.setIndicatorStatus(.Running)
+                downloadView.setProgress(newValue!, animated: true)
+            }
+        }
+        get {
+            return nil
+        }
+    }
+    
     // MARK:
     
     @IBAction func addButtonPressed() {
@@ -149,9 +174,9 @@ class AudioCell: UITableViewCell {
     @objc private func audioControllerDidStartPlayingAudioItemNotificationHandler(notification: NSNotification) {
         if let audioItemBeingPlayed = notification.userInfo?["audioItem"] as? AudioItem {
             dispatch_async(dispatch_get_main_queue(), {
-                self.playing = audioItemBeingPlayed.id == self.audioItem!.id
-                if self.downloadView.currentStatus != .Indeterminate {
-                    self.downloaded = self._downloaded
+                self.playing = audioItemBeingPlayed == self.audioItem!
+                if self.playing {
+                    self.downloadStatus = self.audioItem!.downloadStatus
                 }
             })
         }
@@ -181,7 +206,7 @@ class AudioCell: UITableViewCell {
         if let cachedAudioItem = notification.userInfo?["audioItem"] as? AudioItem {
             if cachedAudioItem == audioItem {
                 dispatch_async(dispatch_get_main_queue(), {
-                    self.downloaded = true
+                    self.downloadStatus = AudioItemDownloadStatusCached
                 })
             }
         }
@@ -191,7 +216,7 @@ class AudioCell: UITableViewCell {
         if let canceledAudioItem = notification.userInfo?["audioItem"] as? AudioItem {
             if canceledAudioItem == audioItem {
                 dispatch_async(dispatch_get_main_queue(), {
-                    self.downloaded = false
+                    self.downloadStatus = AudioItemDownloadStatusNotCached
                 })
             }
         }
@@ -203,12 +228,23 @@ class AudioCell: UITableViewCell {
                 let bytesDownloaded = notification.userInfo?["bytesDownloaded"] as? Int
                 let bytesExpected = notification.userInfo?["bytesExpected"] as? Int
                 dispatch_async(dispatch_get_main_queue(), {
-                    self.downloadView.setIndicatorStatus(.Running)
-                    self.downloadView.setProgress(Float(Double(bytesDownloaded!)/Double(bytesExpected!)), animated: true)
+                    self.downloadStatus = Float(Double(bytesDownloaded!)/Double(bytesExpected!))
                 })
             }
         }
     }
+    
+//    @objc func audioCachingPlayerItemWillDeinitNotificatoinHandler(notification: NSNotification) {
+//        if let deinitPlayerItemAudioItem = notification.userInfo?["audioItem"] as? AudioItem {
+//            if deinitPlayerItemAudioItem == audioItem {
+//                dispatch_async(dispatch_get_main_queue(), {
+////                    if self.downloadView.currentStatus != .Indeterminate {
+////                        self.downloaded = self._downloaded
+////                    }
+//                })
+//            }
+//        }
+//    }
     
     // MARK:
     
@@ -264,6 +300,8 @@ class AudioCell: UITableViewCell {
         NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(cacheControllerDidCancelDownloadingAudioItemNotificationHandler), name: CacheControllerDidCancelDownloadingAudioItemNotification, object: nil)
         
         NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(cacheControllerDidUpdateDownloadingProgressOfAudioItemNotificationHandler), name: CacheControllerDidUpdateDownloadingProgressOfAudioItemNotification, object: nil)
+        
+//        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(audioCachingPlayerItemWillDeinitNotificatoinHandler), name: AudioCachingPlayerItemWillDeinitNotificatoin, object: nil)
         
     }
     

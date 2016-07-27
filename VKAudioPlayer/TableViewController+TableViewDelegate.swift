@@ -35,6 +35,12 @@ extension TableViewController {
         tableView.deselectRowAtIndexPath(indexPath, animated: true)
         
         
+        let audioItem = audioItemForIndexPath(indexPath)
+//        print(AudioController.sharedAudioController.currentAudioItem)
+        if AudioController.sharedAudioController.currentAudioItem == audioItem {
+            return
+        }
+        
         var audioContextSection: AudioContextSection!
         if indexPath.section == 0 {
             audioContextSection = .UserAudio
@@ -43,7 +49,7 @@ extension TableViewController {
         }
         
         AudioController.sharedAudioController.playAudioItemFromContext(context, audioContextSection: audioContextSection, index: indexPath.row)
-                
+        
         // ----------------------------
         
         navigationController!.presentPopupBarWithContentViewController(audioPlayerViewController, animated: true, completion: {})
@@ -109,14 +115,14 @@ extension TableViewController {
             cell.ownedByUser = false
         }
         
-        //
-        cell.playing = false
+//        cell.playing = false
         
         let audioItem = audioItemForIndexPath(indexPath)
-        cell.audioItem = audioItemForIndexPath(indexPath)
+        cell.audioItem = audioItem
         cell.title = audioItem.title
         cell.artist = audioItem.artist
-        cell.downloaded = Storage.sharedStorage.objectIsCached(String(audioItem.id))
+        cell.playing = audioItem.playing
+        cell.downloadStatus = audioItem.downloadStatus
 
         return cell
     }

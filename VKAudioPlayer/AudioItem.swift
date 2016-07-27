@@ -9,6 +9,9 @@
 import Foundation
 import VK_ios_sdk
 
+let AudioItemDownloadStatusCached = Float(2.0)
+let AudioItemDownloadStatusNotCached = Float(-1.0)
+
 // representative for VK audio object
 class AudioItem: NSObject {
     
@@ -18,6 +21,16 @@ class AudioItem: NSObject {
     var title = ""
     var url = NSURL()
     var duration = 0
+
+    var downloadStatus: Float {
+        return CacheController.sharedCacheController.downloadStatusForAudioItem(self)
+    }
+    var cached: Bool {
+        return Storage.sharedStorage.objectIsCached(String(self.id))
+    }
+    var playing: Bool {
+        return AudioController.sharedAudioController.currentAudioItem == self
+    }
     
     static func audioItemFromVKResponseItem(responseItem: [String: AnyObject]) -> AudioItem {
         
@@ -33,12 +46,17 @@ class AudioItem: NSObject {
         
     }
     
-    var cached: Bool {
-        return Storage.sharedStorage.objectIsCached(String(self.id))
-    }
-    
 }
 
 func ==(lhs: AudioItem, rhs: AudioItem) -> Bool {
     return lhs.id == rhs.id
+}
+
+func !=(lhs: AudioItem, rhs: AudioItem) -> Bool {
+    return !(lhs == rhs)
+}
+
+func ==(lhs: AudioItem?, rhs: AudioItem?) -> Bool {
+    return (!(lhs != nil) && !(rhs != nil)) // lhs == nil && rhs == nil
+        || (lhs != nil && rhs != nil && lhs!.id == rhs!.id)
 }

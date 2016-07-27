@@ -22,4 +22,11 @@ class AudioCachingPlayerItem: CachingPlayerItem {
         super.init(data: data, mimeType:"audio/mpeg", fileExtension: "mp3")
     }
     
+//    deinit {
+//        let notification = NSNotification(name: AudioCachingPlayerItemWillDeinitNotificatoin, object: nil, userInfo: [
+//            "audioItem": audioItem
+//            ])
+//        NSNotificationCenter.defaultCenter().postNotification(notification)
+//    }
+//    
 }

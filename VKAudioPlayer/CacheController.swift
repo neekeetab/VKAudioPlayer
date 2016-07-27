@@ -23,15 +23,18 @@ class CacheController: CachingPlayerItemDelegate {
         }
     }
     
-    private var audioItemsToLoad = Queue<AudioItem>()
+    private var audioItemsToDownoad = Queue<AudioItem>()
     private var audioItemsBeingDownloaded = [AudioItem: AudioCachingPlayerItem]()
     private var audioItemsToCancel = Set<AudioItem>()
+    
+    // audioItemsTotalDownloadStatus holds the invariant: audioItemsTotalDownloadStatus = audioItemsToDownload + audioItemsBeingDownloaded - audioItemsToCancel
+    private var audioItemsTotalDownloadStatus = [AudioItem: Float]()
     
     // MARK:
     
     private func downloadNextAudioItem() {
         if audioItemsBeingDownloaded.count < numberOfSimultaneousDownloads {
-            if let audioItem = audioItemsToLoad.dequeue() {
+            if let audioItem = audioItemsToDownoad.dequeue() {
             
                 if audioItem.cached {
                     downloadNextAudioItem()
@@ -56,8 +59,10 @@ class CacheController: CachingPlayerItemDelegate {
     
     // adds audioItem to download queue
     func downloadAudioItem(audioItem: AudioItem) {
-        audioItemsToLoad.enqueue(audioItem)
+        audioItemsToDownoad.enqueue(audioItem)
         audioItemsToCancel.remove(audioItem)
+        
+        audioItemsTotalDownloadStatus[audioItem] = 0.0
         if audioItemsBeingDownloaded.count < numberOfSimultaneousDownloads {
             downloadNextAudioItem()
         }
@@ -69,6 +74,7 @@ class CacheController: CachingPlayerItemDelegate {
         } else {
             audioItemsToCancel.insert(audioItem)
         }
+        audioItemsTotalDownloadStatus.removeValueForKey(audioItem)
         let notification = NSNotification(name: CacheControllerDidCancelDownloadingAudioItemNotification, object: nil, userInfo: [
             "audioItem": audioItem
             ])
@@ -99,6 +105,16 @@ class CacheController: CachingPlayerItemDelegate {
         }
     }
     
+    func downloadStatusForAudioItem(audioItem: AudioItem) -> Float {
+        if let status = audioItemsTotalDownloadStatus[audioItem] {
+            return status
+        }
+        if Storage.sharedStorage.objectIsCached(String(audioItem.id)) {
+            return AudioItemDownloadStatusCached
+        }
+        return AudioItemDownloadStatusNotCached
+    }
+    
     func uncacheAudioItem(audioItem: AudioItem) {
         Storage.sharedStorage.remove(String(audioItem.id))
     }
@@ -108,6 +124,7 @@ class CacheController: CachingPlayerItemDelegate {
     @objc func playerItem(playerItem: CachingPlayerItem, didDownloadBytesSoFar bytesDownloaded: Int, outOf bytesExpected: Int) {
         
         let audioItem = (playerItem as! AudioCachingPlayerItem).audioItem
+        audioItemsTotalDownloadStatus[audioItem] = Float(Double(bytesExpected)/Double(bytesDownloaded))
         let notification = NSNotification(name: CacheControllerDidUpdateDownloadingProgressOfAudioItemNotification, object: nil, userInfo: [
             "audioItem": audioItem,
             "bytesDownloaded": bytesDownloaded,
@@ -120,6 +137,7 @@ class CacheController: CachingPlayerItemDelegate {
         
         let audioItem = (playerItem as! AudioCachingPlayerItem).audioItem
         audioItemsBeingDownloaded.removeValueForKey(audioItem)
+        audioItemsTotalDownloadStatus.removeValueForKey(audioItem)
         downloadNextAudioItem()
         
         Storage.sharedStorage.add(String(audioItem.id), object: data)
@@ -139,6 +157,18 @@ class CacheController: CachingPlayerItemDelegate {
             "audioItem": audioItem
             ])
         NSNotificationCenter.defaultCenter().postNotification(notification)
+    }
+    
+    @objc func playerItemWillDeinit(playerItem: CachingPlayerItem) {
+        let audioItem = (playerItem as! AudioCachingPlayerItem).audioItem
+        if let _ = audioItemsTotalDownloadStatus[audioItem] {
+            audioItemsTotalDownloadStatus.removeValueForKey(audioItem)
+            let notification = NSNotification(name: CacheControllerDidCancelDownloadingAudioItemNotification, object: nil, userInfo: [
+                "audioItem": audioItem
+                ])
+            NSNotificationCenter.defaultCenter().postNotification(notification)
+        }
+        
     }
     
     // MARK:

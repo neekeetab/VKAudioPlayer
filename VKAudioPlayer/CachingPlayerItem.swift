@@ -22,6 +22,9 @@ import AVFoundation
     // called when some media did not arrive in time to continue playback
     optional func playerItemDidStopPlayback(playerItem: CachingPlayerItem)
     
+    // called when deinit
+    optional func playerItemWillDeinit(playerItem: CachingPlayerItem)
+    
 }
 
 extension NSURL {
@@ -239,6 +242,7 @@ class CachingPlayerItem: AVPlayerItem {
         NSNotificationCenter.defaultCenter().removeObserver(self)
         removeObserver(self, forKeyPath: "status")
         resourceLoaderDelegate.session?.invalidateAndCancel()
+        delegate?.playerItemWillDeinit?(self)
     }
     
 }
