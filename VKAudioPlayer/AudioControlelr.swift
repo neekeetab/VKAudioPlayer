@@ -67,6 +67,7 @@ class AudioController {
 //            self.player.play()
             
             self.player.replaceCurrentItemWithPlayerItem(playerItem)
+            self.player.seekToTime(CMTime(seconds: 0, preferredTimescale: 1))
             self.player.play()
             
             let notification = NSNotification(name: AudioControllerDidStartPlayingAudioItemNotification, object: nil, userInfo: [

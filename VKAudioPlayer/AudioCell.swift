@@ -57,22 +57,6 @@ class AudioCell: UITableViewCell {
     }
     
     // MARK:
-//    
-//    private var _downloaded = false
-//    var downloaded: Bool {
-//        set {
-//            _downloaded = newValue
-//            if newValue == true {
-//                downloadView.setIndicatorStatus(.Completed)
-//            } else {
-//                downloadView.setIndicatorStatus(.None)
-//            }
-//            
-//        }
-//        get {
-//            return _downloaded
-//        }
-//    }
     
     private var _ownedByUser = true
     var ownedByUser: Bool {
@@ -175,9 +159,9 @@ class AudioCell: UITableViewCell {
         if let audioItemBeingPlayed = notification.userInfo?["audioItem"] as? AudioItem {
             dispatch_async(dispatch_get_main_queue(), {
                 self.playing = audioItemBeingPlayed == self.audioItem!
-                if self.playing {
-                    self.downloadStatus = self.audioItem!.downloadStatus
-                }
+//                if self.playing {
+//                    self.downloadStatus = self.audioItem!.downloadStatus
+//                }
             })
         }
     }
@@ -233,19 +217,7 @@ class AudioCell: UITableViewCell {
             }
         }
     }
-    
-//    @objc func audioCachingPlayerItemWillDeinitNotificatoinHandler(notification: NSNotification) {
-//        if let deinitPlayerItemAudioItem = notification.userInfo?["audioItem"] as? AudioItem {
-//            if deinitPlayerItemAudioItem == audioItem {
-//                dispatch_async(dispatch_get_main_queue(), {
-////                    if self.downloadView.currentStatus != .Indeterminate {
-////                        self.downloaded = self._downloaded
-////                    }
-//                })
-//            }
-//        }
-//    }
-    
+        
     // MARK:
     
     override func awakeFromNib() {
@@ -301,8 +273,6 @@ class AudioCell: UITableViewCell {
         
         NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(cacheControllerDidUpdateDownloadingProgressOfAudioItemNotificationHandler), name: CacheControllerDidUpdateDownloadingProgressOfAudioItemNotification, object: nil)
         
-//        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(audioCachingPlayerItemWillDeinitNotificatoinHandler), name: AudioCachingPlayerItemWillDeinitNotificatoin, object: nil)
-        
     }
     
     override func layoutSubviews() {
@@ -314,10 +284,6 @@ class AudioCell: UITableViewCell {
         super.setSelected(selected, animated: animated)
         
         // Configure the view for the selected state
-    }
-    
-    deinit {
-        // TODO: Unregister from Notification Center?
     }
 
 }
