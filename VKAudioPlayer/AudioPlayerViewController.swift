@@ -83,9 +83,20 @@ class AudioPlayerViewController: UIViewController {
         downloadView.backgroundColor = UIColor.clearColor()
         downloadCancelButton = UIBarButtonItem(customView: downloadView)
         let staticImages = ACPCustomStaticImages()
-//        staticImages.updateColor(tintColor)
-        
         downloadView.setImages(staticImages)
+        downloadView.setActionForTap({ view in
+            
+            let audioItem = AudioController.sharedAudioController.currentAudioItem!
+            if audioItem.downloadStatus == AudioItemDownloadStatusCached {
+                // warning
+                CacheController.sharedCacheController.uncacheAudioItem(audioItem)
+            } else if audioItem.downloadStatus == AudioItemDownloadStatusNotCached {
+                CacheController.sharedCacheController.downloadAudioItem(audioItem)
+            } else {
+                CacheController.sharedCacheController.cancelDownloadingAudioItem(audioItem)
+            }
+            
+        })
         
         prevButton =  UIBarButtonItem(image: UIImage(named: "prev"), style: .Plain, target: self, action: #selector(prevButtonTapHandler))
         

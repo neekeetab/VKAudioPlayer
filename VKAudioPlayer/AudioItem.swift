@@ -25,9 +25,7 @@ class AudioItem: NSObject {
     var downloadStatus: Float {
         return CacheController.sharedCacheController.downloadStatusForAudioItem(self)
     }
-    var cached: Bool {
-        return Storage.sharedStorage.objectIsCached(String(self.id))
-    }
+
     var playing: Bool {
         return AudioController.sharedAudioController.currentAudioItem == self
     }

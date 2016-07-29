@@ -36,7 +36,7 @@ class CacheController: CachingPlayerItemDelegate {
         if audioItemsBeingDownloaded.count < numberOfSimultaneousDownloads {
             if let audioItem = audioItemsToDownoad.dequeue() {
                 
-                if audioItem.cached {
+                if audioItem.downloadStatus == AudioItemDownloadStatusCached {
                     downloadNextAudioItem()
                     return
                 }
@@ -62,6 +62,12 @@ class CacheController: CachingPlayerItemDelegate {
         audioItemsToDownoad.enqueue(audioItem)
         audioItemsToCancel.remove(audioItem)
         
+        let notification = NSNotification(name: CacheControllerDidUpdateDownloadStatusOfAudioItemNotification, object: nil, userInfo: [
+            "audioItem": audioItem,
+            "downloadStatus": 0.0
+            ])
+        NSNotificationCenter.defaultCenter().postNotification(notification)
+        
         audioItemsTotalDownloadStatus[audioItem] = 0.0
         if audioItemsBeingDownloaded.count < numberOfSimultaneousDownloads {
             downloadNextAudioItem()
@@ -85,7 +91,7 @@ class CacheController: CachingPlayerItemDelegate {
     
     func playerItemForAudioItem(audioItem: AudioItem, completionHandler: (playerItem: AudioCachingPlayerItem, cached: Bool)->()){
         
-        if audioItem.cached {
+        if audioItem.downloadStatus == AudioItemDownloadStatusCached {
             
             Storage.sharedStorage.object(String(audioItem.id), completion: { (data: NSData?) in
                 let playerItem = AudioCachingPlayerItem(data: data!, audioItem: audioItem)
@@ -119,6 +125,11 @@ class CacheController: CachingPlayerItemDelegate {
     
     func uncacheAudioItem(audioItem: AudioItem) {
         Storage.sharedStorage.remove(String(audioItem.id))
+        let notification = NSNotification(name: CacheControllerDidUpdateDownloadStatusOfAudioItemNotification, object: nil, userInfo: [
+            "audioItem": audioItem,
+            "downloadStatus": AudioItemDownloadStatusNotCached
+            ])
+        NSNotificationCenter.defaultCenter().postNotification(notification)
     }
     
     // MARK: CachingPlayerItem Delegate

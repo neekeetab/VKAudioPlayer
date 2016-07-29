@@ -160,9 +160,6 @@ class AudioCell: UITableViewCell {
         if let audioItemBeingPlayed = notification.userInfo?["audioItem"] as? AudioItem {
             dispatch_async(dispatch_get_main_queue(), {
                 self.playing = audioItemBeingPlayed == self.audioItem!
-//                if self.playing {
-//                    self.downloadStatus = self.audioItem!.downloadStatus
-//                }
             })
         }
     }
