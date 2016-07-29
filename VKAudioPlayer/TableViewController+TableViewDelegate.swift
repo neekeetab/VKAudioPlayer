@@ -60,8 +60,6 @@ extension TableViewController {
             tableView.contentInset = insets
             tableView.scrollIndicatorInsets = insets
         }
-        
-        
     
     }
     

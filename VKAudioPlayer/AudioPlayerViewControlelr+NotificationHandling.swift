@@ -10,22 +10,24 @@ import NAKPlaybackIndicatorView
 
 extension AudioPlayerViewController {
     
-    func audioControllerDidStartPlayingAudioItemNotificationHandler(notification: NSNotification) {
+    func audioContorllerWillStartPlayingAudioItemNotificationHandler(notification: NSNotification) {
         
         // need to update UI from main thread
         dispatch_async(dispatch_get_main_queue(), {
             let audioItem = notification.userInfo!["audioItem"] as! AudioItem
             self.popupItem.title = audioItem.title
             self.popupItem.subtitle = audioItem.artist
-            
-            let progress = CacheController.sharedCacheController.downloadStatusForAudioItem(audioItem)
-            if progress == AudioItemDownloadStatusCached || progress == AudioItemDownloadStatusNotCached {
-                self.popupItem.progress = 0
+            if audioItem.downloadStatus == AudioItemDownloadStatusCached {
+                self.downloadStatus = AudioItemDownloadStatusCached
             } else {
-                self.popupItem.progress = progress
+                self.downloadStatus = 0.0
             }
 
         })
+        
+    }
+    
+    func audioControllerDidStartPlayingAudioItemNotificationHandler(notification: NSNotification) {
         
     }
     
@@ -55,17 +57,17 @@ extension AudioPlayerViewController {
         let downloadStatus = notification.userInfo!["downloadStatus"] as! Float
         if audioItem == AudioController.sharedAudioController.currentAudioItem {
             dispatch_async(dispatch_get_main_queue(), {
-                if downloadStatus == AudioItemDownloadStatusNotCached || downloadStatus == AudioItemDownloadStatusCached {
-                    self.popupItem.progress = 0
-                } else {
-                    self.popupItem.progress = downloadStatus
-                }
+                self.downloadStatus = downloadStatus
             })
+            
         }
         
     }
     
     func subscribeToNotifications() {
+        
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(audioContorllerWillStartPlayingAudioItemNotificationHandler), name: AudioContorllerWillStartPlayingAudioItemNotification, object: nil)
+        
         NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(audioControllerDidStartPlayingAudioItemNotificationHandler), name: AudioControllerDidStartPlayingAudioItemNotification, object: nil)
         
         NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(audioControllerDidPauseAudioItemNotificationHandler), name: AudioControllerDidPauseAudioItemNotification, object: nil)
@@ -73,6 +75,7 @@ extension AudioPlayerViewController {
         NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(audioControllerDidResumeAudioItemNotificationHandler), name: AudioControllerDidResumeAudioItemNotification, object: nil)
         
         NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(cacheControllerDidUpdateDownloadingProgressOfAudioItemNotificationHandler), name: CacheControllerDidUpdateDownloadStatusOfAudioItemNotification, object: nil)
+        
     }
     
 }

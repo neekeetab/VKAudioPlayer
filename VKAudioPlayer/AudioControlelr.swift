@@ -61,6 +61,12 @@ class AudioController {
         self.indexOfcurrentAudioItem = index
     
         let audioItem = audioItemForAudioContextSection(audioContextSection, index: index)!
+        
+        let notification = NSNotification(name: AudioContorllerWillStartPlayingAudioItemNotification, object: nil, userInfo: [
+            "audioItem": audioItem
+            ])
+        NSNotificationCenter.defaultCenter().postNotification(notification)
+        
         CacheController.sharedCacheController.playerItemForAudioItem(audioItem, completionHandler: { playerItem, cached in
             
 //            self.player = AVPlayer(playerItem: playerItem)

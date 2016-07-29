@@ -8,6 +8,7 @@
 
 // AudioController
 let AudioControllerDidStartPlayingAudioItemNotification = "AudioControllerDidStartPlayingAudioItemNotification"
+let AudioContorllerWillStartPlayingAudioItemNotification = "AudioCOntorllerWillStartPlayingAudioItemNotification"
 let AudioControllerDidPauseAudioItemNotification = "AudioControllerDidPauseAudioItemNotification"
 let AudioControllerDidResumeAudioItemNotification = "AudioControllerDidResumeAudioItemNotification"
 
