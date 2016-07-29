@@ -10,6 +10,7 @@ import UIKit
 import NAKPlaybackIndicatorView
 import AddButton
 import ACPDownload
+import AVFoundation
 
 protocol AudioCellDelegate: class {
     func addButtonPressed(sender: AudioCell)
@@ -217,6 +218,15 @@ class AudioCell: UITableViewCell {
             }
         }
     }
+    
+    @objc private func playerItemDidPlayToEndNotificationHandler(notification: NSNotification) {
+        let playerItem = notification.object as? AudioCachingPlayerItem
+        if playerItem?.audioItem == self.audioItem {
+            dispatch_async(dispatch_get_main_queue(), {
+                self.playing = false
+            })
+        }
+    }
         
     // MARK:
     
@@ -243,9 +253,9 @@ class AudioCell: UITableViewCell {
         downloadView.setImages(staticImages)
             
         downloadView.setActionForTap({ downloadView, downloadStatus in
-            self.delegate?.downloadButtonPressed(self)
-            if downloadView.currentStatus == .None {
+            if self.audioItem!.downloadStatus == AudioItemDownloadStatusNotCached {
                 downloadView.setIndicatorStatus(.Indeterminate)
+                self.delegate?.downloadButtonPressed(self)
             } else if downloadView.currentStatus == .Indeterminate || downloadView.currentStatus == .Running {
                 self.delegate?.cancelButtonPressed(self)
             }
@@ -271,7 +281,12 @@ class AudioCell: UITableViewCell {
         
         NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(cacheControllerDidCancelDownloadingAudioItemNotificationHandler), name: CacheControllerDidCancelDownloadingAudioItemNotification, object: nil)
         
+//        AVPlayerItemDidPlayToEndTimeNotification
+        
         NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(cacheControllerDidUpdateDownloadingProgressOfAudioItemNotificationHandler), name: CacheControllerDidUpdateDownloadingProgressOfAudioItemNotification, object: nil)
+        
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(playerItemDidPlayToEndNotificationHandler), name: AVPlayerItemDidPlayToEndTimeNotification, object: nil)
+        
         
     }
     

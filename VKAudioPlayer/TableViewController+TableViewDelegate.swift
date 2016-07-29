@@ -33,10 +33,8 @@ extension TableViewController {
         
         audioPlayerViewController.popupItem.progress = 0.0
         tableView.deselectRowAtIndexPath(indexPath, animated: true)
-        
-        
+                
         let audioItem = audioItemForIndexPath(indexPath)
-//        print(AudioController.sharedAudioController.currentAudioItem)
         if AudioController.sharedAudioController.currentAudioItem == audioItem {
             return
         }
@@ -114,9 +112,7 @@ extension TableViewController {
         if indexPath.section == 1 {
             cell.ownedByUser = false
         }
-        
-//        cell.playing = false
-        
+    
         let audioItem = audioItemForIndexPath(indexPath)
         cell.audioItem = audioItem
         cell.title = audioItem.title

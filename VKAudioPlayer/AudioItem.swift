@@ -32,6 +32,16 @@ class AudioItem: NSObject {
         return AudioController.sharedAudioController.currentAudioItem == self
     }
     
+    override func isEqual(object: AnyObject?) -> Bool {
+        return (object as? AudioItem)?.id == self.id
+    }
+    
+    override var hashValue: Int {
+        get {
+            return id
+        }
+    }
+    
     static func audioItemFromVKResponseItem(responseItem: [String: AnyObject]) -> AudioItem {
         
         let audioItem = AudioItem()

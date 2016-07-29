@@ -36,6 +36,8 @@ class CacheController: CachingPlayerItemDelegate {
         if audioItemsBeingDownloaded.count < numberOfSimultaneousDownloads {
             if let audioItem = audioItemsToDownoad.dequeue() {
             
+                print("dequeued item: \(audioItem.title)")
+                
                 if audioItem.cached {
                     downloadNextAudioItem()
                     return
@@ -79,6 +81,7 @@ class CacheController: CachingPlayerItemDelegate {
             "audioItem": audioItem
             ])
         NSNotificationCenter.defaultCenter().postNotification(notification)
+        downloadNextAudioItem()
     }
     
     func playerItemForAudioItem(audioItem: AudioItem, completionHandler: (playerItem: AudioCachingPlayerItem, cached: Bool)->()){
