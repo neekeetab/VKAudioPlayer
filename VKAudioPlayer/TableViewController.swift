@@ -110,7 +110,7 @@ class TableViewController: UITableViewController {
             self.indicatorView.stopAnimating()
             if state == VKAuthorizationState.Authorized {
                 // ready to go
-                print(VKSdk.accessToken().accessToken)
+//                print(VKSdk.accessToken().accessToken)
                 let audioRequestDescription = AudioRequestDescription.userAudioRequestDescription()
                 self.initializeContext(audioRequestDescription)
             } else if state == VKAuthorizationState.Initialized {
@@ -134,6 +134,8 @@ class TableViewController: UITableViewController {
         searchController.dimsBackgroundDuringPresentation = false
         tableView.tableHeaderView = searchController.searchBar
         tableView.tableFooterView = footerView
+        
+        navigationController?.popupContentView.popupCloseButton?.setImage(UIImage(named: "DismissChevron"), forState: .Normal)
         
     }
     

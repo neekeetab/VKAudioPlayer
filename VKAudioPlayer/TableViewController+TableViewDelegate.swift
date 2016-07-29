@@ -31,9 +31,10 @@ extension TableViewController {
     
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         
-        audioPlayerViewController.popupItem.progress = 0.0
         tableView.deselectRowAtIndexPath(indexPath, animated: true)
-                
+        
+        // -----------------------------
+        
         let audioItem = audioItemForIndexPath(indexPath)
         if AudioController.sharedAudioController.currentAudioItem == audioItem {
             return
@@ -50,29 +51,18 @@ extension TableViewController {
         
         // ----------------------------
         
-        navigationController!.presentPopupBarWithContentViewController(audioPlayerViewController, animated: true, completion: {})
+        if navigationController!.popupBar == nil {
+            // when tapping for a first time
+            
+            navigationController!.presentPopupBarWithContentViewController(audioPlayerViewController, animated: true, completion: {})
+            
+            let insets = UIEdgeInsetsMake(topLayoutGuide.length, 0, 40, 0)
+            tableView.contentInset = insets
+            tableView.scrollIndicatorInsets = insets
+        }
         
-        let insets = UIEdgeInsetsMake(topLayoutGuide.length, 0, 40, 0)
-        tableView.contentInset = insets
-        tableView.scrollIndicatorInsets = insets
         
-        navigationController?.popupContentView.popupCloseButton?.setImage(UIImage(named: "DismissChevron"), forState: .Normal)
-        
-        let pause = UIBarButtonItem(image: UIImage(named: "pause"), style: .Plain, target: nil, action: nil)
-        let prev = UIBarButtonItem(image: UIImage(named: "prev"), style: .Plain, target: nil, action: nil)
-        let next = UIBarButtonItem(image: UIImage(named: "nextFwd"), style: .Plain, target: nil, action: nil)
-        let save = UIBarButtonItem(image: UIImage(named: "downloadButton"), style: .Plain, target: nil, action: nil)
-//        let list = UIBarButtonItem(image: UIImage(named: "next"), style: .Plain, target: nil, action: nil)
-        
-        audioPlayerViewController.popupItem.leftBarButtonItems = [ prev, pause, next ]
-        audioPlayerViewController.popupItem.rightBarButtonItems = [ save ]
-        
-        audioPlayerViewController.popupItem.subtitle = audioItemForIndexPath(indexPath).artist
-        audioPlayerViewController.popupItem.title = audioItemForIndexPath(indexPath).title
-        
-//        print(audioItemForIndexPath(indexPath).url)
-
-        
+    
     }
     
     override func numberOfSectionsInTableView(tableView: UITableView) -> Int {

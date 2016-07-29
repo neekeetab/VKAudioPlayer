@@ -35,8 +35,6 @@ class CacheController: CachingPlayerItemDelegate {
     private func downloadNextAudioItem() {
         if audioItemsBeingDownloaded.count < numberOfSimultaneousDownloads {
             if let audioItem = audioItemsToDownoad.dequeue() {
-            
-                print("dequeued item: \(audioItem.title)")
                 
                 if audioItem.cached {
                     downloadNextAudioItem()
@@ -77,8 +75,9 @@ class CacheController: CachingPlayerItemDelegate {
             audioItemsToCancel.insert(audioItem)
         }
         audioItemsTotalDownloadStatus.removeValueForKey(audioItem)
-        let notification = NSNotification(name: CacheControllerDidCancelDownloadingAudioItemNotification, object: nil, userInfo: [
-            "audioItem": audioItem
+        let notification = NSNotification(name: CacheControllerDidUpdateDownloadStatusOfAudioItemNotification, object: nil, userInfo: [
+            "audioItem": audioItem,
+            "downloadStatus": downloadStatusForAudioItem(audioItem)
             ])
         NSNotificationCenter.defaultCenter().postNotification(notification)
         downloadNextAudioItem()
@@ -127,11 +126,10 @@ class CacheController: CachingPlayerItemDelegate {
     @objc func playerItem(playerItem: CachingPlayerItem, didDownloadBytesSoFar bytesDownloaded: Int, outOf bytesExpected: Int) {
         
         let audioItem = (playerItem as! AudioCachingPlayerItem).audioItem
-        audioItemsTotalDownloadStatus[audioItem] = Float(Double(bytesExpected)/Double(bytesDownloaded))
-        let notification = NSNotification(name: CacheControllerDidUpdateDownloadingProgressOfAudioItemNotification, object: nil, userInfo: [
+        audioItemsTotalDownloadStatus[audioItem] = Float(Double(bytesDownloaded)/Double(bytesExpected))
+        let notification = NSNotification(name: CacheControllerDidUpdateDownloadStatusOfAudioItemNotification, object: nil, userInfo: [
             "audioItem": audioItem,
-            "bytesDownloaded": bytesDownloaded,
-            "bytesExpected": bytesExpected
+            "downloadStatus": downloadStatusForAudioItem(audioItem)
             ])
         NSNotificationCenter.defaultCenter().postNotification(notification)
     }
@@ -145,8 +143,9 @@ class CacheController: CachingPlayerItemDelegate {
         
         Storage.sharedStorage.add(String(audioItem.id), object: data)
         
-        let notification = NSNotification(name: CacheControllerDidCacheAudioItemNotification, object: nil, userInfo: [
-            "audioItem": audioItem
+        let notification = NSNotification(name: CacheControllerDidUpdateDownloadStatusOfAudioItemNotification, object: nil, userInfo: [
+            "audioItem": audioItem,
+            "downloadStatus": AudioItemDownloadStatusCached
             ])
         NSNotificationCenter.defaultCenter().postNotification(notification)
     }
@@ -166,8 +165,9 @@ class CacheController: CachingPlayerItemDelegate {
         let audioItem = (playerItem as! AudioCachingPlayerItem).audioItem
         if let _ = audioItemsTotalDownloadStatus[audioItem] {
             audioItemsTotalDownloadStatus.removeValueForKey(audioItem)
-            let notification = NSNotification(name: CacheControllerDidCancelDownloadingAudioItemNotification, object: nil, userInfo: [
-                "audioItem": audioItem
+            let notification = NSNotification(name: CacheControllerDidUpdateDownloadStatusOfAudioItemNotification, object: nil, userInfo: [
+                "audioItem": audioItem,
+                "downloadStatus": downloadStatusForAudioItem(audioItem)
                 ])
             NSNotificationCenter.defaultCenter().postNotification(notification)
         }

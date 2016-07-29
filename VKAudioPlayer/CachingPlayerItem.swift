@@ -96,7 +96,7 @@ class CachingPlayerItem: AVPlayerItem {
         
         func URLSession(session: NSURLSession, task: NSURLSessionTask, didCompleteWithError error: NSError?) {
             if error != nil {
-                print(error)
+                //                print(error)
                 return
             }
             processPendingRequests()
@@ -238,6 +238,7 @@ class CachingPlayerItem: AVPlayerItem {
     }
     
     // MARK:
+    
     deinit {
         NSNotificationCenter.defaultCenter().removeObserver(self)
         removeObserver(self, forKeyPath: "status")

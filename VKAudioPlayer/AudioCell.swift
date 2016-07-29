@@ -186,34 +186,13 @@ class AudioCell: UITableViewCell {
             }
         }
     }
-    
-    @objc private func cacheControllerDidCacheAudioItemNotificationHandler(notification: NSNotification) {
-        if let cachedAudioItem = notification.userInfo?["audioItem"] as? AudioItem {
-            if cachedAudioItem == audioItem {
+        
+    @objc private func cacheControllerDidUpdateDownloadStatusOfAudioItemNotificationHandler(notification: NSNotification) {
+        if let updatedAudioItem = notification.userInfo?["audioItem"] as? AudioItem {
+            if updatedAudioItem == audioItem {
+                let downloadStatus = notification.userInfo?["downloadStatus"] as? Float
                 dispatch_async(dispatch_get_main_queue(), {
-                    self.downloadStatus = AudioItemDownloadStatusCached
-                })
-            }
-        }
-    }
-    
-    @objc private func cacheControllerDidCancelDownloadingAudioItemNotificationHandler(notification: NSNotification) {
-        if let canceledAudioItem = notification.userInfo?["audioItem"] as? AudioItem {
-            if canceledAudioItem == audioItem {
-                dispatch_async(dispatch_get_main_queue(), {
-                    self.downloadStatus = AudioItemDownloadStatusNotCached
-                })
-            }
-        }
-    }
-    
-    @objc private func cacheControllerDidUpdateDownloadingProgressOfAudioItemNotificationHandler(notification: NSNotification) {
-        if let downloadingAudioItem = notification.userInfo?["audioItem"] as? AudioItem {
-            if downloadingAudioItem == audioItem {
-                let bytesDownloaded = notification.userInfo?["bytesDownloaded"] as? Int
-                let bytesExpected = notification.userInfo?["bytesExpected"] as? Int
-                dispatch_async(dispatch_get_main_queue(), {
-                    self.downloadStatus = Float(Double(bytesDownloaded!)/Double(bytesExpected!))
+                    self.downloadStatus = downloadStatus
                 })
             }
         }
@@ -277,13 +256,7 @@ class AudioCell: UITableViewCell {
         
         NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(audioControllerDidResumeAudioItemNotificationHandler), name: AudioControllerDidResumeAudioItemNotification, object: nil)
         
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(cacheControllerDidCacheAudioItemNotificationHandler), name: CacheControllerDidCacheAudioItemNotification, object: nil)
-        
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(cacheControllerDidCancelDownloadingAudioItemNotificationHandler), name: CacheControllerDidCancelDownloadingAudioItemNotification, object: nil)
-        
-//        AVPlayerItemDidPlayToEndTimeNotification
-        
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(cacheControllerDidUpdateDownloadingProgressOfAudioItemNotificationHandler), name: CacheControllerDidUpdateDownloadingProgressOfAudioItemNotification, object: nil)
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(cacheControllerDidUpdateDownloadStatusOfAudioItemNotificationHandler), name: CacheControllerDidUpdateDownloadStatusOfAudioItemNotification, object: nil)
         
         NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(playerItemDidPlayToEndNotificationHandler), name: AVPlayerItemDidPlayToEndTimeNotification, object: nil)
         

@@ -79,6 +79,10 @@ class AudioController {
         })
     }
     
+    var paused: Bool {
+        return !((player.rate != 0) && (player.error == nil))
+    }
+    
     func resume() {
         player.play()
         if let audioItem = currentAudioItem {
