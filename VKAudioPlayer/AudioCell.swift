@@ -80,6 +80,7 @@ class AudioCell: UITableViewCell {
             _playing = newValue
             if newValue == true {
                 showPlaybackIndicator()
+                paused = AudioController.sharedAudioController.paused
             } else {
                 showDownloadView()
             }

@@ -26,11 +26,11 @@ extension AudioPlayerViewController {
     }
     
     func prevButtonTapHandler() {
-        
+        AudioController.sharedAudioController.prev()
     }
     
     func nextButtonTapHandler() {
-        
+        AudioController.sharedAudioController.next()
     }
     
     func downloadCancelButtonTapHandler() {

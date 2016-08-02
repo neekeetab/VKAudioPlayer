@@ -41,7 +41,7 @@ extension TableViewController {
             showMessage("Audio is removed by copyright holder", title: "Can't play this item")
         }
         
-        if AudioController.sharedAudioController.currentAudioItem == audioItem {
+        if AudioController.sharedAudioController.currentAudioItem == audioItem && !AudioController.sharedAudioController.playedToEnd {
             return
         }
         
@@ -148,7 +148,7 @@ extension TableViewController {
                 let request = VKRequest.deleteAudioRequest(audioItem)
                 request.executeWithResultBlock({ response in
                     if response.success() {
-                       self.showMessage("audio has been deleted!", title: "")
+                       self.showMessage("", title: "Audio has been deleted")
                     } else {
                         self.showError("unknown")
                     }

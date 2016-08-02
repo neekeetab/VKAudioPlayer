@@ -17,6 +17,7 @@ extension TableViewController: UISearchResultsUpdating, UISearchBarDelegate {
             refreshControl = nil
             let audioRequestDescription = AudioRequestDescription.searchAudioRequestDescription(searchController.searchBar.text!)
             initializeContext(audioRequestDescription)
+            tableView.reloadData()
         }
     }
     
@@ -32,6 +33,8 @@ extension TableViewController: UISearchResultsUpdating, UISearchBarDelegate {
         })
         
         tableView.setContentOffset(tableView.contentOffset, animated: false)
+
+        tableView.reloadData()
         
     }
     

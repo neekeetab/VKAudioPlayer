@@ -27,7 +27,7 @@ class AudioItem: NSObject {
     }
 
     var playing: Bool {
-        return AudioController.sharedAudioController.currentAudioItem == self
+        return AudioController.sharedAudioController.playedToEnd == false && AudioController.sharedAudioController.currentAudioItem == self
     }
     
     override func isEqual(object: AnyObject?) -> Bool {

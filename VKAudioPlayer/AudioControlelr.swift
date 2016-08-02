@@ -35,7 +35,7 @@ class AudioController {
         return audioItemForAudioContext(audioContext, audioContextSection: audioContextSection, index: indexOfCurrentAudioItem)
     }
     
-    var _repeatMode: AudioControllerRepeatMode = .Dont
+    var _repeatMode: AudioControllerRepeatMode = .All
     var repeatMode: AudioControllerRepeatMode {
         get {
             return _repeatMode
@@ -46,12 +46,18 @@ class AudioController {
     }
     
     func audioItemForAudioContext(audioContext: AudioContext?, audioContextSection: AudioContextSection?, index: Int?) -> AudioItem? {
-        if audioContextSection == nil || index == nil || audioContext == nil {
+        if audioContextSection == nil || index == nil || audioContext == nil || index! < 0{
             return nil
         }
         if audioContextSection == .GlobalAudio {
+            if index! >= audioContext!.globalAudio.count {
+                return nil
+            }
             return audioContext!.globalAudio[index!]
         } else if audioContextSection == .UserAudio {
+            if index! >= audioContext!.userAudio.count {
+                return nil
+            }
             return audioContext!.userAudio[index!]
         }
         return nil
@@ -122,7 +128,37 @@ class AudioController {
         playAudioItemFromContext(audioContext, audioContextSection: audioContextSection, index: indexOfCurrentAudioItem)
     }
     
-    // TODO:  next, prev
+    func next() {
+        if indexOfCurrentAudioItem == nil || audioContextSection == nil || audioContext == nil {
+            return
+        }
+        if audioItemForAudioContext(audioContext, audioContextSection: audioContextSection, index: indexOfCurrentAudioItem! + 1) != nil {
+            indexOfCurrentAudioItem! += 1
+        } else {
+            indexOfCurrentAudioItem = 0
+        }
+        playAudioItemFromContext(audioContext, audioContextSection: audioContextSection, index: indexOfCurrentAudioItem)
+    }
+    
+    func prev() {
+        if indexOfCurrentAudioItem == nil || audioContextSection == nil || audioContext == nil {
+            return
+        }
+        if audioItemForAudioContext(audioContext, audioContextSection: audioContextSection, index: indexOfCurrentAudioItem! - 1) != nil {
+            indexOfCurrentAudioItem! -= 1
+        } else {
+            switch audioContextSection! {
+            case .GlobalAudio:
+                indexOfCurrentAudioItem = audioContext!.globalAudio.count - 1
+                break
+                
+            case .UserAudio:
+                indexOfCurrentAudioItem = audioContext!.userAudio.count - 1
+                break
+            }
+        }
+        playAudioItemFromContext(audioContext, audioContextSection: audioContextSection, index: indexOfCurrentAudioItem)
+    }
     
     // MARK: Notifications handling
     
@@ -130,20 +166,20 @@ class AudioController {
         
         playedToEnd = true
         
-        let notification = NSNotification(name: AudioControllerDidPlayAudioItemToEndNotification, object: nil, userInfo: [
-            "audioItem": currentAudioItem!
-            ])
-        NSNotificationCenter.defaultCenter().postNotification(notification)
-        
         switch repeatMode {
         case .Dont:
+            let notification = NSNotification(name: AudioControllerDidPlayAudioItemToEndNotification, object: nil, userInfo: [
+                "audioItem": currentAudioItem!
+                ])
+            NSNotificationCenter.defaultCenter().postNotification(notification)
             break
             
         case .One:
-            playAudioItemFromContext(audioContext, audioContextSection: audioContextSection, index: indexOfCurrentAudioItem)
+            replay()
             break
             
-        default:
+        case .All:
+            next()
             break
         }
         

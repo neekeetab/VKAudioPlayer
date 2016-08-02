@@ -16,7 +16,7 @@ extension TableViewController: AudioCellDelegate {
         let audioItem = audioItemForIndexPath(indexPath!)
         let request = VKRequest.addAudioRequest(audioItem)
         request.executeWithResultBlock({ response in
-            self.showMessage("audio has been added!", title: "id: \(response.audioId())")
+            self.showMessage("", title: "Audio has been added")
             sender.ownedByUser = true
         }, errorBlock: { error in
             self.showError(error.description)
