@@ -14,7 +14,7 @@ class AudioCachingPlayerItem: CachingPlayerItem {
     
     init(audioItem: AudioItem) {
         self.audioItem = audioItem
-        super.init(url: audioItem.url)
+        super.init(url: audioItem.url!)
     }
     
     init(data: NSData, audioItem: AudioItem) {

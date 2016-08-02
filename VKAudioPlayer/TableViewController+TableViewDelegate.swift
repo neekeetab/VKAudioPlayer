@@ -36,6 +36,11 @@ extension TableViewController {
         // -----------------------------
         
         let audioItem = audioItemForIndexPath(indexPath)
+        
+        if audioItem.url == nil && audioItem.downloadStatus != AudioItemDownloadStatusCached {
+            showMessage("Audio is removed by copyright holder", title: "Can't play this item")
+        }
+        
         if AudioController.sharedAudioController.currentAudioItem == audioItem {
             return
         }
@@ -55,6 +60,7 @@ extension TableViewController {
             // when tapping for a first time
             
             navigationController!.presentPopupBarWithContentViewController(audioPlayerViewController, animated: true, completion: {})
+            navigationController!.view.bringSubviewToFront(self.navigationController!.popupContentView)
             
             let insets = UIEdgeInsetsMake(topLayoutGuide.length, 0, 40, 0)
             tableView.contentInset = insets
@@ -107,7 +113,8 @@ extension TableViewController {
         cell.artist = audioItem.artist
         cell.playing = audioItem.playing
         cell.downloadStatus = audioItem.downloadStatus
-
+        cell.enabled = audioItem.url != nil || audioItem.downloadStatus == AudioItemDownloadStatusCached
+        
         return cell
     }
     

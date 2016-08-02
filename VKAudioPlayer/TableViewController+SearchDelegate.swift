@@ -31,6 +31,8 @@ extension TableViewController: UISearchResultsUpdating, UISearchBarDelegate {
             self.navigationController?.view.bringSubviewToFront(self.navigationController!.popupContentView)
         })
         
+        tableView.setContentOffset(tableView.contentOffset, animated: false)
+        
     }
     
     func searchBarSearchButtonClicked(searchBar: UISearchBar) {}

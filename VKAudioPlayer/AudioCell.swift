@@ -147,6 +147,25 @@ class AudioCell: UITableViewCell {
         }
     }
     
+    private var _enabled = true
+    var enabled: Bool {
+        set {
+            _enabled = newValue
+            if newValue == true {
+                downloadView.userInteractionEnabled = true
+                addButton.enabled = true
+                contentView.alpha = 1.0
+            } else {
+                downloadView.userInteractionEnabled = false
+                addButton.enabled = false
+                contentView.alpha = 0.5
+            }
+        }
+        get {
+            return _enabled
+        }
+    }
+    
     // MARK:
     
     @IBAction func addButtonPressed() {

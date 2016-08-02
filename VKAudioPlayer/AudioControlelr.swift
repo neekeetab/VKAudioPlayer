@@ -32,7 +32,7 @@ class AudioController {
     
     
     var currentAudioItem: AudioItem? {
-        return audioItemForAudioContextSection(audioContextSection, index: indexOfCurrentAudioItem)
+        return audioItemForAudioContext(audioContext, audioContextSection: audioContextSection, index: indexOfCurrentAudioItem)
     }
     
     var _repeatMode: AudioControllerRepeatMode = .Dont
@@ -45,27 +45,33 @@ class AudioController {
         }
     }
     
-    func audioItemForAudioContextSection(audioContextSection: AudioContextSection?, index: Int?) -> AudioItem? {
-        if audioContextSection == nil || index == nil {
+    func audioItemForAudioContext(audioContext: AudioContext?, audioContextSection: AudioContextSection?, index: Int?) -> AudioItem? {
+        if audioContextSection == nil || index == nil || audioContext == nil {
             return nil
         }
         if audioContextSection == .GlobalAudio {
-            return audioContext?.globalAudio[index!]
+            return audioContext!.globalAudio[index!]
         } else if audioContextSection == .UserAudio {
-            return audioContext?.userAudio[index!]
+            return audioContext!.userAudio[index!]
         }
         return nil
     }
     
     func playAudioItemFromContext(audioContext: AudioContext?, audioContextSection: AudioContextSection?, index: Int?) {
         
-        playedToEnd = false
-        
-        self.audioContext = audioContext
-        self.audioContextSection = audioContextSection
-        self.indexOfCurrentAudioItem = index
-    
-        if let audioItem = audioItemForAudioContextSection(audioContextSection, index: index) {
+        if let audioItem = audioItemForAudioContext(audioContext, audioContextSection: audioContextSection, index: index) {
+            
+            if audioItem.url == nil && audioItem.downloadStatus != AudioItemDownloadStatusCached {
+                return
+            }
+            
+            playedToEnd = false
+            
+            self.audioContext = audioContext
+            self.audioContextSection = audioContextSection
+            self.indexOfCurrentAudioItem = index
+            
+            // --------------------------------------------
 
             let notification = NSNotification(name: AudioContorllerWillStartPlayingAudioItemNotification, object: nil, userInfo: [
                 "audioItem": audioItem
@@ -73,9 +79,6 @@ class AudioController {
             NSNotificationCenter.defaultCenter().postNotification(notification)
             
             CacheController.sharedCacheController.playerItemForAudioItem(audioItem, completionHandler: { playerItem, cached in
-                
-    //            self.player = AVPlayer(playerItem: playerItem)
-    //            self.player.play()
                 
                 dispatch_async(dispatch_get_main_queue(), {
                     self.player.replaceCurrentItemWithPlayerItem(playerItem)

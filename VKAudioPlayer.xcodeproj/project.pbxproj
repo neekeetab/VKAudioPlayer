@@ -26,7 +26,7 @@
 		1160EF111CF65493007DB453 /* SearchAudioRequestDescription.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1160EF101CF65493007DB453 /* SearchAudioRequestDescription.swift */; };
 		1167622C1D39126700041BC1 /* CachingPlayerItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1167622B1D39126700041BC1 /* CachingPlayerItem.swift */; };
 		11AE1C6D1D1F1F21003C8797 /* TableViewController+VKDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11AE1C6C1D1F1F21003C8797 /* TableViewController+VKDelegate.swift */; };
-		11AEDAA81CFA59E700E2BBDC /* UIViewController+Messages.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11AEDAA71CFA59E700E2BBDC /* UIViewController+Messages.swift */; };
+		11AEDAA81CFA59E700E2BBDC /* TableViewControler+Messages.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11AEDAA71CFA59E700E2BBDC /* TableViewControler+Messages.swift */; };
 		11B4D2E91D4B0E8700401E7E /* AudioPlayerViewControlelr+NotificationHandling.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11B4D2E81D4B0E8700401E7E /* AudioPlayerViewControlelr+NotificationHandling.swift */; };
 		11B4D2EB1D4B115A00401E7E /* AudioPlayerViewController+ButtonsTapHandling.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11B4D2EA1D4B115A00401E7E /* AudioPlayerViewController+ButtonsTapHandling.swift */; };
 		11BAEBED1D3CF2F500F45A7D /* Storage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11BAEBEC1D3CF2F500F45A7D /* Storage.swift */; };
@@ -68,7 +68,7 @@
 		1160EF101CF65493007DB453 /* SearchAudioRequestDescription.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchAudioRequestDescription.swift; sourceTree = "<group>"; };
 		1167622B1D39126700041BC1 /* CachingPlayerItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = CachingPlayerItem.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		11AE1C6C1D1F1F21003C8797 /* TableViewController+VKDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "TableViewController+VKDelegate.swift"; sourceTree = "<group>"; };
-		11AEDAA71CFA59E700E2BBDC /* UIViewController+Messages.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIViewController+Messages.swift"; sourceTree = "<group>"; };
+		11AEDAA71CFA59E700E2BBDC /* TableViewControler+Messages.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "TableViewControler+Messages.swift"; sourceTree = "<group>"; };
 		11B4D2E81D4B0E8700401E7E /* AudioPlayerViewControlelr+NotificationHandling.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "AudioPlayerViewControlelr+NotificationHandling.swift"; sourceTree = "<group>"; };
 		11B4D2EA1D4B115A00401E7E /* AudioPlayerViewController+ButtonsTapHandling.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "AudioPlayerViewController+ButtonsTapHandling.swift"; sourceTree = "<group>"; };
 		11BAEBEC1D3CF2F500F45A7D /* Storage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Storage.swift; sourceTree = "<group>"; };
@@ -117,7 +117,6 @@
 			children = (
 				111DE65E1CF9E182006CBCDB /* AudioPlayerViewController */,
 				11DD92D41CF4DAAB00A8FC4A /* TableViewController */,
-				11AEDAA71CFA59E700E2BBDC /* UIViewController+Messages.swift */,
 			);
 			name = ViewControllers;
 			sourceTree = "<group>";
@@ -187,6 +186,7 @@
 				11DD92C61CF49D2A00A8FC4A /* TableViewController+SearchDelegate.swift */,
 				11DD92C41CF49CAE00A8FC4A /* TableViewController+TableViewDelegate.swift */,
 				11F3B8971D1984A8005E3452 /* TableViewController+AudioCellDelegate.swift */,
+				11AEDAA71CFA59E700E2BBDC /* TableViewControler+Messages.swift */,
 			);
 			name = TableViewController;
 			sourceTree = "<group>";
@@ -391,7 +391,7 @@
 				11F3B8981D1984A8005E3452 /* TableViewController+AudioCellDelegate.swift in Sources */,
 				11EF779F1D20626F00AEA610 /* Audio.swift in Sources */,
 				11C8920F1D3E239E00FF5524 /* Queue.swift in Sources */,
-				11AEDAA81CFA59E700E2BBDC /* UIViewController+Messages.swift in Sources */,
+				11AEDAA81CFA59E700E2BBDC /* TableViewControler+Messages.swift in Sources */,
 				112F3A101D3E49F300E7648B /* AudioContext.swift in Sources */,
 				112F3A0E1D3E49C100E7648B /* AudioControlelr.swift in Sources */,
 				11BAEBED1D3CF2F500F45A7D /* Storage.swift in Sources */,

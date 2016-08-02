@@ -19,7 +19,7 @@ class AudioItem: NSObject {
     var ownerId = 0
     var artist = ""
     var title = ""
-    var url = NSURL()
+    var url: NSURL? = nil
     var duration = 0
 
     var downloadStatus: Float {
@@ -47,9 +47,11 @@ class AudioItem: NSObject {
         audioItem.ownerId = responseItem["owner_id"] as! Int
         audioItem.artist = responseItem["artist"] as! String
         audioItem.title = responseItem["title"] as! String
-        audioItem.url =  NSURL(string: responseItem["url"] as! String)!
+        let urlString = responseItem["url"] as! String
+        if urlString.characters.count > 10 {
+            audioItem.url =  NSURL(string: urlString)
+        }
         audioItem.duration = responseItem["duration"] as! Int
-        
         return  audioItem
         
     }
