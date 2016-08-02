@@ -6,7 +6,7 @@
 //  Copyright © 2016 Nikita Belousov. All rights reserved.
 //
 
-import Foundation
+import MediaPlayer
 import AVFoundation
 
 enum AudioControllerRepeatMode {
@@ -20,7 +20,7 @@ enum AudioContextSection {
     case GlobalAudio
 }
 
-class AudioController {
+class AudioController: NSObject {
     
     static let sharedAudioController = AudioController()
     
@@ -28,7 +28,7 @@ class AudioController {
     private(set) var indexOfCurrentAudioItem: Int?
     private(set) var audioContext: AudioContext?
     private(set) var audioContextSection: AudioContextSection?
-    // means that currentAudioItem is played fully
+    // means currentAudioItem is played fully
     private(set) var playedToEnd: Bool = false
     
     var repeatMode: AudioControllerRepeatMode = .All
@@ -61,7 +61,7 @@ class AudioController {
         return nil
     }
     
-    // MARK: Control
+    // Controls
     
     func playAudioItemFromContext(audioContext: AudioContext?, audioContextSection: AudioContextSection?, index: Int?) {
         
@@ -88,14 +88,21 @@ class AudioController {
             // get playerItem
             CacheController.sharedCacheController.playerItemForAudioItem(audioItem, completionHandler: { playerItem, cached in
                 
-                // play from main thread
+                // play it from main thread
                 dispatch_async(dispatch_get_main_queue(), {
                     self.player.replaceCurrentItemWithPlayerItem(playerItem)
                     self.player.seekToTime(CMTime(seconds: 0, preferredTimescale: 1))
                     self.player.play()
                 })
                 
-                // post notification that we are started to play
+                // update media center
+                MPNowPlayingInfoCenter.defaultCenter().nowPlayingInfo = [
+                    MPMediaItemPropertyTitle: audioItem.title,
+                    MPMediaItemPropertyArtist: audioItem.artist,
+                    MPMediaItemPropertyPlaybackDuration: audioItem.duration
+                ]
+                
+                // post notification that we have started to play
                 let notification = NSNotification(name: AudioControllerDidStartPlayingAudioItemNotification, object: nil, userInfo: [
                     "audioItem": playerItem.audioItem
                     ])
@@ -104,7 +111,7 @@ class AudioController {
         }
     }
     
-    func resume() {
+    @objc func resume() {
         player.play()
         if let audioItem = currentAudioItem {
             let notification = NSNotification(name: AudioControllerDidResumeAudioItemNotification, object: nil, userInfo: [
@@ -113,8 +120,8 @@ class AudioController {
             NSNotificationCenter.defaultCenter().postNotification(notification)
         }
     }
-
-    func pause() {
+    
+    @objc func pause() {
         player.pause()
         if let audioItem = currentAudioItem {
             let notification = NSNotification(name: AudioControllerDidPauseAudioItemNotification, object: nil, userInfo: [
@@ -128,12 +135,12 @@ class AudioController {
         playAudioItemFromContext(audioContext, audioContextSection: audioContextSection, index: indexOfCurrentAudioItem)
     }
     
-    func next() {
+    @objc func next() {
         if indexOfCurrentAudioItem == nil || audioContextSection == nil || audioContext == nil {
             return
         }
         
-        // play next if exists, else play first
+        // play next audioItem if exists, else play first audioItem
         if audioItemForAudioContext(audioContext, audioContextSection: audioContextSection, index: indexOfCurrentAudioItem! + 1) != nil {
             indexOfCurrentAudioItem! += 1
         } else {
@@ -142,7 +149,7 @@ class AudioController {
         playAudioItemFromContext(audioContext, audioContextSection: audioContextSection, index: indexOfCurrentAudioItem)
     }
     
-    func prev() {
+    @objc func prev() {
         if indexOfCurrentAudioItem == nil || audioContextSection == nil || audioContext == nil {
             return
         }
@@ -154,7 +161,7 @@ class AudioController {
             return
         }
         
-        // play previuos if it exists, else play last
+        // play previuos audioItem if it exists, else play last audioItem
         if audioItemForAudioContext(audioContext, audioContextSection: audioContextSection, index: indexOfCurrentAudioItem! - 1) != nil {
             indexOfCurrentAudioItem! -= 1
         } else {
@@ -171,6 +178,35 @@ class AudioController {
         playAudioItemFromContext(audioContext, audioContextSection: audioContextSection, index: indexOfCurrentAudioItem)
     }
     
+    private var _seekBackwardFlag = false
+    func seekBackward() {
+        _seekBackwardFlag = !_seekBackwardFlag
+        if _seekBackwardFlag {
+            player.rate = -10.0
+            MPNowPlayingInfoCenter.defaultCenter().nowPlayingInfo![MPNowPlayingInfoPropertyElapsedPlaybackTime] = player.currentTime().seconds
+            MPNowPlayingInfoCenter.defaultCenter().nowPlayingInfo![MPNowPlayingInfoPropertyPlaybackRate] = -10.0
+        } else {
+            player.rate = 1.0
+            MPNowPlayingInfoCenter.defaultCenter().nowPlayingInfo![MPNowPlayingInfoPropertyElapsedPlaybackTime] = player.currentTime().seconds
+            MPNowPlayingInfoCenter.defaultCenter().nowPlayingInfo![MPNowPlayingInfoPropertyPlaybackRate] = 1.0
+        }
+    }
+    
+    private var _seekForwardFlag = false
+    func seekForward() {
+        _seekForwardFlag = !_seekForwardFlag
+        if _seekForwardFlag {
+            player.rate = 10.0
+            MPNowPlayingInfoCenter.defaultCenter().nowPlayingInfo![MPNowPlayingInfoPropertyElapsedPlaybackTime] = player.currentTime().seconds
+            MPNowPlayingInfoCenter.defaultCenter().nowPlayingInfo![MPNowPlayingInfoPropertyPlaybackRate] = 10.0
+            
+        } else {
+            player.rate = 1.0
+            MPNowPlayingInfoCenter.defaultCenter().nowPlayingInfo![MPNowPlayingInfoPropertyElapsedPlaybackTime] = player.currentTime().seconds
+            MPNowPlayingInfoCenter.defaultCenter().nowPlayingInfo![MPNowPlayingInfoPropertyPlaybackRate] = 1.0
+        }
+    }
+
     // MARK: Notification handling
     
     @objc private func playerItemDidPlayToEndNotificationHandler(notification: NSNotification) {
@@ -196,10 +232,38 @@ class AudioController {
         
     }
     
+    // MARK: Command Center configuration
+    
+    private func configureCommandCenter() {
+        
+        let commandCenter = MPRemoteCommandCenter.sharedCommandCenter()
+        
+        commandCenter.previousTrackCommand.enabled = true;
+        commandCenter.previousTrackCommand.addTarget(self, action: #selector(prev))
+        
+        commandCenter.nextTrackCommand.enabled = true
+        commandCenter.nextTrackCommand.addTarget(self, action: #selector(next))
+        
+        commandCenter.playCommand.enabled = true
+        commandCenter.playCommand.addTarget(self, action: #selector(resume))
+        
+        commandCenter.pauseCommand.enabled = true
+        commandCenter.pauseCommand.addTarget(self, action: #selector(pause))
+        
+        commandCenter.seekForwardCommand.enabled = true
+        commandCenter.seekForwardCommand.addTarget(self, action: #selector(seekForward))
+        
+        commandCenter.seekBackwardCommand.enabled = true
+        commandCenter.seekBackwardCommand.addTarget(self, action: #selector(seekBackward))
+        
+    }
+    
     // MARK:
     
-    private init() {
+    private override init() {
+        super.init()
         NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(playerItemDidPlayToEndNotificationHandler), name: AVPlayerItemDidPlayToEndTimeNotification, object: nil)
+        configureCommandCenter()
     }
     
 }
