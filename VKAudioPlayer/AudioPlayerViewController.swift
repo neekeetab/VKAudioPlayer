@@ -74,9 +74,7 @@ class AudioPlayerViewController: UIViewController {
     init() {
         super.init(nibName: nil, bundle: nil)
         _playPausebutton = UIBarButtonItem(image: UIImage(named: "pause"), style: .Plain, target: self, action: #selector(playPauseButtonTapHandler))
-        
-//        _downloadCancelButton = UIBarButtonItem(image: UIImage(named: "downloadButton"), style: .Plain, target: self, action: #selector(downloadCancelButtonTapHandler))
-        
+                
         downloadView = ACPDownloadView(frame: CGRect(x: 0, y: 0, width: 30, height: 30))
         let layer = ACPIndeterminateGoogleLayer()
         downloadView.setIndeterminateLayer(layer)
@@ -85,17 +83,7 @@ class AudioPlayerViewController: UIViewController {
         let staticImages = ACPCustomStaticImages()
         downloadView.setImages(staticImages)
         downloadView.setActionForTap({ view in
-            
-            let audioItem = AudioController.sharedAudioController.currentAudioItem!
-            if audioItem.downloadStatus == AudioItemDownloadStatusCached {
-                // warning
-                CacheController.sharedCacheController.uncacheAudioItem(audioItem)
-            } else if audioItem.downloadStatus == AudioItemDownloadStatusNotCached {
-                CacheController.sharedCacheController.downloadAudioItem(audioItem)
-            } else {
-                CacheController.sharedCacheController.cancelDownloadingAudioItem(audioItem)
-            }
-            
+            self.downloadCancelButtonTapHandler()
         })
         
         prevButton =  UIBarButtonItem(image: UIImage(named: "prev"), style: .Plain, target: self, action: #selector(prevButtonTapHandler))

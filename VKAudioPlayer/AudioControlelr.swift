@@ -25,12 +25,14 @@ class AudioController {
     static let sharedAudioController = AudioController()
     
     private(set) var player = AVPlayer()
-    private(set) var indexOfcurrentAudioItem: Int?
+    private(set) var indexOfCurrentAudioItem: Int?
     private(set) var audioContext: AudioContext?
     private(set) var audioContextSection: AudioContextSection?
+    private(set) var playedToEnd: Bool = false
+    
     
     var currentAudioItem: AudioItem? {
-        return audioItemForAudioContextSection(audioContextSection, index: indexOfcurrentAudioItem)
+        return audioItemForAudioContextSection(audioContextSection, index: indexOfCurrentAudioItem)
     }
     
     var _repeatMode: AudioControllerRepeatMode = .Dont
@@ -44,7 +46,7 @@ class AudioController {
     }
     
     func audioItemForAudioContextSection(audioContextSection: AudioContextSection?, index: Int?) -> AudioItem? {
-        if index == nil {
+        if audioContextSection == nil || index == nil {
             return nil
         }
         if audioContextSection == .GlobalAudio {
@@ -55,34 +57,38 @@ class AudioController {
         return nil
     }
     
-    func playAudioItemFromContext(audioContext: AudioContext, audioContextSection: AudioContextSection, index: Int) {
+    func playAudioItemFromContext(audioContext: AudioContext?, audioContextSection: AudioContextSection?, index: Int?) {
+        
+        playedToEnd = false
+        
         self.audioContext = audioContext
         self.audioContextSection = audioContextSection
-        self.indexOfcurrentAudioItem = index
+        self.indexOfCurrentAudioItem = index
     
-        let audioItem = audioItemForAudioContextSection(audioContextSection, index: index)!
-        
-        let notification = NSNotification(name: AudioContorllerWillStartPlayingAudioItemNotification, object: nil, userInfo: [
-            "audioItem": audioItem
-            ])
-        NSNotificationCenter.defaultCenter().postNotification(notification)
-        
-        CacheController.sharedCacheController.playerItemForAudioItem(audioItem, completionHandler: { playerItem, cached in
-            
-//            self.player = AVPlayer(playerItem: playerItem)
-//            self.player.play()
-            
-            dispatch_async(dispatch_get_main_queue(), {
-                self.player.replaceCurrentItemWithPlayerItem(playerItem)
-                self.player.seekToTime(CMTime(seconds: 0, preferredTimescale: 1))
-                self.player.play()
-            })
-            
-            let notification = NSNotification(name: AudioControllerDidStartPlayingAudioItemNotification, object: nil, userInfo: [
-                "audioItem": playerItem.audioItem
+        if let audioItem = audioItemForAudioContextSection(audioContextSection, index: index) {
+
+            let notification = NSNotification(name: AudioContorllerWillStartPlayingAudioItemNotification, object: nil, userInfo: [
+                "audioItem": audioItem
                 ])
             NSNotificationCenter.defaultCenter().postNotification(notification)
-        })
+            
+            CacheController.sharedCacheController.playerItemForAudioItem(audioItem, completionHandler: { playerItem, cached in
+                
+    //            self.player = AVPlayer(playerItem: playerItem)
+    //            self.player.play()
+                
+                dispatch_async(dispatch_get_main_queue(), {
+                    self.player.replaceCurrentItemWithPlayerItem(playerItem)
+                    self.player.seekToTime(CMTime(seconds: 0, preferredTimescale: 1))
+                    self.player.play()
+                })
+                
+                let notification = NSNotification(name: AudioControllerDidStartPlayingAudioItemNotification, object: nil, userInfo: [
+                    "audioItem": playerItem.audioItem
+                    ])
+                NSNotificationCenter.defaultCenter().postNotification(notification)
+            })
+        }
     }
     
     var paused: Bool {
@@ -109,8 +115,43 @@ class AudioController {
         }
     }
     
+    func replay() {
+        playAudioItemFromContext(audioContext, audioContextSection: audioContextSection, index: indexOfCurrentAudioItem)
+    }
+    
     // TODO:  next, prev
     
-    private init() {}
+    // MARK: Notifications handling
+    
+    @objc private func playerItemDidPlayToEndNotificationHandler(notification: NSNotification) {
+        
+        playedToEnd = true
+        
+        let notification = NSNotification(name: AudioControllerDidPlayAudioItemToEndNotification, object: nil, userInfo: [
+            "audioItem": currentAudioItem!
+            ])
+        NSNotificationCenter.defaultCenter().postNotification(notification)
+        
+        switch repeatMode {
+        case .Dont:
+            break
+            
+        case .One:
+            playAudioItemFromContext(audioContext, audioContextSection: audioContextSection, index: indexOfCurrentAudioItem)
+            break
+            
+        default:
+            break
+        }
+        
+    }
+    
+    // MARK:
+    
+    private init() {
+        
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(playerItemDidPlayToEndNotificationHandler), name: AVPlayerItemDidPlayToEndTimeNotification, object: nil)
+        
+    }
     
 }

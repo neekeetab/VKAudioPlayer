@@ -21,7 +21,7 @@ class AudioContext {
     var audioRequestDescription: AudioRequestDescription!
     weak var delegate: AudioContextDelegate?
     
-    var audioItemsExpected: Int?
+    private var audioItemsExpected: Int?
     
     var userAudio = [AudioItem]()
     var globalAudio = [AudioItem]()

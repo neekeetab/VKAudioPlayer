@@ -29,6 +29,11 @@ extension AudioPlayerViewController {
     
     func audioControllerDidStartPlayingAudioItemNotificationHandler(notification: NSNotification) {
         
+        dispatch_async(dispatch_get_main_queue(), {
+            let pausebutton = UIBarButtonItem(image: UIImage(named: "pause"), style: .Plain, target: self, action: #selector(self.playPauseButtonTapHandler))
+            self.playPauseButton = pausebutton
+        })
+        
     }
     
     func audioControllerDidPauseAudioItemNotificationHandler(notification: NSNotification) {
@@ -36,7 +41,6 @@ extension AudioPlayerViewController {
         dispatch_async(dispatch_get_main_queue(), {
             let playButton = UIBarButtonItem(image: UIImage(named: "play"), style: .Plain, target: self, action: #selector(self.playPauseButtonTapHandler))
             self.playPauseButton = playButton
-            self.reloadButtons()
         })
         
     }
@@ -46,7 +50,6 @@ extension AudioPlayerViewController {
         dispatch_async(dispatch_get_main_queue(), {
             let pausebutton = UIBarButtonItem(image: UIImage(named: "pause"), style: .Plain, target: self, action: #selector(self.playPauseButtonTapHandler))
             self.playPauseButton = pausebutton
-            self.reloadButtons()
         })
         
     }
@@ -64,6 +67,15 @@ extension AudioPlayerViewController {
         
     }
     
+    func audioControllerDidPlayAudioItemToEndNotificationHandler(notification: NSNotification) {
+        
+        dispatch_async(dispatch_get_main_queue(), {
+            let playButton = UIBarButtonItem(image: UIImage(named: "play"), style: .Plain, target: self, action: #selector(self.playPauseButtonTapHandler))
+            self.playPauseButton = playButton
+        })
+        
+    }
+    
     func subscribeToNotifications() {
         
         NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(audioContorllerWillStartPlayingAudioItemNotificationHandler), name: AudioContorllerWillStartPlayingAudioItemNotification, object: nil)
@@ -75,6 +87,8 @@ extension AudioPlayerViewController {
         NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(audioControllerDidResumeAudioItemNotificationHandler), name: AudioControllerDidResumeAudioItemNotification, object: nil)
         
         NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(cacheControllerDidUpdateDownloadingProgressOfAudioItemNotificationHandler), name: CacheControllerDidUpdateDownloadStatusOfAudioItemNotification, object: nil)
+        
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(audioControllerDidPlayAudioItemToEndNotificationHandler), name: AudioControllerDidPlayAudioItemToEndNotification, object: nil)
         
     }
     
