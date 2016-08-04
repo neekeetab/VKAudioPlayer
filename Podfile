@@ -6,5 +6,6 @@ target 'VKAudioPlayer' do
   pod 'ACPDownload'
   pod 'LNPopupController', '~> 0.0'
   pod 'Cache'
+  pod 'BufferSlider'
 end
 

@@ -12,21 +12,41 @@ class ACPCustomStaticImages: ACPStaticImages {
     
     override func drawStatusComplete() {
         
-        var frameContainer = CGRect()
-        frameContainer.size.width = self.bounds.size.width;
-        frameContainer.size.height = self.bounds.size.height;
+        let canvasWidth = self.bounds.size.width;
+        let canvasHeight = self.bounds.size.height;
         
-        let bezierPath = UIBezierPath()
+        var bezierPath = UIBezierPath()
         
-        let centerPoint = CGPoint(x: frameContainer.size.width / 2, y: frameContainer.size.height / 2)
+        // green circle
+        let centerPoint = CGPoint(x: canvasWidth / 2, y: canvasHeight / 2)
         bezierPath.moveToPoint(centerPoint)
         
-        let radius = min(CGRectGetMaxX(frameContainer) / 8, CGRectGetMaxY(frameContainer) / 8)
+        let radius = min(canvasWidth / 3, canvasHeight / 3)
         bezierPath.addArcWithCenter(centerPoint, radius: radius, startAngle: 0, endAngle: CGFloat(2 * M_PI), clockwise: true)
         
         UIColor.init(red: 0, green: 0.7, blue: 0, alpha: 1).setFill()
         bezierPath.closePath()
         bezierPath.fill()
+        
+        // ok mark
+        
+        bezierPath = UIBezierPath()
+
+        let a = CGPoint(x: (0.35 - 0.03) * canvasWidth, y: 0.45 * canvasHeight)
+        let b = CGPoint(x: (0.5 - 0.03) * canvasWidth, y: 0.6 * canvasHeight)
+        let c = CGPoint(x: (0.7 - 0.03) * canvasWidth, y: 0.35 * canvasHeight)
+        
+        UIColor.whiteColor().set()
+        
+        bezierPath.moveToPoint(a)
+        bezierPath.addLineToPoint(b)
+        bezierPath.addLineToPoint(c)
+        
+        bezierPath.lineWidth = 3
+        bezierPath.stroke()
+        
+//        bezierPath.()
+        
         
     }
     

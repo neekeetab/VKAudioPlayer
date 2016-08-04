@@ -215,18 +215,13 @@
                                             <rect key="frame" x="0.0" y="320" width="320" height="248"/>
                                             <subviews>
                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Kqg-2y-JBW" userLabel="Repeat">
-                                                    <rect key="frame" x="10" y="115" width="20" height="18"/>
+                                                    <rect key="frame" x="7.5" y="115" width="25" height="18"/>
                                                     <constraints>
-                                                        <constraint firstAttribute="width" constant="20" id="bs9-GF-j0g"/>
+                                                        <constraint firstAttribute="width" constant="25" id="bs9-GF-j0g"/>
                                                         <constraint firstAttribute="height" constant="18" id="nSb-xW-nTQ"/>
                                                     </constraints>
                                                     <color key="tintColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                                                     <state key="normal" image="repeat"/>
-                                                </button>
-                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Rmn-Yw-p4n" userLabel="Download">
-                                                    <rect key="frame" x="288" y="115" width="16" height="18"/>
-                                                    <color key="tintColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
-                                                    <state key="normal" image="next"/>
                                                 </button>
                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="AyT-Ei-xHT" userLabel="Next">
                                                     <rect key="frame" x="226" y="115" width="28" height="18"/>
@@ -239,7 +234,7 @@
                                                     <state key="normal" image="nowPlaying_prev"/>
                                                 </button>
                                                 <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="0.5" minValue="0.0" maxValue="1" minimumValueImage="volDown" maximumValueImage="volUp" translatesAutoresizingMaskIntoConstraints="NO" id="pQv-pi-NGX">
-                                                    <rect key="frame" x="28.5" y="171" width="261.5" height="31"/>
+                                                    <rect key="frame" x="30.5" y="171" width="254.5" height="31"/>
                                                 </slider>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Album" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Eqy-FO-bdQ">
                                                     <rect key="frame" x="8" y="59.5" width="304" height="16"/>
@@ -256,24 +251,35 @@
                                                     <fontDescription key="fontDescription" type="system" pointSize="24"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
+                                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="fZD-iQ-9sY" customClass="ACPDownloadView">
+                                                    <rect key="frame" x="283" y="111" width="25" height="25"/>
+                                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="25" id="1TU-qa-935"/>
+                                                        <constraint firstAttribute="width" constant="25" id="eOg-p9-rel"/>
+                                                    </constraints>
+                                                </view>
                                             </subviews>
                                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                             <constraints>
+                                                <constraint firstItem="fZD-iQ-9sY" firstAttribute="centerX" secondItem="b58-Hj-qqk" secondAttribute="centerX" multiplier="1.85:1" id="2gF-ho-fCy"/>
                                                 <constraint firstItem="2ZE-yG-BJD" firstAttribute="centerY" secondItem="b58-Hj-qqk" secondAttribute="centerY" id="68k-Cs-sRm"/>
                                                 <constraint firstItem="HjP-qP-ouI" firstAttribute="centerY" secondItem="b58-Hj-qqk" secondAttribute="centerY" id="AYI-iI-fG8"/>
                                                 <constraint firstItem="ya0-Ky-kd6" firstAttribute="centerX" secondItem="b58-Hj-qqk" secondAttribute="centerX" id="Ce1-kf-lkO"/>
                                                 <constraint firstAttribute="trailingMargin" secondItem="Eqy-FO-bdQ" secondAttribute="trailing" id="FTe-rK-h8f"/>
                                                 <constraint firstItem="Kqg-2y-JBW" firstAttribute="centerX" secondItem="b58-Hj-qqk" secondAttribute="centerX" multiplier="1:8" id="H52-h7-A3f"/>
-                                                <constraint firstItem="Rmn-Yw-p4n" firstAttribute="centerY" secondItem="b58-Hj-qqk" secondAttribute="centerY" id="HAP-zp-VDs"/>
                                                 <constraint firstItem="Kqg-2y-JBW" firstAttribute="centerY" secondItem="b58-Hj-qqk" secondAttribute="centerY" id="Hzg-RW-Tmf"/>
+                                                <constraint firstItem="fZD-iQ-9sY" firstAttribute="leading" secondItem="pQv-pi-NGX" secondAttribute="trailing" id="K2h-eD-LX6"/>
                                                 <constraint firstItem="pQv-pi-NGX" firstAttribute="leading" secondItem="Kqg-2y-JBW" secondAttribute="trailing" id="Oyv-r9-RIV"/>
                                                 <constraint firstAttribute="trailingMargin" secondItem="ya0-Ky-kd6" secondAttribute="trailing" id="QRa-SO-A5t"/>
                                                 <constraint firstItem="ya0-Ky-kd6" firstAttribute="leading" secondItem="b58-Hj-qqk" secondAttribute="leadingMargin" id="S6P-mh-cZN"/>
                                                 <constraint firstItem="AyT-Ei-xHT" firstAttribute="centerX" secondItem="b58-Hj-qqk" secondAttribute="centerX" multiplier="1.5:1" id="Wvo-Pj-ZDL"/>
+                                                <constraint firstAttribute="centerX" secondItem="fZD-iQ-9sY" secondAttribute="centerX" multiplier="1.85:1" id="Ytv-Fb-oDJ"/>
+                                                <constraint firstItem="pQv-pi-NGX" firstAttribute="leading" secondItem="fZD-iQ-9sY" secondAttribute="leading" id="bTz-nN-pv3"/>
                                                 <constraint firstItem="2ZE-yG-BJD" firstAttribute="centerX" secondItem="b58-Hj-qqk" secondAttribute="centerX" multiplier="3:6" id="eHT-1b-119"/>
-                                                <constraint firstItem="pQv-pi-NGX" firstAttribute="trailing" secondItem="Rmn-Yw-p4n" secondAttribute="leading" id="f6L-mK-8sJ"/>
-                                                <constraint firstItem="Rmn-Yw-p4n" firstAttribute="centerX" secondItem="b58-Hj-qqk" secondAttribute="centerX" multiplier="1.85:1" id="odH-vN-bUo"/>
+                                                <constraint firstItem="pQv-pi-NGX" firstAttribute="leading" secondItem="Kqg-2y-JBW" secondAttribute="trailing" id="oiE-0M-KSM"/>
                                                 <constraint firstItem="HjP-qP-ouI" firstAttribute="centerX" secondItem="b58-Hj-qqk" secondAttribute="centerX" id="pQQ-i7-ovf"/>
+                                                <constraint firstItem="fZD-iQ-9sY" firstAttribute="centerY" secondItem="b58-Hj-qqk" secondAttribute="centerY" id="pWP-ef-WrC"/>
                                                 <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="200" id="pkn-BY-tEx"/>
                                                 <constraint firstItem="Eqy-FO-bdQ" firstAttribute="top" secondItem="ya0-Ky-kd6" secondAttribute="bottom" constant="4" id="sNM-fk-weL"/>
                                                 <constraint firstItem="ya0-Ky-kd6" firstAttribute="centerY" secondItem="b58-Hj-qqk" secondAttribute="centerY" multiplier="1:3" id="tUL-9u-t1K"/>
@@ -281,8 +287,15 @@
                                                 <constraint firstItem="pQv-pi-NGX" firstAttribute="centerY" secondItem="b58-Hj-qqk" secondAttribute="centerY" multiplier="1.5:1" id="vdU-my-sxF"/>
                                                 <constraint firstItem="Eqy-FO-bdQ" firstAttribute="leading" secondItem="b58-Hj-qqk" secondAttribute="leadingMargin" id="xCT-C7-XeD"/>
                                             </constraints>
+                                            <variation key="default">
+                                                <mask key="constraints">
+                                                    <exclude reference="Oyv-r9-RIV"/>
+                                                    <exclude reference="bTz-nN-pv3"/>
+                                                    <exclude reference="Ytv-Fb-oDJ"/>
+                                                </mask>
+                                            </variation>
                                         </view>
-                                        <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" minValue="0.0" maxValue="1" translatesAutoresizingMaskIntoConstraints="NO" id="tkN-kY-fff">
+                                        <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" minValue="0.0" maxValue="1" translatesAutoresizingMaskIntoConstraints="NO" id="tkN-kY-fff" customClass="BufferSlider" customModule="BufferSlider">
                                             <rect key="frame" x="18" y="305" width="284" height="31"/>
                                         </slider>
                                     </subviews>
@@ -332,7 +345,6 @@
         </scene>
     </scenes>
     <resources>
-        <image name="next" width="16" height="10"/>
         <image name="note" width="1000" height="1000"/>
         <image name="nowPlaying_next" width="28" height="17"/>
         <image name="nowPlaying_pause" width="19" height="25"/>

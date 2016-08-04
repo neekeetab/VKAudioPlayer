@@ -86,6 +86,7 @@ strip_invalid_archs() {
 if [[ "$CONFIGURATION" == "Debug" ]]; then
   install_framework "Pods-VKAudioPlayer/ACPDownload.framework"
   install_framework "Pods-VKAudioPlayer/AddButton.framework"
+  install_framework "Pods-VKAudioPlayer/BufferSlider.framework"
   install_framework "Pods-VKAudioPlayer/Cache.framework"
   install_framework "Pods-VKAudioPlayer/LNPopupController.framework"
   install_framework "Pods-VKAudioPlayer/NAKPlaybackIndicatorView.framework"
@@ -94,6 +95,7 @@ fi
 if [[ "$CONFIGURATION" == "Release" ]]; then
   install_framework "Pods-VKAudioPlayer/ACPDownload.framework"
   install_framework "Pods-VKAudioPlayer/AddButton.framework"
+  install_framework "Pods-VKAudioPlayer/BufferSlider.framework"
   install_framework "Pods-VKAudioPlayer/Cache.framework"
   install_framework "Pods-VKAudioPlayer/LNPopupController.framework"
   install_framework "Pods-VKAudioPlayer/NAKPlaybackIndicatorView.framework"
