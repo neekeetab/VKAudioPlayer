@@ -7,5 +7,6 @@ target 'VKAudioPlayer' do
   pod 'LNPopupController', '~> 0.0'
   pod 'Cache'
   pod 'BufferSlider'
+  pod 'MultiToggleButton'
 end
 

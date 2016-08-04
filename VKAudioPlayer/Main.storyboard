@@ -214,15 +214,6 @@
                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="b58-Hj-qqk">
                                             <rect key="frame" x="0.0" y="320" width="320" height="248"/>
                                             <subviews>
-                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Kqg-2y-JBW" userLabel="Repeat">
-                                                    <rect key="frame" x="7.5" y="115" width="25" height="18"/>
-                                                    <constraints>
-                                                        <constraint firstAttribute="width" constant="25" id="bs9-GF-j0g"/>
-                                                        <constraint firstAttribute="height" constant="18" id="nSb-xW-nTQ"/>
-                                                    </constraints>
-                                                    <color key="tintColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
-                                                    <state key="normal" image="repeat"/>
-                                                </button>
                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="AyT-Ei-xHT" userLabel="Next">
                                                     <rect key="frame" x="226" y="115" width="28" height="18"/>
                                                     <color key="tintColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
@@ -259,6 +250,15 @@
                                                         <constraint firstAttribute="width" constant="25" id="eOg-p9-rel"/>
                                                     </constraints>
                                                 </view>
+                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Kqg-2y-JBW" userLabel="Repeat" customClass="ToggleButton" customModule="MultiToggleButton">
+                                                    <rect key="frame" x="8" y="115" width="25" height="18"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" constant="25" id="bs9-GF-j0g"/>
+                                                        <constraint firstAttribute="height" constant="18" id="nSb-xW-nTQ"/>
+                                                    </constraints>
+                                                    <color key="tintColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                                                    <state key="normal" image="repeat"/>
+                                                </button>
                                             </subviews>
                                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                             <constraints>
@@ -349,7 +349,7 @@
         <image name="nowPlaying_next" width="28" height="17"/>
         <image name="nowPlaying_pause" width="19" height="25"/>
         <image name="nowPlaying_prev" width="29" height="17"/>
-        <image name="repeat" width="24" height="24"/>
+        <image name="repeat" width="60" height="48"/>
         <image name="settingsIcon" width="20" height="20"/>
         <image name="volDown" width="7" height="9"/>
         <image name="volUp" width="17" height="14"/>

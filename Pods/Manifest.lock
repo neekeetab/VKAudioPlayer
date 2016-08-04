@@ -4,6 +4,7 @@ PODS:
   - BufferSlider (0.1.4)
   - Cache (1.0.0)
   - LNPopupController (0.0.4)
+  - MultiToggleButton (1.1.0)
   - NAKPlaybackIndicatorView (0.0.3)
   - VK-ios-sdk (1.3.16)
 
@@ -13,6 +14,7 @@ DEPENDENCIES:
   - BufferSlider
   - Cache
   - LNPopupController (~> 0.0)
+  - MultiToggleButton
   - NAKPlaybackIndicatorView
   - VK-ios-sdk (~> 1.3.16)
 
@@ -22,6 +24,7 @@ SPEC CHECKSUMS:
   BufferSlider: 3cf92be2637b983986c6fbdc8a7b6c395bec39c7
   Cache: 78f58bc008313c7a1182967a2ebcb3de9fddecd4
   LNPopupController: 31c84b06e6b6eb71842037dd6a3a4ac325265f35
+  MultiToggleButton: b098621807e3dffce5ec4889ff1548529d983d24
   NAKPlaybackIndicatorView: 794dd97576fe074bb1844c19ebcbf7509384a47f
   VK-ios-sdk: 7804776d9947cf9b6f54a259fac589b9212156f1
 
