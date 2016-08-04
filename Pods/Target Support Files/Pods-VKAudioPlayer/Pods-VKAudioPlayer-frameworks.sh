@@ -89,7 +89,6 @@ if [[ "$CONFIGURATION" == "Debug" ]]; then
   install_framework "Pods-VKAudioPlayer/BufferSlider.framework"
   install_framework "Pods-VKAudioPlayer/Cache.framework"
   install_framework "Pods-VKAudioPlayer/LNPopupController.framework"
-  install_framework "Pods-VKAudioPlayer/MultiToggleButton.framework"
   install_framework "Pods-VKAudioPlayer/NAKPlaybackIndicatorView.framework"
   install_framework "Pods-VKAudioPlayer/VK_ios_sdk.framework"
 fi
@@ -99,7 +98,6 @@ if [[ "$CONFIGURATION" == "Release" ]]; then
   install_framework "Pods-VKAudioPlayer/BufferSlider.framework"
   install_framework "Pods-VKAudioPlayer/Cache.framework"
   install_framework "Pods-VKAudioPlayer/LNPopupController.framework"
-  install_framework "Pods-VKAudioPlayer/MultiToggleButton.framework"
   install_framework "Pods-VKAudioPlayer/NAKPlaybackIndicatorView.framework"
   install_framework "Pods-VKAudioPlayer/VK_ios_sdk.framework"
 fi

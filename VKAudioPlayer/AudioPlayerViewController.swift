@@ -9,38 +9,96 @@
 import UIKit
 import LNPopupController
 import ACPDownload
+import BufferSlider
 
 class AudioPlayerViewController: UIViewController {
 
+    // MARK: IB
+    
+    @IBOutlet weak var progressSlider: BufferSlider!
+    @IBOutlet weak var repeatButton: ToggleButton!
+    @IBOutlet weak var downloadView: ACPDownloadView!
+    @IBOutlet weak var playPauseButton: ToggleButton!
+    @IBOutlet weak var volumeSlider: UISlider!
+    @IBOutlet weak var titleLabel: UILabel!
+    @IBOutlet weak var authorLabel: UILabel!
+    
+    @IBAction func prev(sender: AnyObject) {
+        AudioController.sharedAudioController.prev()
+    }
+    
+    @IBAction func next(sender: AnyObject) {
+        AudioController.sharedAudioController.next()
+    }
+    
+    @IBAction func playPause(sender: AnyObject) {
+        
+        if AudioController.sharedAudioController.paused {
+            AudioController.sharedAudioController.resume()
+        } else {
+            AudioController.sharedAudioController.pause()
+        }
+        
+    }
+
+    @IBAction func changeVolume(sender: UISlider) {
+        AudioController.sharedAudioController.volume = sender.value
+        print(AudioController.sharedAudioController.volume)
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        let repeatImage = UIImage(named: "repeat")
+        let repeatOneImage = UIImage(named: "repeatOne")
+        repeatButton.states = ["repeat", "repeatOne"]
+        repeatButton.images = [repeatImage, repeatOneImage]
+        
+        // -------------------------------------------------
+        
+        let layer = ACPIndeterminateGoogleLayer()
+        downloadView.setIndeterminateLayer(layer)
+        let staticImages = ACPCustomStaticImages()
+        downloadView.setImages(staticImages)
+        downloadView.setActionForTap({ view in
+            self.downloadCancelButtonTapHandler()
+        })
+        
+        // -------------------------------------------------
+        
     }
     
-    // MARK: Buttons
+    override func viewDidAppear(animated: Bool) {
         
-    func reloadButtons() {
+        // workaround to force animating while in .Indeterminate state
+        downloadView.setIndicatorStatus(downloadView.currentStatus)
+        
+    }
     
-        self.popupItem.leftBarButtonItems = [ self.prevButton, self.playPauseButton, self.nextButton ]
-        self.popupItem.rightBarButtonItems = [ self.downloadCancelButton ]
+    // MARK: Bar Buttons
+        
+    func reloadBarButtons() {
+    
+        self.popupItem.leftBarButtonItems = [ self.prevBarButton, self.playPauseBarButton, self.nextBarButton ]
+        self.popupItem.rightBarButtonItems = [ self.downloadCancelBarButton ]
 
     }
     
-    private var _playPausebutton: UIBarButtonItem!
-    var playPauseButton: UIBarButtonItem {
+    private var _playPauseBarbutton: UIBarButtonItem!
+    var playPauseBarButton: UIBarButtonItem {
         set {
-            _playPausebutton = newValue
-            reloadButtons()
+            _playPauseBarbutton = newValue
+            reloadBarButtons()
         }
         get {
-            return _playPausebutton
+            return _playPauseBarbutton
         }
     }
     
-    private(set) var downloadView: ACPDownloadView!
-    private var downloadCancelButton: UIBarButtonItem!
-    private var prevButton: UIBarButtonItem!
-    private var nextButton: UIBarButtonItem!
+    private(set) var downloadBarView: ACPDownloadView!
+    private var downloadCancelBarButton: UIBarButtonItem!
+    private var prevBarButton: UIBarButtonItem!
+    private var nextBarButton: UIBarButtonItem!
 
     // MARK: 
     
@@ -50,15 +108,20 @@ class AudioPlayerViewController: UIViewController {
             _downloadStatus = newValue
             if _downloadStatus == AudioItemDownloadStatusNotCached {
                 self.popupItem.progress = 0
+                self.downloadBarView.setIndicatorStatus(.None)
                 self.downloadView.setIndicatorStatus(.None)
             } else if _downloadStatus == AudioItemDownloadStatusCached {
                 self.popupItem.progress = 0
+                self.progressSlider.bufferEndValue = 1
+                self.downloadBarView.setIndicatorStatus(.Completed)
                 self.downloadView.setIndicatorStatus(.Completed)
             } else {
                 self.popupItem.progress = _downloadStatus
                 if _downloadStatus == 0 {
+                    self.downloadBarView.setIndicatorStatus(.Indeterminate)
                     self.downloadView.setIndicatorStatus(.Indeterminate)
                 } else {
+                    self.progressSlider.bufferEndValue = Double(_downloadStatus)
 //                    self.downloadView.setProgress(_downloadStatus, animated: true)
 //                    self.downloadView.setIndicatorStatus(.Running)
                 }
@@ -74,24 +137,24 @@ class AudioPlayerViewController: UIViewController {
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
         
-        _playPausebutton = UIBarButtonItem(image: UIImage(named: "pause"), style: .Plain, target: self, action: #selector(playPauseButtonTapHandler))
+        _playPauseBarbutton = UIBarButtonItem(image: UIImage(named: "pause"), style: .Plain, target: self, action: #selector(playPauseButtonTapHandler))
         
-        downloadView = ACPDownloadView(frame: CGRect(x: 0, y: 0, width: 30, height: 30))
+        downloadBarView = ACPDownloadView(frame: CGRect(x: 0, y: 0, width: 30, height: 30))
         let layer = ACPIndeterminateGoogleLayer()
-        downloadView.setIndeterminateLayer(layer)
-        downloadView.backgroundColor = UIColor.clearColor()
-        downloadCancelButton = UIBarButtonItem(customView: downloadView)
+        downloadBarView.setIndeterminateLayer(layer)
+        downloadBarView.backgroundColor = UIColor.clearColor()
+        downloadCancelBarButton = UIBarButtonItem(customView: downloadBarView)
         let staticImages = ACPCustomStaticImages()
-        downloadView.setImages(staticImages)
-        downloadView.setActionForTap({ view in
+        downloadBarView.setImages(staticImages)
+        downloadBarView.setActionForTap({ view in
             self.downloadCancelButtonTapHandler()
         })
         
-        prevButton =  UIBarButtonItem(image: UIImage(named: "prev"), style: .Plain, target: self, action: #selector(prevButtonTapHandler))
+        prevBarButton =  UIBarButtonItem(image: UIImage(named: "prev"), style: .Plain, target: self, action: #selector(prevButtonTapHandler))
         
-        nextButton = UIBarButtonItem(image: UIImage(named: "nextFwd"), style: .Plain, target: self, action: #selector(nextButtonTapHandler))
+        nextBarButton = UIBarButtonItem(image: UIImage(named: "nextFwd"), style: .Plain, target: self, action: #selector(nextButtonTapHandler))
         
-        reloadButtons()
+        reloadBarButtons()
         subscribeToNotifications()
 
     }

@@ -17,6 +17,8 @@ extension AudioPlayerViewController {
             let audioItem = notification.userInfo!["audioItem"] as! AudioItem
             self.popupItem.title = audioItem.title
             self.popupItem.subtitle = audioItem.artist
+            self.titleLabel.text = audioItem.title
+            self.authorLabel.text = audioItem.artist
             if audioItem.downloadStatus == AudioItemDownloadStatusCached {
                 self.downloadStatus = AudioItemDownloadStatusCached
             } else {
@@ -31,7 +33,8 @@ extension AudioPlayerViewController {
         
         dispatch_async(dispatch_get_main_queue(), {
             let pausebutton = UIBarButtonItem(image: UIImage(named: "pause"), style: .Plain, target: self, action: #selector(self.playPauseButtonTapHandler))
-            self.playPauseButton = pausebutton
+            self.playPauseBarButton = pausebutton
+            self.playPauseButton.setImage(UIImage(named: "nowPlaying_pause"), forState: .Normal)
         })
         
     }
@@ -40,7 +43,8 @@ extension AudioPlayerViewController {
        
         dispatch_async(dispatch_get_main_queue(), {
             let playButton = UIBarButtonItem(image: UIImage(named: "play"), style: .Plain, target: self, action: #selector(self.playPauseButtonTapHandler))
-            self.playPauseButton = playButton
+            self.playPauseBarButton = playButton
+            self.playPauseButton.setImage(UIImage(named: "nowPlaying_play"), forState: .Normal)
         })
         
     }
@@ -49,7 +53,8 @@ extension AudioPlayerViewController {
         
         dispatch_async(dispatch_get_main_queue(), {
             let pausebutton = UIBarButtonItem(image: UIImage(named: "pause"), style: .Plain, target: self, action: #selector(self.playPauseButtonTapHandler))
-            self.playPauseButton = pausebutton
+            self.playPauseBarButton = pausebutton
+            self.playPauseButton.setImage(UIImage(named: "nowPlaying_pause"), forState: .Normal)
         })
         
     }
@@ -71,7 +76,7 @@ extension AudioPlayerViewController {
         
         dispatch_async(dispatch_get_main_queue(), {
             let playButton = UIBarButtonItem(image: UIImage(named: "play"), style: .Plain, target: self, action: #selector(self.playPauseButtonTapHandler))
-            self.playPauseButton = playButton
+            self.playPauseBarButton = playButton
         })
         
     }

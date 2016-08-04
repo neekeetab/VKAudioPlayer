@@ -20,6 +20,7 @@
 		112F3A101D3E49F300E7648B /* AudioContext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 112F3A0F1D3E49F300E7648B /* AudioContext.swift */; };
 		112F3A131D3E93DB00E7648B /* Notifications.swift in Sources */ = {isa = PBXBuildFile; fileRef = 112F3A121D3E93DB00E7648B /* Notifications.swift */; };
 		112F3A151D415A1500E7648B /* ACPCustomStaticImages.swift in Sources */ = {isa = PBXBuildFile; fileRef = 112F3A141D415A1500E7648B /* ACPCustomStaticImages.swift */; };
+		115D1FF31D53693E00FBF6E1 /* MultiToggleButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 115D1FF21D53693E00FBF6E1 /* MultiToggleButton.swift */; };
 		1160D3C31D3966330044DF02 /* AudioCachingPlayerItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1160D3C21D3966330044DF02 /* AudioCachingPlayerItem.swift */; };
 		1160EF0D1CF65331007DB453 /* AudioRequestDescription.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1160EF0C1CF65331007DB453 /* AudioRequestDescription.swift */; };
 		1160EF0F1CF65480007DB453 /* UserAudioRequestDescription.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1160EF0E1CF65480007DB453 /* UserAudioRequestDescription.swift */; };
@@ -62,6 +63,7 @@
 		112F3A0F1D3E49F300E7648B /* AudioContext.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = AudioContext.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		112F3A121D3E93DB00E7648B /* Notifications.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Notifications.swift; sourceTree = "<group>"; };
 		112F3A141D415A1500E7648B /* ACPCustomStaticImages.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ACPCustomStaticImages.swift; sourceTree = "<group>"; };
+		115D1FF21D53693E00FBF6E1 /* MultiToggleButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MultiToggleButton.swift; sourceTree = "<group>"; };
 		1160D3C21D3966330044DF02 /* AudioCachingPlayerItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AudioCachingPlayerItem.swift; sourceTree = "<group>"; };
 		1160EF0C1CF65331007DB453 /* AudioRequestDescription.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AudioRequestDescription.swift; sourceTree = "<group>"; };
 		1160EF0E1CF65480007DB453 /* UserAudioRequestDescription.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserAudioRequestDescription.swift; sourceTree = "<group>"; };
@@ -146,6 +148,7 @@
 				111DE65F1CF9E600006CBCDB /* ViewControllers */,
 				11F3B8991D198F56005E3452 /* AudioController */,
 				11DD92D51CF4DABC00A8FC4A /* Model */,
+				11C892121D3E3E4F00FF5524 /* Helpers */,
 				11294E281CF3C7FF00E8EEA2 /* AppDelegate.swift */,
 				11294E3F1CF3C96700E8EEA2 /* Main.storyboard */,
 				11294E411CF3C97A00E8EEA2 /* LaunchScreen.storyboard */,
@@ -169,6 +172,7 @@
 			isa = PBXGroup;
 			children = (
 				112F3A141D415A1500E7648B /* ACPCustomStaticImages.swift */,
+				115D1FF21D53693E00FBF6E1 /* MultiToggleButton.swift */,
 				11C8920E1D3E239E00FF5524 /* Queue.swift */,
 				1167622B1D39126700041BC1 /* CachingPlayerItem.swift */,
 				11294E3D1CF3C94200E8EEA2 /* Utils.swift */,
@@ -206,7 +210,6 @@
 				11BAEBEC1D3CF2F500F45A7D /* Storage.swift */,
 				11C8920C1D3E20C100FF5524 /* CacheController.swift */,
 				112F3A121D3E93DB00E7648B /* Notifications.swift */,
-				11C892121D3E3E4F00FF5524 /* Helpers */,
 				112F3A111D3E527A00E7648B /* Core Data */,
 			);
 			name = Model;
@@ -380,6 +383,7 @@
 				11DD92D11CF4A9FB00A8FC4A /* AudioItem.swift in Sources */,
 				11DD92D31CF4B58B00A8FC4A /* Constants.swift in Sources */,
 				11294E291CF3C7FF00E8EEA2 /* AppDelegate.swift in Sources */,
+				115D1FF31D53693E00FBF6E1 /* MultiToggleButton.swift in Sources */,
 				11DD92C51CF49CAE00A8FC4A /* TableViewController+TableViewDelegate.swift in Sources */,
 				11DD92E01CF4DCFC00A8FC4A /* VKRequest+.swift in Sources */,
 				11294E311CF3C7FF00E8EEA2 /* VKAudioPlayer.xcdatamodeld in Sources */,

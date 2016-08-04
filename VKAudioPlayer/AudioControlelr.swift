@@ -179,6 +179,22 @@ class AudioController: NSObject {
         }
         playAudioItemFromContext(audioContext, audioContextSection: audioContextSection, index: indexOfCurrentAudioItem)
     }
+
+    private let volumeView = MPVolumeView()
+    var volume: Float {
+        set {
+            for subview in volumeView.subviews {
+                if subview.description.rangeOfString("MPVolumeSlider") != nil {
+                    let slider = subview as! UISlider
+                    slider.value = newValue
+                    break
+                }
+            }
+        }
+        get {
+            return AVAudioSession.sharedInstance().outputVolume
+        }
+    }
     
     private var _seekBackwardFlag = false
     func seekBackward() {

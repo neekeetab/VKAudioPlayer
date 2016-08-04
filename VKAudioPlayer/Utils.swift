@@ -16,3 +16,28 @@ func delay(delay:Double, closure:()->()) {
         ),
         dispatch_get_main_queue(), closure)
 }
+
+private class NSTimerActor {
+    var block: () -> ()
+    
+    init(block: () -> ()) {
+        self.block = block
+    }
+    
+    dynamic func fire() {
+        block()
+    }
+}
+
+extension NSTimer {
+    convenience init(_ intervalFromNow: NSTimeInterval, block: () -> ()) {
+        let actor = NSTimerActor(block: block)
+        self.init(timeInterval: intervalFromNow, target: actor, selector: #selector(fire), userInfo: nil, repeats: false)
+    }
+    
+    convenience init(every interval: NSTimeInterval, block: () -> ()) {
+        let actor = NSTimerActor(block: block)
+        self.init(timeInterval: interval, target: actor, selector: #selector(fire), userInfo: nil, repeats: true)
+    }
+
+}
