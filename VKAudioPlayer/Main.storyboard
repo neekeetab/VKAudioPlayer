@@ -204,24 +204,18 @@
                                     <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                     <subviews>
-                                        <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="note" translatesAutoresizingMaskIntoConstraints="NO" id="dEo-CG-4ws">
+                                        <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="note" translatesAutoresizingMaskIntoConstraints="NO" id="dEo-CG-4ws">
                                             <rect key="frame" x="0.0" y="0.0" width="320" height="320"/>
+                                            <color key="backgroundColor" white="0.91000000000000003" alpha="1" colorSpace="calibratedWhite"/>
                                             <constraints>
                                                 <constraint firstAttribute="width" secondItem="dEo-CG-4ws" secondAttribute="height" multiplier="1:1" priority="900" id="wUl-Qh-w71"/>
                                             </constraints>
                                         </imageView>
-                                        <progressView opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="p2y-si-sti">
-                                            <rect key="frame" x="0.0" y="320" width="320" height="2"/>
-                                            <color key="tintColor" red="1" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                            <constraints>
-                                                <constraint firstAttribute="height" constant="2" id="k8y-59-Af4"/>
-                                            </constraints>
-                                        </progressView>
                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="b58-Hj-qqk">
-                                            <rect key="frame" x="0.0" y="322" width="320" height="246"/>
+                                            <rect key="frame" x="0.0" y="320" width="320" height="248"/>
                                             <subviews>
                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Kqg-2y-JBW" userLabel="Repeat">
-                                                    <rect key="frame" x="4.5" y="114" width="20" height="18"/>
+                                                    <rect key="frame" x="10" y="115" width="20" height="18"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" constant="20" id="bs9-GF-j0g"/>
                                                         <constraint firstAttribute="height" constant="18" id="nSb-xW-nTQ"/>
@@ -230,22 +224,22 @@
                                                     <state key="normal" image="repeat"/>
                                                 </button>
                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Rmn-Yw-p4n" userLabel="Download">
-                                                    <rect key="frame" x="296" y="114" width="16" height="18"/>
+                                                    <rect key="frame" x="288" y="115" width="16" height="18"/>
                                                     <color key="tintColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                                                     <state key="normal" image="next"/>
                                                 </button>
                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="AyT-Ei-xHT" userLabel="Next">
-                                                    <rect key="frame" x="226" y="114" width="28" height="18"/>
+                                                    <rect key="frame" x="226" y="115" width="28" height="18"/>
                                                     <color key="tintColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                                                     <state key="normal" image="nowPlaying_next"/>
                                                 </button>
                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2ZE-yG-BJD" userLabel="Prev">
-                                                    <rect key="frame" x="65" y="114" width="29" height="18"/>
+                                                    <rect key="frame" x="65" y="115" width="29" height="18"/>
                                                     <color key="tintColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                                                     <state key="normal" image="nowPlaying_prev"/>
                                                 </button>
                                                 <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="0.5" minValue="0.0" maxValue="1" minimumValueImage="volDown" maximumValueImage="volUp" translatesAutoresizingMaskIntoConstraints="NO" id="pQv-pi-NGX">
-                                                    <rect key="frame" x="22.5" y="169" width="275.5" height="31"/>
+                                                    <rect key="frame" x="28.5" y="171" width="261.5" height="31"/>
                                                 </slider>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Album" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Eqy-FO-bdQ">
                                                     <rect key="frame" x="8" y="59.5" width="304" height="16"/>
@@ -253,7 +247,7 @@
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="HjP-qP-ouI" userLabel="Play">
-                                                    <rect key="frame" x="150" y="110" width="19" height="25"/>
+                                                    <rect key="frame" x="150" y="112" width="19" height="25"/>
                                                     <color key="tintColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                                                     <state key="normal" image="nowPlaying_pause"/>
                                                 </button>
@@ -269,7 +263,7 @@
                                                 <constraint firstItem="HjP-qP-ouI" firstAttribute="centerY" secondItem="b58-Hj-qqk" secondAttribute="centerY" id="AYI-iI-fG8"/>
                                                 <constraint firstItem="ya0-Ky-kd6" firstAttribute="centerX" secondItem="b58-Hj-qqk" secondAttribute="centerX" id="Ce1-kf-lkO"/>
                                                 <constraint firstAttribute="trailingMargin" secondItem="Eqy-FO-bdQ" secondAttribute="trailing" id="FTe-rK-h8f"/>
-                                                <constraint firstItem="Kqg-2y-JBW" firstAttribute="centerX" secondItem="b58-Hj-qqk" secondAttribute="centerX" multiplier="1:11" id="H52-h7-A3f"/>
+                                                <constraint firstItem="Kqg-2y-JBW" firstAttribute="centerX" secondItem="b58-Hj-qqk" secondAttribute="centerX" multiplier="1:8" id="H52-h7-A3f"/>
                                                 <constraint firstItem="Rmn-Yw-p4n" firstAttribute="centerY" secondItem="b58-Hj-qqk" secondAttribute="centerY" id="HAP-zp-VDs"/>
                                                 <constraint firstItem="Kqg-2y-JBW" firstAttribute="centerY" secondItem="b58-Hj-qqk" secondAttribute="centerY" id="Hzg-RW-Tmf"/>
                                                 <constraint firstItem="pQv-pi-NGX" firstAttribute="leading" secondItem="Kqg-2y-JBW" secondAttribute="trailing" id="Oyv-r9-RIV"/>
@@ -278,7 +272,7 @@
                                                 <constraint firstItem="AyT-Ei-xHT" firstAttribute="centerX" secondItem="b58-Hj-qqk" secondAttribute="centerX" multiplier="1.5:1" id="Wvo-Pj-ZDL"/>
                                                 <constraint firstItem="2ZE-yG-BJD" firstAttribute="centerX" secondItem="b58-Hj-qqk" secondAttribute="centerX" multiplier="3:6" id="eHT-1b-119"/>
                                                 <constraint firstItem="pQv-pi-NGX" firstAttribute="trailing" secondItem="Rmn-Yw-p4n" secondAttribute="leading" id="f6L-mK-8sJ"/>
-                                                <constraint firstItem="Rmn-Yw-p4n" firstAttribute="centerX" secondItem="b58-Hj-qqk" secondAttribute="centerX" multiplier="1.9:1" id="odH-vN-bUo"/>
+                                                <constraint firstItem="Rmn-Yw-p4n" firstAttribute="centerX" secondItem="b58-Hj-qqk" secondAttribute="centerX" multiplier="1.85:1" id="odH-vN-bUo"/>
                                                 <constraint firstItem="HjP-qP-ouI" firstAttribute="centerX" secondItem="b58-Hj-qqk" secondAttribute="centerX" id="pQQ-i7-ovf"/>
                                                 <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="200" id="pkn-BY-tEx"/>
                                                 <constraint firstItem="Eqy-FO-bdQ" firstAttribute="top" secondItem="ya0-Ky-kd6" secondAttribute="bottom" constant="4" id="sNM-fk-weL"/>
@@ -288,20 +282,31 @@
                                                 <constraint firstItem="Eqy-FO-bdQ" firstAttribute="leading" secondItem="b58-Hj-qqk" secondAttribute="leadingMargin" id="xCT-C7-XeD"/>
                                             </constraints>
                                         </view>
+                                        <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" minValue="0.0" maxValue="1" translatesAutoresizingMaskIntoConstraints="NO" id="tkN-kY-fff">
+                                            <rect key="frame" x="18" y="305" width="284" height="31"/>
+                                        </slider>
                                     </subviews>
                                     <color key="tintColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                     <constraints>
-                                        <constraint firstItem="p2y-si-sti" firstAttribute="top" secondItem="dEo-CG-4ws" secondAttribute="bottom" id="7tq-Aq-f6U"/>
                                         <constraint firstItem="dEo-CG-4ws" firstAttribute="top" secondItem="SWc-xq-dvG" secondAttribute="top" id="DCi-oK-YHW"/>
-                                        <constraint firstItem="p2y-si-sti" firstAttribute="leading" secondItem="SWc-xq-dvG" secondAttribute="leading" id="GeZ-yr-bz5"/>
+                                        <constraint firstItem="b58-Hj-qqk" firstAttribute="top" secondItem="tkN-kY-fff" secondAttribute="bottom" constant="-15" id="E2P-NT-5UL"/>
+                                        <constraint firstItem="tkN-kY-fff" firstAttribute="leading" secondItem="SWc-xq-dvG" secondAttribute="leading" id="IUL-KZ-d9I"/>
+                                        <constraint firstItem="b58-Hj-qqk" firstAttribute="top" secondItem="dEo-CG-4ws" secondAttribute="bottom" id="Qv4-Rk-Dac"/>
                                         <constraint firstItem="dEo-CG-4ws" firstAttribute="leading" secondItem="SWc-xq-dvG" secondAttribute="leading" id="Ruo-yk-UjW"/>
-                                        <constraint firstAttribute="trailing" secondItem="p2y-si-sti" secondAttribute="trailing" id="Ykr-CJ-RrO"/>
+                                        <constraint firstAttribute="trailing" secondItem="tkN-kY-fff" secondAttribute="centerX" multiplier="2:1" id="ZHb-R3-vP1"/>
+                                        <constraint firstItem="tkN-kY-fff" firstAttribute="leading" secondItem="SWc-xq-dvG" secondAttribute="centerX" multiplier="1:8" id="dUh-tU-4uJ"/>
+                                        <constraint firstAttribute="trailing" secondItem="tkN-kY-fff" secondAttribute="centerX" multiplier="1:11" id="eXz-1v-HXA"/>
                                         <constraint firstAttribute="trailing" secondItem="b58-Hj-qqk" secondAttribute="trailing" id="j8I-cU-dUS"/>
                                         <constraint firstItem="b58-Hj-qqk" firstAttribute="leading" secondItem="SWc-xq-dvG" secondAttribute="leading" id="kYB-FH-Cgl"/>
                                         <constraint firstAttribute="trailing" secondItem="dEo-CG-4ws" secondAttribute="trailing" id="lMt-Ue-FSc"/>
-                                        <constraint firstItem="b58-Hj-qqk" firstAttribute="top" secondItem="p2y-si-sti" secondAttribute="bottom" id="sgw-QA-vDI"/>
                                         <constraint firstAttribute="bottom" secondItem="b58-Hj-qqk" secondAttribute="bottom" id="vRO-i2-MWx"/>
                                     </constraints>
+                                    <variation key="default">
+                                        <mask key="constraints">
+                                            <exclude reference="IUL-KZ-d9I"/>
+                                            <exclude reference="eXz-1v-HXA"/>
+                                        </mask>
+                                    </variation>
                                 </view>
                                 <blurEffect style="extraLight"/>
                             </visualEffectView>
