@@ -61,12 +61,12 @@ class AudioController: NSObject {
         return nil
     }
     
-    // Controls
+    // MARK: Controls
     
     func playAudioItemFromContext(audioContext: AudioContext?, audioContextSection: AudioContextSection?, index: Int?) {
         
         // if can derive audioItem
-        if let audioItem = audioItemForAudioContext(audioContext, audioContextSection: audioContextSection, index: index) {
+        if let audioItem = self.audioItemForAudioContext(audioContext, audioContextSection: audioContextSection, index: index) {
             
             // if not cached and removed by owner -- we can't play it
             if audioItem.url == nil && audioItem.downloadStatus != AudioItemDownloadStatusCached {
@@ -74,7 +74,7 @@ class AudioController: NSObject {
             }
             
             // reinit controller
-            playedToEnd = false
+            self.playedToEnd = false
             self.audioContext = audioContext
             self.audioContextSection = audioContextSection
             self.indexOfCurrentAudioItem = index
@@ -90,9 +90,11 @@ class AudioController: NSObject {
                 
                 // play it from main thread
                 dispatch_async(dispatch_get_main_queue(), {
+                    
                     self.player.replaceCurrentItemWithPlayerItem(playerItem)
                     self.player.seekToTime(CMTime(seconds: 0, preferredTimescale: 1))
                     self.player.play()
+
                 })
                 
                 // update media center

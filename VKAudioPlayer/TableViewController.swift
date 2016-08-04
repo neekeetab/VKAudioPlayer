@@ -42,7 +42,7 @@ class TableViewController: UITableViewController {
     
     // MARK: -
     let searchController = UISearchController(searchResultsController: nil)
-    let audioPlayerViewController = AudioPlayerViewController()
+    let audioPlayerViewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewControllerWithIdentifier("AudioPlayerViewController")
     var indicatorView = UIActivityIndicatorView()
     var context = AudioContext()
     
@@ -113,7 +113,7 @@ class TableViewController: UITableViewController {
     // MARK: - View controller customization
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+    
 //        VKSdk.forceLogout()
         
         let sdkInstance = VKSdk.initializeWithAppId(appID)

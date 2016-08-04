@@ -71,10 +71,11 @@ class AudioPlayerViewController: UIViewController {
     
     // MARK:
     
-    init() {
-        super.init(nibName: nil, bundle: nil)
+    required init?(coder aDecoder: NSCoder) {
+        super.init(coder: aDecoder)
+        
         _playPausebutton = UIBarButtonItem(image: UIImage(named: "pause"), style: .Plain, target: self, action: #selector(playPauseButtonTapHandler))
-                
+        
         downloadView = ACPDownloadView(frame: CGRect(x: 0, y: 0, width: 30, height: 30))
         let layer = ACPIndeterminateGoogleLayer()
         downloadView.setIndeterminateLayer(layer)
@@ -92,13 +93,11 @@ class AudioPlayerViewController: UIViewController {
         
         reloadButtons()
         subscribeToNotifications()
-    }
 
+    }
     
-    // MARK:
-    
-    required init?(coder aDecoder: NSCoder) {
-        super.init(coder: aDecoder)
+    override func preferredStatusBarStyle() -> UIStatusBarStyle {
+        return  UIStatusBarStyle.LightContent
     }
     
     
