@@ -24,6 +24,7 @@ extension AudioPlayerViewController {
             } else {
                 self.downloadStatus = 0.0
             }
+            self.updateTimeLabelsWithPart(0.0)
 
         })
         

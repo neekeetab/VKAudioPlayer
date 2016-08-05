@@ -10,6 +10,7 @@ import UIKit
 import LNPopupController
 import ACPDownload
 import BufferSlider
+import AVFoundation
 
 class AudioPlayerViewController: UIViewController {
 
@@ -22,6 +23,8 @@ class AudioPlayerViewController: UIViewController {
     @IBOutlet weak var volumeSlider: UISlider!
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var authorLabel: UILabel!
+    @IBOutlet weak var playedLabel: UILabel!
+    @IBOutlet weak var leftToPlayLabel: UILabel!
     
     @IBAction func prev(sender: AnyObject) {
         AudioController.sharedAudioController.prev()
@@ -48,9 +51,10 @@ class AudioPlayerViewController: UIViewController {
         delay(1.0, closure: {
             self.progressSliderFlagEditing = false
         })
+        AudioController.sharedAudioController.seekToPart(sender.value)
     }
     @IBAction func progressSliderChangeValue(sender: AnyObject) {
-        AudioController.sharedAudioController.seekToPart(sender.value)
+        updateTimeLabelsWithPart(sender.value)
     }
     
     @IBAction func changeVolume(sender: UISlider) {
@@ -63,8 +67,21 @@ class AudioPlayerViewController: UIViewController {
         
         let repeatImage = UIImage(named: "repeat")
         let repeatOneImage = UIImage(named: "repeatOne")
-        repeatButton.states = ["repeat", "repeatOne"]
-        repeatButton.images = [repeatImage, repeatOneImage]
+        let repeatTransparentImage = UIImage(named: "repeatTransparent")
+        repeatButton.states = ["repeat", "repeatOne", "dontRepeat"]
+        repeatButton.images = [repeatImage, repeatOneImage, repeatTransparentImage]
+        repeatButton.currentStateIndex = 0
+        repeatButton.action = { _ in
+            var repeatMode: AudioControllerRepeatMode!
+            if self.repeatButton.currentStateIndex == 0 {
+                repeatMode = .All
+            } else if self.repeatButton.currentStateIndex == 1 {
+                repeatMode = .One
+            } else if self.repeatButton.currentStateIndex == 2 {
+                repeatMode = .Dont
+            }
+            AudioController.sharedAudioController.repeatMode = repeatMode
+        }
         
         // -------------------------------------------------
         
@@ -78,15 +95,33 @@ class AudioPlayerViewController: UIViewController {
         
         // -------------------------------------------------
         
-        AudioController.sharedAudioController.setPeriodicTimeObserverBlock({ time1 in
+        AudioController.sharedAudioController.setPeriodicTimeObserverBlock({ _ in
             
             if self.progressSliderFlagEditing == false {
                 let currentAudioItem = AudioController.sharedAudioController.currentAudioItem!
                 let time = AudioController.sharedAudioController.player.currentTime()
-                self.progressSlider.value = Float(time.seconds / Double(currentAudioItem.duration))
+                let part = Float(time.seconds / Double(currentAudioItem.duration))
+                self.progressSlider.value = part
+                self.updateTimeLabelsWithPart(part)
             }
             
         })
+        
+        // -------------------------------------------------
+    
+        volumeSlider.value = AVAudioSession.sharedInstance().outputVolume
+        AVAudioSession.sharedInstance().addObserver(self, forKeyPath: "outputVolume", options: .New, context: nil)
+        
+        // -------------------------------------------------
+        
+        
+        
+    }
+    
+    override func observeValueForKeyPath(keyPath: String?, ofObject object: AnyObject?, change: [String : AnyObject]?, context: UnsafeMutablePointer<Void>) {
+        if keyPath == "outputVolume" {
+            volumeSlider.value = AVAudioSession.sharedInstance().outputVolume
+        }
         
     }
     
@@ -123,6 +158,17 @@ class AudioPlayerViewController: UIViewController {
     private var nextBarButton: UIBarButtonItem!
 
     // MARK: 
+    
+    func updateTimeLabelsWithPart(part: Float) {
+        let audioItem = AudioController.sharedAudioController.currentAudioItem!
+        let currentTime = Int(Double(progressSlider.value) * Double(audioItem.duration))
+        let minutesPlayed = currentTime / 60
+        let secondsPlayed = currentTime % 60
+        self.playedLabel.text = String(format: "%d:%02d", minutesPlayed, secondsPlayed)
+        let minutesToPlay = (audioItem.duration - currentTime) / 60
+        let secondsToPlay = (audioItem.duration - currentTime) % 60
+        self.leftToPlayLabel.text = String(format: "%d:%02d", minutesToPlay, secondsToPlay)
+    }
     
     private var _downloadStatus: Float = AudioItemDownloadStatusNotCached
     var downloadStatus: Float {

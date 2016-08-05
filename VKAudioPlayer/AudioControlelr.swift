@@ -200,6 +200,7 @@ class AudioController: NSObject {
         let seconds = Double(currentAudioItem!.duration) * Double(part)
         let time = CMTime(seconds: seconds, preferredTimescale: 50000)
         player.seekToTime(time)
+        MPNowPlayingInfoCenter.defaultCenter().nowPlayingInfo![MPNowPlayingInfoPropertyElapsedPlaybackTime] = seconds
     }
     
     private var _seekBackwardFlag = false

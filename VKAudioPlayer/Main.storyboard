@@ -234,7 +234,7 @@
                                                     </connections>
                                                 </button>
                                                 <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="0.5" minValue="0.0" maxValue="1" minimumValueImage="volDown" maximumValueImage="volUp" translatesAutoresizingMaskIntoConstraints="NO" id="pQv-pi-NGX">
-                                                    <rect key="frame" x="31" y="171" width="259" height="31"/>
+                                                    <rect key="frame" x="30" y="171" width="260" height="31"/>
                                                     <connections>
                                                         <action selector="changeVolume:" destination="UH2-BS-hEM" eventType="valueChanged" id="Htv-AA-tUn"/>
                                                     </connections>
@@ -244,8 +244,8 @@
                                                     <fontDescription key="fontDescription" type="system" pointSize="13"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <button opaque="NO" contentMode="scaleAspectFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="HjP-qP-ouI" userLabel="Play">
-                                                    <rect key="frame" x="140" y="105" width="40" height="40"/>
+                                                <button opaque="NO" contentMode="scaleAspectFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="HjP-qP-ouI" userLabel="Play">
+                                                    <rect key="frame" x="140" y="104" width="40" height="40"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" constant="40" id="iYw-kV-DIP"/>
                                                         <constraint firstAttribute="height" constant="40" id="wr4-Fg-Y2J"/>
@@ -269,7 +269,7 @@
                                                         <constraint firstAttribute="width" constant="30" id="eOg-p9-rel"/>
                                                     </constraints>
                                                 </view>
-                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Kqg-2y-JBW" userLabel="Repeat" customClass="ToggleButton" customModule="VKAudioPlayer">
+                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Kqg-2y-JBW" userLabel="Repeat" customClass="ToggleButton" customModule="VKAudioPlayer">
                                                     <rect key="frame" x="20" y="115" width="25" height="18"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" constant="25" id="bs9-GF-j0g"/>
@@ -278,6 +278,18 @@
                                                     <color key="tintColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                                                     <state key="normal" image="repeat"/>
                                                 </button>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0:00" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rvq-Ez-DJX">
+                                                    <rect key="frame" x="14" y="8" width="31" height="17"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                    <color key="textColor" red="0.40000000000000002" green="0.40000000000000002" blue="0.40000000000000002" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="3:54" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KFz-sY-6fe">
+                                                    <rect key="frame" x="275" y="8" width="31" height="17"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                    <color key="textColor" red="0.40000000000000002" green="0.40000000000000002" blue="0.40000000000000002" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
                                             </subviews>
                                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                             <constraints>
@@ -314,7 +326,7 @@
                                                 </mask>
                                             </variation>
                                         </view>
-                                        <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" minValue="0.0" maxValue="1" continuous="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tkN-kY-fff" customClass="BufferSlider" customModule="BufferSlider">
+                                        <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" minValue="0.0" maxValue="1" translatesAutoresizingMaskIntoConstraints="NO" id="tkN-kY-fff" customClass="BufferSlider" customModule="BufferSlider">
                                             <rect key="frame" x="18" y="305" width="284" height="31"/>
                                             <userDefinedRuntimeAttributes>
                                                 <userDefinedRuntimeAttribute type="boolean" keyPath="roundedSlider" value="NO"/>
@@ -350,17 +362,21 @@
                                     </subviews>
                                     <color key="tintColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                     <constraints>
+                                        <constraint firstItem="rvq-Ez-DJX" firstAttribute="top" secondItem="tkN-kY-fff" secondAttribute="bottom" constant="-7" id="92D-Z4-epH"/>
                                         <constraint firstItem="dEo-CG-4ws" firstAttribute="top" secondItem="SWc-xq-dvG" secondAttribute="top" id="DCi-oK-YHW"/>
                                         <constraint firstItem="b58-Hj-qqk" firstAttribute="top" secondItem="tkN-kY-fff" secondAttribute="bottom" constant="-15" id="E2P-NT-5UL"/>
                                         <constraint firstItem="tkN-kY-fff" firstAttribute="leading" secondItem="SWc-xq-dvG" secondAttribute="leading" id="IUL-KZ-d9I"/>
                                         <constraint firstItem="b58-Hj-qqk" firstAttribute="top" secondItem="dEo-CG-4ws" secondAttribute="bottom" id="Qv4-Rk-Dac"/>
                                         <constraint firstItem="dEo-CG-4ws" firstAttribute="leading" secondItem="SWc-xq-dvG" secondAttribute="leading" id="Ruo-yk-UjW"/>
+                                        <constraint firstItem="rvq-Ez-DJX" firstAttribute="centerX" secondItem="tkN-kY-fff" secondAttribute="leading" constant="10" id="VNz-If-XSx"/>
                                         <constraint firstAttribute="trailing" secondItem="tkN-kY-fff" secondAttribute="centerX" multiplier="2:1" id="ZHb-R3-vP1"/>
                                         <constraint firstItem="tkN-kY-fff" firstAttribute="leading" secondItem="SWc-xq-dvG" secondAttribute="centerX" multiplier="1:8" id="dUh-tU-4uJ"/>
                                         <constraint firstAttribute="trailing" secondItem="tkN-kY-fff" secondAttribute="centerX" multiplier="1:11" id="eXz-1v-HXA"/>
+                                        <constraint firstItem="KFz-sY-6fe" firstAttribute="top" secondItem="tkN-kY-fff" secondAttribute="bottom" constant="-7" id="fBK-9a-eaB"/>
                                         <constraint firstAttribute="trailing" secondItem="b58-Hj-qqk" secondAttribute="trailing" id="j8I-cU-dUS"/>
                                         <constraint firstItem="b58-Hj-qqk" firstAttribute="leading" secondItem="SWc-xq-dvG" secondAttribute="leading" id="kYB-FH-Cgl"/>
                                         <constraint firstAttribute="trailing" secondItem="dEo-CG-4ws" secondAttribute="trailing" id="lMt-Ue-FSc"/>
+                                        <constraint firstItem="KFz-sY-6fe" firstAttribute="centerX" secondItem="tkN-kY-fff" secondAttribute="trailing" constant="-10" id="siz-d1-It3"/>
                                         <constraint firstAttribute="bottom" secondItem="b58-Hj-qqk" secondAttribute="bottom" id="vRO-i2-MWx"/>
                                     </constraints>
                                     <variation key="default">
@@ -390,7 +406,9 @@
                     <connections>
                         <outlet property="authorLabel" destination="Eqy-FO-bdQ" id="ZRd-Z7-xoh"/>
                         <outlet property="downloadView" destination="fZD-iQ-9sY" id="5Xf-iJ-Cz8"/>
+                        <outlet property="leftToPlayLabel" destination="KFz-sY-6fe" id="gah-yd-dbw"/>
                         <outlet property="playPauseButton" destination="HjP-qP-ouI" id="NEd-e9-2ZY"/>
+                        <outlet property="playedLabel" destination="rvq-Ez-DJX" id="7iv-Ev-Q3m"/>
                         <outlet property="progressSlider" destination="tkN-kY-fff" id="grB-A6-uPt"/>
                         <outlet property="repeatButton" destination="Kqg-2y-JBW" id="6mg-Iu-L64"/>
                         <outlet property="titleLabel" destination="ya0-Ky-kd6" id="wfL-eM-BP4"/>
