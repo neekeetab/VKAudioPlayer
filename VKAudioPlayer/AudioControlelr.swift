@@ -196,6 +196,12 @@ class AudioController: NSObject {
         }
     }
     
+    func seekToPart(part: Float) {
+        let seconds = Double(currentAudioItem!.duration) * Double(part)
+        let time = CMTime(seconds: seconds, preferredTimescale: 50000)
+        player.seekToTime(time)
+    }
+    
     private var _seekBackwardFlag = false
     func seekBackward() {
         _seekBackwardFlag = !_seekBackwardFlag
@@ -223,6 +229,11 @@ class AudioController: NSObject {
             MPNowPlayingInfoCenter.defaultCenter().nowPlayingInfo![MPNowPlayingInfoPropertyElapsedPlaybackTime] = player.currentTime().seconds
             MPNowPlayingInfoCenter.defaultCenter().nowPlayingInfo![MPNowPlayingInfoPropertyPlaybackRate] = 1.0
         }
+    }
+    
+    func setPeriodicTimeObserverBlock(block: (CMTime) -> () ) {
+        let interval = CMTime(seconds: 1, preferredTimescale: 50000)
+        player.addPeriodicTimeObserverForInterval(interval, queue: nil, usingBlock: block)
     }
 
     // MARK: Notification handling

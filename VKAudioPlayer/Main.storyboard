@@ -236,7 +236,7 @@
                                                 <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="0.5" minValue="0.0" maxValue="1" minimumValueImage="volDown" maximumValueImage="volUp" translatesAutoresizingMaskIntoConstraints="NO" id="pQv-pi-NGX">
                                                     <rect key="frame" x="31" y="171" width="259" height="31"/>
                                                     <connections>
-                                                        <action selector="changeVolume:" destination="UH2-BS-hEM" eventType="valueChanged" id="Gge-qX-02F"/>
+                                                        <action selector="changeVolume:" destination="UH2-BS-hEM" eventType="valueChanged" id="Htv-AA-tUn"/>
                                                     </connections>
                                                 </slider>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Author" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Eqy-FO-bdQ">
@@ -314,7 +314,7 @@
                                                 </mask>
                                             </variation>
                                         </view>
-                                        <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" minValue="0.0" maxValue="1" translatesAutoresizingMaskIntoConstraints="NO" id="tkN-kY-fff" customClass="BufferSlider" customModule="BufferSlider">
+                                        <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" minValue="0.0" maxValue="1" continuous="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tkN-kY-fff" customClass="BufferSlider" customModule="BufferSlider">
                                             <rect key="frame" x="18" y="305" width="284" height="31"/>
                                             <userDefinedRuntimeAttributes>
                                                 <userDefinedRuntimeAttribute type="boolean" keyPath="roundedSlider" value="NO"/>
@@ -341,6 +341,11 @@
                                                     <color key="value" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                                 </userDefinedRuntimeAttribute>
                                             </userDefinedRuntimeAttributes>
+                                            <connections>
+                                                <action selector="progressSliderChangeValue:" destination="UH2-BS-hEM" eventType="valueChanged" id="Sh7-wB-AWw"/>
+                                                <action selector="progressSliderEditingBegin:" destination="UH2-BS-hEM" eventType="touchDown" id="EiA-4a-xu8"/>
+                                                <action selector="progressSliderEditingEnd:" destination="UH2-BS-hEM" eventType="touchUpInside" id="sTH-gL-vDh"/>
+                                            </connections>
                                         </slider>
                                     </subviews>
                                     <color key="tintColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>

@@ -32,19 +32,31 @@ class AudioPlayerViewController: UIViewController {
     }
     
     @IBAction func playPause(sender: AnyObject) {
-        
         if AudioController.sharedAudioController.paused {
             AudioController.sharedAudioController.resume()
         } else {
             AudioController.sharedAudioController.pause()
         }
-        
     }
 
+    var progressSliderFlagEditing = false
+    @IBAction func progressSliderEditingBegin(sender: AnyObject) {
+        progressSliderFlagEditing = true
+    }
+    @IBAction func progressSliderEditingEnd(sender: AnyObject) {
+        // delay to allow player keep up
+        delay(1.0, closure: {
+            self.progressSliderFlagEditing = false
+        })
+    }
+    @IBAction func progressSliderChangeValue(sender: AnyObject) {
+        AudioController.sharedAudioController.seekToPart(sender.value)
+    }
+    
     @IBAction func changeVolume(sender: UISlider) {
         AudioController.sharedAudioController.volume = sender.value
-        print(AudioController.sharedAudioController.volume)
     }
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -66,11 +78,21 @@ class AudioPlayerViewController: UIViewController {
         
         // -------------------------------------------------
         
+        AudioController.sharedAudioController.setPeriodicTimeObserverBlock({ time1 in
+            
+            if self.progressSliderFlagEditing == false {
+                let currentAudioItem = AudioController.sharedAudioController.currentAudioItem!
+                let time = AudioController.sharedAudioController.player.currentTime()
+                self.progressSlider.value = Float(time.seconds / Double(currentAudioItem.duration))
+            }
+            
+        })
+        
     }
     
     override func viewDidAppear(animated: Bool) {
         
-        // workaround to force animating while in .Indeterminate state
+        // workaround to force animating the downloadView while in .Indeterminate state
         downloadView.setIndicatorStatus(downloadView.currentStatus)
         
     }
