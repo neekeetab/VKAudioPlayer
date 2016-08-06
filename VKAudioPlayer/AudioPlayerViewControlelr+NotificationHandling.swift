@@ -25,7 +25,6 @@ extension AudioPlayerViewController {
                 self.downloadStatus = 0.0
             }
             self.updateTimeLabelsWithPart(0.0)
-
         })
         
     }
@@ -78,6 +77,10 @@ extension AudioPlayerViewController {
         dispatch_async(dispatch_get_main_queue(), {
             let playButton = UIBarButtonItem(image: UIImage(named: "play"), style: .Plain, target: self, action: #selector(self.playPauseButtonTapHandler))
             self.playPauseBarButton = playButton
+            self.playPauseButton.setImage(UIImage(named: "nowPlaying_play"), forState: .Normal)
+            AudioController.sharedAudioController.seekToPart(0.0)
+            self.progressSlider.value = 0.0
+            self.updateTimeLabelsWithPart(0.0)
         })
         
     }
