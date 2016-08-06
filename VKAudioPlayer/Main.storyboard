@@ -218,7 +218,11 @@
                                             <rect key="frame" x="0.0" y="320" width="320" height="248"/>
                                             <subviews>
                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="AyT-Ei-xHT" userLabel="Next">
-                                                    <rect key="frame" x="218" y="115" width="28" height="18"/>
+                                                    <rect key="frame" x="212" y="104" width="40" height="40"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="40" id="TxR-kG-Xzn"/>
+                                                        <constraint firstAttribute="width" constant="40" id="nS4-MW-vSi"/>
+                                                    </constraints>
                                                     <color key="tintColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                                                     <state key="normal" image="nowPlaying_next"/>
                                                     <connections>
@@ -226,7 +230,11 @@
                                                     </connections>
                                                 </button>
                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2ZE-yG-BJD" userLabel="Prev">
-                                                    <rect key="frame" x="74" y="115" width="29" height="18"/>
+                                                    <rect key="frame" x="68" y="104" width="40" height="40"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="40" id="HLc-dA-k6f"/>
+                                                        <constraint firstAttribute="width" constant="40" id="OZo-qQ-ciP"/>
+                                                    </constraints>
                                                     <color key="tintColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                                                     <state key="normal" image="nowPlaying_prev"/>
                                                     <connections>
@@ -278,10 +286,10 @@
                                                     </constraints>
                                                 </view>
                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Kqg-2y-JBW" userLabel="Repeat" customClass="ToggleButton" customModule="VKAudioPlayer">
-                                                    <rect key="frame" x="20" y="115" width="25" height="18"/>
+                                                    <rect key="frame" x="20" y="112" width="25" height="25"/>
                                                     <constraints>
-                                                        <constraint firstAttribute="width" constant="25" id="bs9-GF-j0g"/>
-                                                        <constraint firstAttribute="height" constant="18" id="nSb-xW-nTQ"/>
+                                                        <constraint firstAttribute="height" constant="25" id="3gG-KN-8ay"/>
+                                                        <constraint firstAttribute="width" constant="25" id="DXq-bi-tfU"/>
                                                     </constraints>
                                                     <color key="tintColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                                                     <state key="normal" image="repeat"/>

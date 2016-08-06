@@ -32,5 +32,9 @@ extension TableViewController: AudioCellDelegate {
         CacheController.sharedCacheController.cancelDownloadingAudioItem(sender.audioItem!)
     }
     
+    func uncacheButtonPressed(sender: AudioCell) {
+        CacheController.sharedCacheController.uncacheAudioItem(sender.audioItem!)
+    }
+    
 }
 

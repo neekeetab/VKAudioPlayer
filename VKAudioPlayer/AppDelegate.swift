@@ -29,6 +29,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         do {
             try AVAudioSession.sharedInstance().setCategory(AVAudioSessionCategoryPlayback)
         } catch _ {}
+//        window?.tintColor = UIColor.darkGrayColor()
         
         return true
     }

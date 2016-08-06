@@ -68,6 +68,7 @@ class AudioPlayerViewController: UIViewController {
         let repeatTransparentImage = UIImage(named: "repeatTransparent")
         repeatButton.states = ["repeat", "repeatOne", "dontRepeat"]
         repeatButton.images = [repeatImage, repeatOneImage, repeatTransparentImage]
+        repeatButton.imageView?.contentMode = .ScaleAspectFit
         repeatButton.currentStateIndex = 0
         repeatButton.action = { _ in
             var repeatMode: AudioControllerRepeatMode!
@@ -202,6 +203,11 @@ class AudioPlayerViewController: UIViewController {
     
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
+        
+//        LNPopupBar.appearance().tintColor = UIColor.whiteColor()
+        popupBar?.backgroundColor = UIColor.darkGrayColor()
+        popupBar?.barStyle = UIBarStyle.Black
+        LNPopupBar.appearance().backgroundColor = UIColor.blackColor()
         
         _playPauseBarbutton = UIBarButtonItem(image: UIImage(named: "pause"), style: .Plain, target: self, action: #selector(playPauseButtonTapHandler))
         

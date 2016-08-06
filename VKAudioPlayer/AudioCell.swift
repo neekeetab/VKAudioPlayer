@@ -16,6 +16,7 @@ protocol AudioCellDelegate: class {
     func addButtonPressed(sender: AudioCell)
     func downloadButtonPressed(sender: AudioCell)
     func cancelButtonPressed(sender: AudioCell)
+    func uncacheButtonPressed(sender: AudioCell)
 }
 
 class AudioCell: UITableViewCell {
@@ -252,6 +253,8 @@ class AudioCell: UITableViewCell {
             if self.audioItem!.downloadStatus == AudioItemDownloadStatusNotCached {
                 downloadView.setIndicatorStatus(.Indeterminate)
                 self.delegate?.downloadButtonPressed(self)
+            } else if self.audioItem!.downloadStatus == AudioItemDownloadStatusCached {
+                self.delegate?.uncacheButtonPressed(self)
             } else if downloadView.currentStatus == .Indeterminate || downloadView.currentStatus == .Running {
                 self.delegate?.cancelButtonPressed(self)
             }
