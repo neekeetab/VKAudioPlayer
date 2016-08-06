@@ -43,17 +43,15 @@ class AudioPlayerViewController: UIViewController {
     }
 
     var progressSliderFlagEditing = false
-    @IBAction func progressSliderEditingBegin(sender: AnyObject) {
-        progressSliderFlagEditing = true
-    }
     @IBAction func progressSliderEditingEnd(sender: AnyObject) {
-        // delay to allow player keep up
+        // delay to allow player to keep up
         delay(1.0, closure: {
             self.progressSliderFlagEditing = false
         })
         AudioController.sharedAudioController.seekToPart(sender.value)
     }
     @IBAction func progressSliderChangeValue(sender: AnyObject) {
+        progressSliderFlagEditing = true
         updateTimeLabelsWithPart(sender.value)
     }
     

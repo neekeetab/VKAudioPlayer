@@ -363,7 +363,6 @@
                                             </userDefinedRuntimeAttributes>
                                             <connections>
                                                 <action selector="progressSliderChangeValue:" destination="UH2-BS-hEM" eventType="valueChanged" id="Sh7-wB-AWw"/>
-                                                <action selector="progressSliderEditingBegin:" destination="UH2-BS-hEM" eventType="touchDown" id="EiA-4a-xu8"/>
                                                 <action selector="progressSliderEditingEnd:" destination="UH2-BS-hEM" eventType="touchUpInside" id="sTH-gL-vDh"/>
                                             </connections>
                                         </slider>
