@@ -279,6 +279,11 @@ class AudioController: NSObject {
         
         commandCenter.pauseCommand.enabled = true
         commandCenter.pauseCommand.addTarget(self, action: #selector(pause))
+        commandCenter.pauseCommand.addTargetWithHandler({ _ in
+            
+            
+            MPRemoteCommandHandlerStatus.Success
+        })
         
         commandCenter.seekForwardCommand.enabled = true
         commandCenter.seekForwardCommand.addTarget(self, action: #selector(seekForward))

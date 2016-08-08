@@ -25,19 +25,6 @@ class TableViewController: UITableViewController {
     var flag = false
     @IBAction func settingsButtonPressed(sender: AnyObject) {
         
-        // For testing only
-        
-        AudioController.sharedAudioController.player.seekToTime(CMTime(seconds: 209, preferredTimescale: 1))
-        return
-        
-        if flag {
-            AudioController.sharedAudioController.pause()
-        } else {
-            AudioController.sharedAudioController.resume()
-        }
-        
-        flag = !flag
-        
     }
     
     // MARK: -
