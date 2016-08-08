@@ -15,7 +15,7 @@ DEPENDENCIES:
   - AddButton
   - BufferSlider
   - Cache
-  - LNPopupController (~> 0.0)
+  - LNPopupController
   - MarqueeLabel
   - NAKPlaybackIndicatorView
   - VK-ios-sdk (~> 1.3.16)

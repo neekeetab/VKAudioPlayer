@@ -4,7 +4,7 @@ target 'VKAudioPlayer' do
   pod 'NAKPlaybackIndicatorView'
   pod 'AddButton'
   pod 'ACPDownload'
-  pod 'LNPopupController', '~> 0.0'
+  pod 'LNPopupController'
   pod 'Cache'
   pod 'BufferSlider'
   pod 'MarqueeLabel'
