@@ -203,12 +203,7 @@ class AudioPlayerViewController: UIViewController {
     
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
-        
-//        LNPopupBar.appearance().tintColor = UIColor.whiteColor()
-        popupBar?.backgroundColor = UIColor.darkGrayColor()
-        popupBar?.barStyle = UIBarStyle.Black
-        LNPopupBar.appearance().backgroundColor = UIColor.blackColor()
-        
+    
         _playPauseBarbutton = UIBarButtonItem(image: UIImage(named: "pause"), style: .Plain, target: self, action: #selector(playPauseButtonTapHandler))
         
         downloadBarView = ACPDownloadView(frame: CGRect(x: 0, y: 0, width: 30, height: 30))
