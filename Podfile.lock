@@ -11,13 +11,13 @@ PODS:
   - VK-ios-sdk (1.3.16)
 
 DEPENDENCIES:
-  - ACPDownload
-  - AddButton
-  - BufferSlider
-  - Cache
-  - LNPopupController
-  - MarqueeLabel
-  - NAKPlaybackIndicatorView
+  - ACPDownload (~> 1.1.0)
+  - AddButton (~> 0.1.0)
+  - BufferSlider (~> 0.1.4)
+  - Cache (~> 1.0.0)
+  - LNPopupController (~> 0.0.4)
+  - MarqueeLabel (~> 2.7.1)
+  - NAKPlaybackIndicatorView (~> 0.0.3)
   - VK-ios-sdk (~> 1.3.16)
 
 SPEC CHECKSUMS:
