@@ -12,7 +12,7 @@ VKAudioPlayer allows you to listen to music from your VK profile and cache it fo
 First open Terminal and clone the project:
 ```
 cd ~/Documents/
-git clone http://github.com/neekeetab/VKAudioPlayer```
+git clone http://github.com/neekeetab/VKAudioPlayer
 cd VKAudioPlayer
 ```
 For the following steps, you need to have CocoaPods installed. To install CocoaPods run this command:
