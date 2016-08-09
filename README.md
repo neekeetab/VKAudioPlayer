@@ -15,7 +15,7 @@ cd ~/Documents/
 git clone http://github.com/neekeetab/VKAudioPlayer
 cd VKAudioPlayer
 ```
-For the following steps, you need to have CocoaPods installed. To install CocoaPods run this command:
+For the following steps, you need to have [CocoaPods](https://cocoapods.org) installed. To install CocoaPods run this command:
 ```
 sudo gem install cocoapods
 ```
@@ -24,9 +24,9 @@ When you're done, run the following command. Ensure that you're in the project d
 pod install
 ```
 OK. Now open Finder, go to the project directory and open ```VKAudioPlayer.xcworkspace```.
-Note, you need to have Xcode installed. 
+Note, you need to have [Xcode](https://itunes.apple.com/en/app/xcode/id497799835) installed. 
 
-Choose your device from the menu, and run the project. It might not work properly in iOS Simulator. 
+Choose your iOS device from the menu and run the project. It might not work properly in iOS Simulator. 
 
 ## Known limitations / TODO list ##
 - You need an internet connection to use the app even if you have some audio cached. The reason for this is that although VKAudioPlayer stores the cache, it doesn't store the list of the chached files. 
